@@ -6,8 +6,8 @@ Este proyecto se llevó a cabo en Ionic en la versión 6 a modo de Front-end. Ba
 
 ## Instalación
 Antes de clonar directamente el proyecto desde la rama principal se necesita tener instalado:
-- [NodeJS] (https://nodejs.org/es/).
-- [Ionic] (https://ionicframework.com).
+- https://nodejs.org/es/
+- https://ionicframework.com
 ```sh
    git clone https://github.com/nachitoloquein/PetWalkFront.git
    cd petwalkfront
