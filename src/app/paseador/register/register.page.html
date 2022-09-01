@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="var">Datos Cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content scroll-y="true">
+
+  <form action="" method="POST">
+
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Confirmar Contraseña</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="var">Datos Personales</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-item>
+      <ion-label position="floating">Rut</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-datetime  presentation="date"></ion-datetime>
+    </ion-item>
+
+    <ion-list>
+      <ion-item>
+        <ion-select placeholder="Genero">
+          <ion-select-option value="Masculino">Masculino</ion-select-option>
+          <ion-select-option value="Femenino">Femenino</ion-select-option>
+          <ion-select-option value="Otro">Otro</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-item>
+      <ion-label position="stacked">Teléfono</ion-label>
+      <ion-input ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Comúna</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+
+    <ion-header >
+      <ion-toolbar>
+        <ion-title class="var">Documento Antecedentes</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <p>*Debe adjuntar documentos de <span>antecedentes</span></p>
+
+    <ion-input type="file"></ion-input>
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="var" >Foto Carnet Delantera/Trasera</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-img [src]="Cdelantero"></ion-img>
+
+    <p>*Debe adjuntar foto carnet <span>Delantera</span></p>
+    <ion-input type="file"></ion-input>
+    <p>*Debe adjuntar foto carnet <span>Trasera</span></p>
+    <ion-input type="file"></ion-input>
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="var" >Foto Validacion</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-img [src]="Cverificacion"></ion-img>
+    
+    <p>*Debe adjuntar <span>Foto de usted con su carnet</span>  al lado</p>
+
+    <ion-input type="file"></ion-input>
+
+    <br>
+
+
+    
+
+  <ion-button  type='submit'  expand="full" (click)="presentAlert()">Enviar Solicitud</ion-button>
+  
+  </form>
+  
+
+</ion-content>
