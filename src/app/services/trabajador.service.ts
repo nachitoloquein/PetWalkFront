@@ -18,7 +18,8 @@ export class TrabajadorService {
     correo: '',
     contrasena: '',
     rut: '',
-    direccion: ''
+    direccion: '',
+    fechaNacimiento: ''
   }
 
   constructor( private http: HttpClient) { }

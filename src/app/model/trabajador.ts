@@ -8,5 +8,6 @@ export interface Trabajador{
     correo: string, 
     contrasena: string, 
     rut: string, 
-    direccion: string
+    direccion: string,
+    fechaNacimiento: string
 }
