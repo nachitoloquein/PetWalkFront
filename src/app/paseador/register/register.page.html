@@ -58,9 +58,7 @@
     <ion-list>
       <ion-item>
         <ion-select placeholder="Comuna" name="comuna" [(ngModel)]="trabajadorService.selectedTrabajador.comuna">
-          <ion-select-option value="La Florida">La florida</ion-select-option>
-          <ion-select-option value="San Bka">San Bka</ion-select-option>
-          <ion-select-option value="La Legua">La legua</ion-select-option>
+          <ion-select-option *ngFor="let comuna of comunaService.comunas" [value]="comuna.nombre">{{comuna.nombre}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list>
