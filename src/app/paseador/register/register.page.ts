@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, NgForm } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
 
@@ -34,4 +34,10 @@ export class RegisterPage implements OnInit {
     )
   }
 
+  passwordValidator(){
+    'password'
+  }
+
+  
 }
+
