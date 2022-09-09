@@ -9,5 +9,8 @@ export interface Trabajador{
     contrasena: string, 
     rut: string, 
     direccion: string,
-    fechaNacimiento: string
+    fechaNacimiento: string,
+    antecedentes?: string,
+    fotoCarnetFrontal?: string,
+    fotoCarnetTrasera?: string
 }

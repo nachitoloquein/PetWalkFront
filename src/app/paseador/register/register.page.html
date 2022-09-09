@@ -93,7 +93,7 @@
 
     <ion-item>
       <ion-label>Cert.Antecedentes</ion-label>
-      <ion-input type="file"></ion-input>
+      <ion-input type="file" [(ngModel)]="antecedentes" (change)="onPhotoSelected($event)" name="antecedentes"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -105,11 +105,6 @@
       <ion-label>Foto carnet trasera</ion-label>
       <ion-input type="file"></ion-input>
     </ion-item>
-    <ion-button ><button  (click)="presentAlert()">Registro</button></ion-button>
-
-  
-  
+    <ion-button ><button>Registro</button></ion-button>
   </form>
-  
-
 </ion-content>

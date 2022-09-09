@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { Form, NgForm } from '@angular/forms';
+import { AlertController, IonInput, IonSelect } from '@ionic/angular';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
 import { ComunasService } from 'src/app/services/comunas.service';
 
@@ -11,6 +11,7 @@ import { ComunasService } from 'src/app/services/comunas.service';
 })
 export class RegisterPage implements OnInit {
 
+  antecedentes: File; 
   constructor(private alertController: AlertController, 
     public trabajadorService: TrabajadorService, 
     public comunaService: ComunasService) {
@@ -24,6 +25,13 @@ export class RegisterPage implements OnInit {
       },
       err => console.log(err)
     );
+  }
+  
+  onPhotoSelected(event){
+    if (event.target.files && event.target.files[0]) {
+      this.antecedentes = <File>event.target.files[0];
+      console.log(this.antecedentes);  
+    }
   }
 
   async presentAlert() {
@@ -43,10 +51,12 @@ export class RegisterPage implements OnInit {
   addRegistro(form: NgForm){
     try{
     this.trabajadorService.crearSolicitud(form.value).subscribe(
-      res =>
-       console.log(res),
+      res =>{
+       console.log(res);
+      },
       err => console.log(err)
-    )
+    );
+    return false;
   }
   catch(err){
     alert(err)
