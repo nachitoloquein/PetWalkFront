@@ -11,7 +11,6 @@ import { ComunasService } from 'src/app/services/comunas.service';
 })
 export class RegisterPage implements OnInit {
 
-  arreglo : [];
   antecedentes: File; 
   fotoDelantera: File;
   fotoTrasera: File;
