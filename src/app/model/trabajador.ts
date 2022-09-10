@@ -10,7 +10,5 @@ export interface Trabajador{
     rut: string, 
     direccion: string,
     fechaNacimiento: string,
-    antecedentes?: string,
-    fotoCarnetFrontal?: string,
-    fotoCarnetTrasera?: string
+    documentos: string[]
 }

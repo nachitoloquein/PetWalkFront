@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, NgForm } from '@angular/forms';
-import { AlertController, IonInput, IonSelect } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
 import { ComunasService } from 'src/app/services/comunas.service';
 
@@ -11,7 +11,10 @@ import { ComunasService } from 'src/app/services/comunas.service';
 })
 export class RegisterPage implements OnInit {
 
+  arreglo : [];
   antecedentes: File; 
+  fotoDelantera: File;
+  fotoTrasera: File;
   constructor(private alertController: AlertController, 
     public trabajadorService: TrabajadorService, 
     public comunaService: ComunasService) {
@@ -26,11 +29,26 @@ export class RegisterPage implements OnInit {
       err => console.log(err)
     );
   }
-  
-  onPhotoSelected(event){
+
+  subirAntecedentes(event){
     if (event.target.files && event.target.files[0]) {
-      this.antecedentes = <File>event.target.files[0];
+      this.antecedentes = (<File>event.target.files[0]);
+
       console.log(this.antecedentes);  
+    }
+  }
+
+  subirFotoDelantera(event){
+    if (event.target.files && event.target.files[0]) {
+      this.fotoDelantera = (<File>event.target.files[0]);
+      console.log(this.fotoDelantera);  
+    }
+  }
+
+  subirFotoTrasera(event){
+    if (event.target.files && event.target.files[0]) {
+      this.fotoTrasera = (<File>event.target.files[0]);
+      console.log(this.fotoTrasera);  
     }
   }
 
@@ -50,7 +68,7 @@ export class RegisterPage implements OnInit {
 
   addRegistro(form: NgForm){
     try{
-    this.trabajadorService.crearSolicitud(form.value).subscribe(
+      this.trabajadorService.crearSolicitud(form.value, this.antecedentes, this.fotoDelantera, this.fotoTrasera).subscribe(
       res =>{
        console.log(res);
       },
