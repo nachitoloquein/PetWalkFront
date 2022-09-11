@@ -41,7 +41,7 @@ export class RegisterPage implements OnInit {
   async RequiredDataAlert(){
     const alert = await this.alertController.create({
       header: 'Faltan Datos',
-      message: 'Debe llenar todos los campos antes de enviar su solicitud',
+      message: 'Debe llenar todos los campos correctamente antes de enviar su solicitud',
       buttons: ['OK']
     })
     await alert.present()

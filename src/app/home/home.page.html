@@ -1,27 +1,34 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      PetWalk Welcome
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title size="large">PetWalk</ion-title>
+      <ion-title>PetWalk</ion-title>      
     </ion-toolbar>
   </ion-header>
 
 
-  
-    <div id="container">
-      <ion-card>
-        <ion-button expand="block" [routerLink]="['']">Tengo una Mascota</ion-button>
-        <ion-button expand="block" [routerLink]="['../loginPaseador']">Quiero pasear una mascota</ion-button>
-        <p>al momento de registrar </p>
-      </ion-card>
+<ion-content [fullscreen]="true">
+
+    
+    <ion-img src="../../assets/img/logopetwalk.png"></ion-img>
+    <ion-img id="perro" src="../../assets/img/imgPerro.png"></ion-img>
+
+
+
+
+
+    <ion-button id="consumidor" color="consumidor" expand="full" [routerLink]="['']">Tengo una Mascota</ion-button>
+    <ion-button id="paseador" color="paseador" expand="block" [routerLink]="['../loginPaseador']">Quiero pasear una mascota</ion-button>
+        
+    <div class="Acuerdos">
+      <p>haciendo click en Registrarse o Iniciar Secion estoy de acuerdo con <a href="">Los Terminos y Condiciones</a> de PetWalk y <a href="">Su Politica de Privacidad</a>.</p>
     </div>
 
-  
-</ion-content>
+
+</ion-content>   
+
+
+      
+
+     
+    
+

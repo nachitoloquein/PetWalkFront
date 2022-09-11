@@ -1,10 +1,17 @@
 <ion-header>
   <ion-toolbar color="tertiary" >
-    <ion-title >Registro</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title  >Registro</ion-title>
   </ion-toolbar>
 </ion-header>
- 
+
+
+
+
 <ion-content scroll-y="true">
+  <ion-card>
 
   <form id="quickForm" form #trabajadorForm="ngForm" (ngSubmit)="addRegistro(trabajadorForm)">
 
@@ -93,23 +100,24 @@
 
     <ion-item>
       <ion-label>Cert.Antecedentes</ion-label>
-      <ion-input type="file"></ion-input>
+      <ion-input type="file" required></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Foto carnet delantera</ion-label>
-      <ion-input type="file"></ion-input>
+      <ion-label>Foto <span>carnet delantera</span> </ion-label>
+      <ion-input type="file" required></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Foto carnet trasera</ion-label>
-      <ion-input type="file"></ion-input>
+      <ion-label>Foto <span>carnet trasera</span></ion-label>
+      <ion-input type="file" required></ion-input>
     </ion-item>
-    <ion-button ><button>Registro</button></ion-button>
+    <ion-button color="tertiary"><button>Registro</button></ion-button>
 
   
   
   </form>
   
-
+</ion-card>
 </ion-content>
+

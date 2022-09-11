@@ -74,9 +74,21 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /*Panel Login*/
+  --ion-color-paseadorbtn: #CDA2EA;
+	--ion-color-paseadorbtn-rgb: 205,162,234;
+	--ion-color-paseadorbtn-contrast: #000000;
+	--ion-color-paseadorbtn-contrast-rgb: 0,0,0;
+	--ion-color-paseadorbtn-shade: #b48fce;
+	--ion-color-paseadorbtn-tint: #d2abec;
 }
 
-@media (prefers-color-scheme: dark) {
+ 
+  
+  
+
+@media (prefers-color-scheme: light) {
   /*
    * Dark Colors
    * -------------------------------------------
@@ -90,7 +102,8 @@
     --ion-color-primary-shade: #3a7be0;
     --ion-color-primary-tint: #5598ff;
 
-    --ion-color-secondary: #50c8ff;
+    --ion-color-secondary:  
+    #50c8ff;
     --ion-color-secondary-rgb: 80,200,255;
     --ion-color-secondary-contrast: #ffffff;
     --ion-color-secondary-contrast-rgb: 255,255,255;
