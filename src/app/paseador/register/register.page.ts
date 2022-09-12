@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormControlName, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Form, NgForm } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
 import { ComunasService } from 'src/app/services/comunas.service';
@@ -11,6 +11,10 @@ import { ComunasService } from 'src/app/services/comunas.service';
 })
 export class RegisterPage implements OnInit {
 
+  arreglo : [];
+  antecedentes: File; 
+  fotoDelantera: File;
+  fotoTrasera: File;
   constructor(private alertController: AlertController, 
     public trabajadorService: TrabajadorService, 
     public comunaService: ComunasService) {
@@ -28,7 +32,29 @@ export class RegisterPage implements OnInit {
     );
   }
 
-  async SubmitAlert() {
+  subirAntecedentes(event){
+    if (event.target.files && event.target.files[0]) {
+      this.antecedentes = (<File>event.target.files[0]);
+
+      console.log(this.antecedentes);  
+    }
+  }
+
+  subirFotoDelantera(event){
+    if (event.target.files && event.target.files[0]) {
+      this.fotoDelantera = (<File>event.target.files[0]);
+      console.log(this.fotoDelantera);  
+    }
+  }
+
+  subirFotoTrasera(event){
+    if (event.target.files && event.target.files[0]) {
+      this.fotoTrasera = (<File>event.target.files[0]);
+      console.log(this.fotoTrasera);  
+    }
+  }
+
+  async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Solicitud Enviada',
       subHeader: '',
@@ -53,44 +79,16 @@ export class RegisterPage implements OnInit {
   //agrega los registros del paseador y revuelve un mensaje de enviado o no envido, ademas de su validacion de campos vacios
   addRegistro(form: NgForm){
     try{
-    this.trabajadorService.crearSolicitud(form.value).subscribe(
-      res => {
-        console.log(res);
-        if(form.valid){
-          this.SubmitAlert();
-          this.limpiarLogin(form)
-        }else{
-          this.RequiredDataAlert()
-        }
+      this.trabajadorService.crearSolicitud(form.value, this.antecedentes, this.fotoDelantera, this.fotoTrasera).subscribe(
+      res =>{
+       console.log(res);
       },
-      err => { 
-        console.log(err)}
-    )
+      err => console.log(err)
+    );
+    return false;
   }
   catch(err){
     alert(err)
   }
   }
-
-  // Resetear los datos al momento de realizar el submit
-  limpiarLogin(form:NgForm){
-    form.onReset()
-  }
-  //Valida los registros de
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-

@@ -19,13 +19,28 @@ export class TrabajadorService {
     contrasena: '',
     rut: '',
     direccion: '',
-    fechaNacimiento: ''
+    fechaNacimiento: '',
+    documentos: []
   }
 
   constructor( private http: HttpClient) { }
 
-  crearSolicitud(trabajador: Trabajador){
-    return this.http.post(this.URL_API, trabajador);
+  crearSolicitud(trabajador: Trabajador, antecedentes: File, fotoFrontal: File, fotoTrasera: File){
+    const fd:any = new FormData();
+    fd.append('nombre', trabajador.nombre);
+    fd.append('apellido', trabajador.apellido);
+    fd.append('comuna', trabajador.comuna);
+    fd.append('genero', trabajador.genero);
+    fd.append('telefono', trabajador.telefono);
+    fd.append('correo', trabajador.correo);
+    fd.append('contrasena', trabajador.contrasena);
+    fd.append('rut', trabajador.rut);
+    fd.append('direccion', trabajador.direccion);
+    fd.append('fechaNacimiento', trabajador.fechaNacimiento);
+    fd.append('documentosTodos', antecedentes);
+    fd.append('documentosTodos', fotoFrontal);
+    fd.append('documentosTodos', fotoTrasera);
+    return this.http.post(this.URL_API, fd);
   }
 
 

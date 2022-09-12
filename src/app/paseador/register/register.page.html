@@ -90,7 +90,6 @@
       <ion-input type="date" name="fechaNacimiento" [(ngModel)]="trabajadorService.selectedTrabajador.fechaNacimiento" required></ion-input>
     </ion-item>
     
-
     <ion-header >
       <ion-toolbar>
         <ion-title class="var">Documento Antecedentes</ion-title>
@@ -99,24 +98,18 @@
 
     <ion-item>
       <ion-label>Cert.Antecedentes</ion-label>
-      <ion-input type="file" required></ion-input>
+      <ion-input type="file" (change)="subirAntecedentes($event)" name="antecedentes"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Foto <span>carnet delantera</span> </ion-label>
-      <ion-input type="file" required></ion-input>
+      <ion-label>Foto carnet delantera</ion-label>
+      <ion-input type="file" (change)="subirFotoDelantera($event)" name="carnetF"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Foto <span>carnet trasera</span></ion-label>
-      <ion-input type="file" required></ion-input>
+      <ion-label>Foto carnet trasera</ion-label>
+      <ion-input type="file" (change)="subirFotoTrasera($event)" name="carnetT"></ion-input>
     </ion-item>
-    <ion-button id="btnRegistro" color="btnRegistro" expand="full"><button>Registro</button></ion-button>
-
-  
-  
+    <ion-button ><button>Registro</button></ion-button>
   </form>
-  
-</ion-card>
 </ion-content>
-
