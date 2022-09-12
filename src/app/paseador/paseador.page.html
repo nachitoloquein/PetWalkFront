@@ -1,27 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="home"></ion-back-button>
-    </ion-buttons>
-    <ion-title>LOGIN</ion-title>
-  </ion-toolbar>
-</ion-header>
+
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="home"></ion-back-button>
+      </ion-buttons>
+      <ion-title>LOGIN</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
 
-      <ion-item id="usuario">
-        <ion-label position="floating">Usuario</ion-label>
-        <ion-input type="text" required></ion-input>
-      </ion-item>
 
-      <ion-item id="contraseña">
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" required></ion-input>
-      </ion-item>
+  <ion-item id="usuario">
+    <ion-label position="floating">Usuario</ion-label>
+    <ion-input type="text" required></ion-input>
+  </ion-item>
 
-      <ion-button color="success">Login</ion-button>
-      <ion-button color="secondary" [routerLink]="['/register']">Registrarse</ion-button> 
+  <ion-item id="contraseña">
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input type="password" required></ion-input>
+  </ion-item>
+
+  <ion-button color="success">Login</ion-button>
+  <ion-button color="secondary" [routerLink]="['/register']">Registrarse</ion-button> 
   
-
+</ion-content>
 
 
 

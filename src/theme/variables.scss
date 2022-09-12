@@ -20,7 +20,7 @@
   --ion-color-secondary-tint: #50c8ff;
 
   /** tertiary **/
-  --ion-color-tertiary: #5260ff;
+  --ion-color-tertiary: #d484e8;
   --ion-color-tertiary-rgb: 82, 96, 255;
   --ion-color-tertiary-contrast: #ffffff;
   --ion-color-tertiary-contrast-rgb: 255, 255, 255;
@@ -74,21 +74,13 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
-
-  /*Panel Login*/
-  --ion-color-paseadorbtn: #CDA2EA;
-	--ion-color-paseadorbtn-rgb: 205,162,234;
-	--ion-color-paseadorbtn-contrast: #000000;
-	--ion-color-paseadorbtn-contrast-rgb: 0,0,0;
-	--ion-color-paseadorbtn-shade: #b48fce;
-	--ion-color-paseadorbtn-tint: #d2abec;
 }
 
  
   
   
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   /*
    * Dark Colors
    * -------------------------------------------

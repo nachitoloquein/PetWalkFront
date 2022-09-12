@@ -1,6 +1,5 @@
 
-
-.var {
+.title {
       color: #A074BD;
       font-weight: bold;
 }
@@ -11,8 +10,26 @@ span{
       color: rgb(0, 0, 0);
       font-weight: bold;
 }
-  
+   
 button{
       background: none;
       color: azure;
 }
+
+.registro{
+      background-color: #A074BD;
+}
+
+#btnRegistro{
+      background-color: #ac73d2;
+}
+
+ion-item{
+      width: 90%;
+      align-items: center;
+      border-radius: 10%;
+      color: #4435e5;
+      font-family: Helvetica, sans-serif;
+}
+
+
