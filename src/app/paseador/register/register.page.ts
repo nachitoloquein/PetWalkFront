@@ -11,18 +11,25 @@ import { ComunasService } from 'src/app/services/comunas.service';
 })
 export class RegisterPage implements OnInit {
 
-  arreglo : [];
+  pass2 : String;
   antecedentes: File; 
   fotoDelantera: File;
   fotoTrasera: File;
+
+
+
   constructor(private alertController: AlertController, 
     public trabajadorService: TrabajadorService, 
     public comunaService: ComunasService) {
       this.getComunas();
   }
 
+  ngOnInit(): void {
+      
+  }
+  
 
-
+  //OBTENER COMUNAS
   getComunas(){
     this.comunaService.listarComunas().subscribe(
       res => {
@@ -31,7 +38,10 @@ export class RegisterPage implements OnInit {
       err => console.log(err)
     );
   }
+  // FIN OBTENER COMUNAS
 
+
+  //OBTENER ANTECEDENTES
   subirAntecedentes(event){
     if (event.target.files && event.target.files[0]) {
       this.antecedentes = (<File>event.target.files[0]);
@@ -53,6 +63,10 @@ export class RegisterPage implements OnInit {
       console.log(this.fotoTrasera);  
     }
   }
+  // FIN OBTENER ANTECEDENTES
+
+
+  // ALERTAS
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -72,23 +86,59 @@ export class RegisterPage implements OnInit {
     })
     await alert.present()
   }
+  // FIN ALERTAS
 
-  ngOnInit() {
-  }
 
   //agrega los registros del paseador y revuelve un mensaje de enviado o no envido, ademas de su validacion de campos vacios
-  addRegistro(form: NgForm){
+  addRegistro(form: NgForm){ 
     try{
-      this.trabajadorService.crearSolicitud(form.value, this.antecedentes, this.fotoDelantera, this.fotoTrasera).subscribe(
-      res =>{
-       console.log(res);
+      
+      this.Comparar();
+        if(this.Comparar()== true){
+          this.Rut();
+          this.trabajadorService.crearSolicitud(form.value, this.antecedentes, this.fotoDelantera, this.fotoTrasera).subscribe(
+        res =>{
+         console.log(res);
+         if(form.valid && (this.antecedentes && this.fotoDelantera && this.fotoTrasera)){
+          this.presentAlert();
+          form.onReset()
+        }else{
+          this.RequiredDataAlert()
+        }
+
       },
-      err => console.log(err)
+      err =>{console.log(err)} 
     );
     return false;
+      }
+      
   }
   catch(err){
     alert(err)
   }
   }
+  //FIN AGREGAR REGISTRO TRABAJADOR
+
+
+  //VALIDACIONES
+  Comparar(){
+    if(this.trabajadorService.selectedTrabajador.contrasena == this.pass2){
+      
+      return true;
+
+    }else{
+      alert('Las contraseñas deber ser iguales')
+      return false
+    }
+
+  }
+
+  Rut(){
+
+    
+  }
+
+  // FIN VALIDACIONES
+
+
 }

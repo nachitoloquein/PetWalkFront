@@ -10,8 +10,7 @@
 
  
 
-<ion-content scroll-y="true">
-  <ion-card>
+<ion-content scroll-y="true"> 
 
   <form id="quickForm" form #trabajadorForm="ngForm" (ngSubmit)="addRegistro(trabajadorForm)">
 
@@ -23,7 +22,7 @@
     <ion-item>
       <ion-label position="floating">Nombre</ion-label>
       <ion-input type="text" name="nombre" [(ngModel)]="trabajadorService.selectedTrabajador.nombre"   required></ion-input>
-    </ion-item>
+    </ion-item> 
     
     <ion-item>
       <ion-label position="floating">Apellido</ion-label>
@@ -42,7 +41,7 @@
 
     <ion-item>
       <ion-label position="floating">Confirmar Contraseña</ion-label>
-      <ion-input type="password" name="contrasenaa" maxlength="6" required ></ion-input>
+      <ion-input type="password" [(ngModel)]="pass2"   name="contrasenaa" maxlength="6" required ></ion-input>
     </ion-item>
 
     <ion-header>
@@ -53,7 +52,7 @@
 
     <ion-item>
       <ion-label position="floating">Rut</ion-label>
-      <ion-input name="rut" [(ngModel)]="trabajadorService.selectedTrabajador.rut" required></ion-input>
+      <ion-input name="rut" id="rut" [(ngModel)]="trabajadorService.selectedTrabajador.rut" required></ion-input>
     </ion-item>
 
     <ion-item>
@@ -110,6 +109,8 @@
       <ion-label>Foto carnet trasera</ion-label>
       <ion-input type="file" (change)="subirFotoTrasera($event)" name="carnetT"></ion-input>
     </ion-item>
-    <ion-button ><button>Registro</button></ion-button>
+
+    <ion-button><button>Registro</button></ion-button>
   </form>
+
 </ion-content>
