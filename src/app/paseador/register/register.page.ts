@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Form, NgForm } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { TrabajadorService } from 'src/app/services/trabajador.service';
+import { ComunasService } from 'src/app/services/comunas.service';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +11,62 @@ import { AlertController } from '@ionic/angular';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private alertController: AlertController) {}
+  pass2 : String;
+  antecedentes: File; 
+  fotoDelantera: File;
+  fotoTrasera: File;
+
+
+
+  constructor(private alertController: AlertController, 
+    public trabajadorService: TrabajadorService, 
+    public comunaService: ComunasService) {
+      this.getComunas();
+  }
+
+  ngOnInit(): void {
+      
+  }
+  
+
+  //OBTENER COMUNAS
+  getComunas(){
+    this.comunaService.listarComunas().subscribe(
+      res => {
+        this.comunaService.comunas = res;
+      },
+      err => console.log(err)
+    );
+  }
+  // FIN OBTENER COMUNAS
+
+
+  //OBTENER ANTECEDENTES
+  subirAntecedentes(event){
+    if (event.target.files && event.target.files[0]) {
+      this.antecedentes = (<File>event.target.files[0]);
+
+      console.log(this.antecedentes);  
+    }
+  }
+
+  subirFotoDelantera(event){
+    if (event.target.files && event.target.files[0]) {
+      this.fotoDelantera = (<File>event.target.files[0]);
+      console.log(this.fotoDelantera);  
+    }
+  }
+
+  subirFotoTrasera(event){
+    if (event.target.files && event.target.files[0]) {
+      this.fotoTrasera = (<File>event.target.files[0]);
+      console.log(this.fotoTrasera);  
+    }
+  }
+  // FIN OBTENER ANTECEDENTES
+
+
+  // ALERTAS
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -17,20 +75,70 @@ export class RegisterPage implements OnInit {
       message: 'su solicitud esta siendo revisada,esto puede tardar 2 dias habiles',
       buttons: ['OK'],
     });
-
     await alert.present();
   }
 
-
-  Cdelantero:string;
-  Cverificacion:string;
-  Fantecedentes:string;
-
-  ngOnInit() {
-
-    this.Cdelantero = 'https://admision.emoderna.cl/wp-content/uploads/2019/10/ci-admision-emmd2.png'
-    this.Cverificacion = 'https://images.ctfassets.net/lbl105a14rhd/6FKAUndO6n87uHHnaGEoJT/8a7fc8def4350c65d6cc89d9646db80b/help-experience-id-v2-cropped.svg'
-    this.Fantecedentes = 'https://certificadoenlinea.cl/wp-content/uploads/Que-es-el-certificado-de-antecedentes-para-fines-particulares.png'
+  async RequiredDataAlert(){
+    const alert = await this.alertController.create({
+      header: 'Faltan Datos',
+      message: 'Debe llenar todos los campos correctamente antes de enviar su solicitud',
+      buttons: ['OK']
+    })
+    await alert.present()
   }
+  // FIN ALERTAS
+
+
+  //agrega los registros del paseador y revuelve un mensaje de enviado o no envido, ademas de su validacion de campos vacios
+  addRegistro(form: NgForm){ 
+    try{
+      
+      this.Comparar();
+        if(this.Comparar()== true){
+          this.Rut();
+          this.trabajadorService.crearSolicitud(form.value, this.antecedentes, this.fotoDelantera, this.fotoTrasera).subscribe(
+        res =>{
+         console.log(res);
+         if(form.valid && (this.antecedentes && this.fotoDelantera && this.fotoTrasera)){
+          this.presentAlert();
+          form.onReset()
+        }else{
+          this.RequiredDataAlert()
+        }
+
+      },
+      err =>{console.log(err)} 
+    );
+    return false;
+      }
+      
+  }
+  catch(err){
+    alert(err)
+  }
+  }
+  //FIN AGREGAR REGISTRO TRABAJADOR
+
+
+  //VALIDACIONES
+  Comparar(){
+    if(this.trabajadorService.selectedTrabajador.contrasena == this.pass2){
+      
+      return true;
+
+    }else{
+      alert('Las contraseñas deber ser iguales')
+      return false
+    }
+
+  }
+
+  Rut(){
+
+    
+  }
+
+  // FIN VALIDACIONES
+
 
 }

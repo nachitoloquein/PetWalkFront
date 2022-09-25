@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro Consumidor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scroll-y="true">
+
+  <form form #ConsumidorForm="ngForm" (ngSubmit)="addRegistro(ConsumidorForm)">
+
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input name="nombre" [(ngModel)]="consumidorService.selectedConsumidor.nombre" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input name="apellido" [(ngModel)]="consumidorService.selectedConsumidor.apellido"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Comuna</ion-label>
+      <ion-input name="comuna" [(ngModel)]="consumidorService.selectedConsumidor.comuna"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Telefono</ion-label>
+      <ion-input name="telefono" [(ngModel)]="consumidorService.selectedConsumidor.telefono"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input name="correo" [(ngModel)]="consumidorService.selectedConsumidor.correo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input name="contrasena" [(ngModel)]="consumidorService.selectedConsumidor.contrasena"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Confirmar Contraseña</ion-label>
+      <ion-input name="contrasena" [(ngModel)]="pass2"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input name="direccion" [(ngModel)]="consumidorService.selectedConsumidor.direccion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha Nacimiento</ion-label>
+      <ion-input type="date" name="fechaNacimiento" [(ngModel)]="consumidorService.selectedConsumidor.fechaNacimiento"></ion-input>
+    </ion-item>
+    
+  
+    <ion-button shape="round"><button style="background: none;">Registro</button></ion-button>
+
+  </form>
+
+  
+
+
+
+</ion-content>
