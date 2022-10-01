@@ -1,0 +1,73 @@
+form{
+      width: 90%;
+      height: auto;
+      margin-top: 10px;
+      margin-left: 20px;
+      background-color: rgb(166, 150, 249);
+      border-radius: 2%;
+}
+
+.inputs{
+      width: 90%;
+      margin-left: 12px;
+      display: grid;
+      grid-row-gap: 5px;
+}
+
+ion-input{
+      background-color: rgb(255, 255, 255);
+      border-radius: 5px ;
+      font-size: small;
+      margin: 5px;
+      color: rgb(0, 0, 0);
+      margin-top: 10px;
+      font-size: small;
+      text-align: center;
+
+}
+
+ion-text{
+      margin-left: 5px;
+      font-weight: bold;
+}
+
+ion-select{
+      margin-right: 50px ;
+}
+
+.telefono{
+      text-align: left;
+}
+
+ion-button{
+      margin-left: 5px;
+      margin-bottom: 10px;
+}
+
+
+.ion-color-consumidor {
+      --ion-color-base: var(--ion-color-consumidor);
+      --ion-color-base-rgb: var(--ion-color-consumidor-rgb);
+      --ion-color-contrast: var(--ion-color-consumidor-contrast);
+      --ion-color-contrast-rgb: var(--ion-color-consumidor-contrast-rgb);
+      --ion-color-shade: var(--ion-color-consumidor-shade);
+      --ion-color-tint: var(--ion-color-consumidor-tint);
+}
+
+.fecha{
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+      width: 200px;
+}
+
+.fecha ion-input{
+      color: aliceblue;
+      background-color: rgb(69, 44, 79);
+}
+
+.fecha ion-label{
+      margin-left: 5px;
+}
+
+
+

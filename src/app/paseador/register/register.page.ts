@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, NgForm } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonThumbnail } from '@ionic/angular';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
 import { ComunasService } from 'src/app/services/comunas.service';
+import { identity } from 'rxjs';
+
 
 @Component({
   selector: 'app-register',
@@ -18,11 +20,12 @@ export class RegisterPage implements OnInit {
 
 
 
-  constructor(private alertController: AlertController, 
-    public trabajadorService: TrabajadorService, 
+  constructor(
+    private alertController: AlertController, 
+    public trabajadorService: TrabajadorService,
     public comunaService: ComunasService) {
       this.getComunas();
-  }
+    }
 
   ngOnInit(): void {
       
@@ -86,16 +89,42 @@ export class RegisterPage implements OnInit {
     })
     await alert.present()
   }
+
+  async ErrorEdad(){
+    const alert = await this.alertController.create({
+      header: 'Es Menor de edad',
+      message: 'Para crear una cuenta debes ser mayor de edad',
+      buttons: ['OK']
+    })
+    await alert.present()
+  }
+
+
+  async ErrorContrasenas(){
+    const alert = await this.alertController.create({
+      header:'Contraseñas Invalidas',
+      message: 'Las contraseñas deben ser iguales',
+      buttons: ['OK']
+    })
+    await alert.present()
+  }
+
+  async GmailExistente(){
+    const alert = await this.alertController.create({
+      header:'Correo Electronico Existente',
+      message: 'El correo que ha ingresado ya esta registrado',
+      buttons: ['OK']
+    })
+    await alert.present()
+  }
   // FIN ALERTAS
 
 
   //agrega los registros del paseador y revuelve un mensaje de enviado o no envido, ademas de su validacion de campos vacios
   addRegistro(form: NgForm){ 
     try{
-      
-      this.Comparar();
+      if(this.edadValidation(Number(this.trabajadorService.selectedTrabajador.fechaNacimiento.substring(0,4)), 2022) == true){ 
         if(this.Comparar()== true){
-          this.Rut();
           this.trabajadorService.crearSolicitud(form.value, this.antecedentes, this.fotoDelantera, this.fotoTrasera).subscribe(
         res =>{
          console.log(res);
@@ -107,10 +136,14 @@ export class RegisterPage implements OnInit {
         }
 
       },
-      err =>{console.log(err)} 
+      err =>{console.log(err)
+        this.ValidacionesEstados(err);
+      } 
     );
     return false;
       }
+    }
+      
       
   }
   catch(err){
@@ -123,22 +156,33 @@ export class RegisterPage implements OnInit {
   //VALIDACIONES
   Comparar(){
     if(this.trabajadorService.selectedTrabajador.contrasena == this.pass2){
-      
       return true;
 
     }else{
-      alert('Las contraseñas deber ser iguales')
+      this.ErrorContrasenas();
       return false
     }
 
   }
 
-  Rut(){
+  edadValidation(anioTrabajador, anioActual){
 
-    
+    const calculo = (anioActual - anioTrabajador)
+    if(calculo <= 18){
+      this.ErrorEdad();
+      return false;
+    }else{
+      console.log('es mayor')
+      return true;
+    }
   }
 
-  // FIN VALIDACIONES
+  ValidacionesEstados(err){
+    if(err.status == 409){
+      this.GmailExistente();
+    }    
+  }
 
-
+  
 }
+    // FIN VALIDACIONES

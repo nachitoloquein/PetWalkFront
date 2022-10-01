@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title  >Registro <ion-icon name="paw-outline"></ion-icon><ion-icon name="paw-outline"></ion-icon></ion-title>
+    <ion-title><ion-icon name="paw-outline"></ion-icon> Registro Paseador <ion-icon name="paw-outline"></ion-icon></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -52,7 +52,7 @@
 
     <ion-item>
       <ion-label position="floating">Rut</ion-label>
-      <ion-input name="rut" id="rut" [(ngModel)]="trabajadorService.selectedTrabajador.rut" required></ion-input>
+      <ion-input oninput="checkRut(rut)" name="rut" id="rut" [(ngModel)]="trabajadorService.selectedTrabajador.rut" required></ion-input>
     </ion-item>
 
     <ion-item>
@@ -97,17 +97,17 @@
 
     <ion-item>
       <ion-label>Cert.Antecedentes</ion-label>
-      <ion-input type="file" (change)="subirAntecedentes($event)" name="antecedentes"></ion-input>
+      <ion-input type="file" (change)="subirAntecedentes($event)" name="antecedentes" required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Foto carnet delantera</ion-label>
-      <ion-input type="file" (change)="subirFotoDelantera($event)" name="carnetF"></ion-input>
+      <ion-input type="file" (change)="subirFotoDelantera($event)" name="carnetF" required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Foto carnet trasera</ion-label>
-      <ion-input type="file" (change)="subirFotoTrasera($event)" name="carnetT"></ion-input>
+      <ion-input type="file" (change)="subirFotoTrasera($event)" name="carnetT" required></ion-input>
     </ion-item>
 
     <ion-button><button>Registro</button></ion-button>

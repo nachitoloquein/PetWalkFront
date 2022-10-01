@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { ComunasService } from 'src/app/services/comunas.service';
 import { NgForm } from '@angular/forms';
-
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registerconsum',
@@ -14,6 +14,7 @@ export class RegisterconsumPage implements OnInit {
   pass2: string;
 
   constructor(
+    private alertController: AlertController,
     public consumidorService: ConsumidorService,
     public comunaService: ComunasService,
   ){
@@ -22,6 +23,25 @@ export class RegisterconsumPage implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Solicitud Enviada',
+      subHeader: '',
+      message: 'su solicitud esta siendo revisada,esto puede tardar 2 dias habiles',
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
+  async RequiredDataAlert(){
+    const alert = await this.alertController.create({
+      header: 'Faltan Datos',
+      message: 'Debe llenar todos los campos correctamente antes de enviar su solicitud',
+      buttons: ['OK']
+    })
+    await alert.present()
   }
 
   //OBTENER COMUNAS
@@ -40,8 +60,11 @@ export class RegisterconsumPage implements OnInit {
 
        this.consumidorService.crearRegistroConsum(form.value).subscribe(
         res => {
-          alert('creado Correctamente')
-          console.log(res)
+          if(form.valid){
+            this.presentAlert();
+            form.onReset()
+          }
+          
         },
         err =>{console.log(err)}
         ); 
