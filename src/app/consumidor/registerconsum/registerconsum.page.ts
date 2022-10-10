@@ -3,7 +3,6 @@ import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { ComunasService } from 'src/app/services/comunas.service';
 import { NgForm } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
-
 @Component({
   selector: 'app-registerconsum',
   templateUrl: './registerconsum.page.html',
@@ -28,6 +27,10 @@ export class RegisterconsumPage implements OnInit {
   // Codigo funcion principal para agregar registrar Consumidor
   addRegistro(form: NgForm){
     try {
+      if(!this.ValidacionEmail()){
+        this.ErrorValidacionEmail();
+        return false
+      }
       if(!this.comparar() ){
         return false
       }
@@ -125,10 +128,10 @@ export class RegisterconsumPage implements OnInit {
   }
 
   ValidacionEmail(){
-    
+    let email = this.consumidorService.selectedConsumidor.correo
+    var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email) ? true : false;
   }
-
-
 
 
   // ALERTAS
@@ -145,7 +148,7 @@ export class RegisterconsumPage implements OnInit {
   async RequiredDataAlert(){
     const alert = await this.alertController.create({
       header: 'Faltan Datos',
-      message: 'Debe llenar todos los campos, no sea inbecil',
+      message: 'Debe llenar todos los campos',
       buttons: ['OK']
     })
     await alert.present()
@@ -192,6 +195,15 @@ export class RegisterconsumPage implements OnInit {
     const alert = await this.alertController.create({
       header:'Error de Contraseñas',
       message: 'La contraseña debe tener 6 caracteres',
+      buttons: ['OK']
+    })
+    await alert.present()
+  }
+
+  async ErrorValidacionEmail(){
+    const alert = await this.alertController.create({
+      header: 'Formato de Email Incorrecto',
+      message: 'El formato del Email debe ser correo@correo.com',
       buttons: ['OK']
     })
     await alert.present()

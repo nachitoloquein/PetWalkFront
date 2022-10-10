@@ -30,6 +30,89 @@ export class RegisterPage implements OnInit {
   ngOnInit(): void {
       
   }
+
+
+  //agrega los registros del paseador y revuelve un mensaje de enviado o no envido, ademas de su validacion de campos vacios
+  addRegistro(form: NgForm){
+    try {
+      if(!this.ValidacionEmail()){
+        this.ErrorValidacionEmail();
+        return false;
+      }
+      if(!this.Comparar()){
+        return false
+      }
+      if(!this.ValidacionLargoContasenas()){
+        return false
+      }
+      if(!this.edadValidation(Number(this.trabajadorService.selectedTrabajador.fechaNacimiento.substring(0,4)), 2022)){
+        return false
+      }
+      if(!this.ValidacionTelefono()){
+        return false
+      }
+      if(!this.ValidarRut()){
+        return false
+      }
+      this.trabajadorService.crearSolicitud(form.value, this.antecedentes, this.fotoDelantera, this.fotoTrasera).subscribe(
+        res =>{
+          console.log(res);
+          if(form.valid && (this.antecedentes && this.fotoDelantera && this.fotoTrasera)){
+            this.presentAlert();
+            form.onReset();
+          }else{
+            this.RequiredDataAlert()
+          }
+          
+        },
+        err => {
+          console.log(err)
+          this.ValidacionesEstados(err)
+        } 
+      )
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+
+  }
+
+
+
+
+
+
+  //  try{
+  //    if(this.edadValidation(Number(this.trabajadorService.selectedTrabajador.fechaNacimiento.substring(0,4)), 2022) == true){ 
+  //      if(this.Comparar()== true){
+  //        this.trabajadorService.crearSolicitud(form.value, this.antecedentes, this.fotoDelantera, this.fotoTrasera).subscribe(
+  //      res =>{
+  //       console.log(res);
+  //       if(form.valid && (this.antecedentes && this.fotoDelantera && this.fotoTrasera)){
+  //        this.presentAlert();
+  //        form.onReset()
+  //      }else{
+  //        this.RequiredDataAlert()
+  //      }
+  //
+  //    },
+  //    err =>{console.log(err)
+  //      this.ValidacionesEstados(err);
+  //    } 
+  //  );
+  //  return false;
+  //    }
+  //  }
+  //    
+  //    
+  //}catch(err){
+  //  alert(err)
+  //}
+  //}
+
+  //FIN AGREGAR REGISTRO TRABAJADOR
+
   
 
   //OBTENER COMUNAS
@@ -69,8 +152,80 @@ export class RegisterPage implements OnInit {
   // FIN OBTENER ANTECEDENTES
 
 
-  // ALERTAS
+  //VALIDACIONES
+  Comparar(){
+    if(this.trabajadorService.selectedTrabajador.contrasena == this.pass2){
+      return true;
 
+    }else{
+      this.ErrorContrasenas();
+      return false
+    }
+
+  }
+
+  ValidacionLargoContasenas(){
+    const largoContraseñas = this.trabajadorService.selectedTrabajador.contrasena.toString()
+    const largoPass2 = this.pass2.toString()
+    if(largoContraseñas.length == 6 && largoPass2.length == 6){
+      return true
+    }else{
+      this.ErrorLargoContrasenas();
+      return false
+    }
+  }
+
+  edadValidation(anioTrabajador, anioActual){
+
+    const calculo = (anioActual - anioTrabajador)
+    if(calculo <= 18){
+      this.ErrorEdad();
+      return false;
+    }else{
+      console.log('es mayor')
+      return true;
+    }
+  }
+
+  ValidacionesEstados(err){
+    if(err.status == 409){
+      this.GmailExistente();
+    }    
+  }
+
+  ValidacionEmail(){
+    let email = this.trabajadorService.selectedTrabajador.correo
+    var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email) ? true : false;
+  }
+
+  ValidacionTelefono(){
+    var Telefono = this.trabajadorService.selectedTrabajador.telefono.toString()
+    if( Telefono.length == 9 ){
+      return true
+      
+    }else{
+      this.ErrorTelefono();
+      return false
+    }
+  }
+
+  ValidarRut(){
+    var rut = this.trabajadorService.selectedTrabajador.rut;
+    if(!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rut) ){
+      this.ErrorRut();
+      return false
+    }else{
+      return true
+    }
+    
+
+  }
+
+  // FIN VALIDACIONES
+
+
+  // ALERTAS
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Solicitud Enviada',
@@ -99,6 +254,14 @@ export class RegisterPage implements OnInit {
     await alert.present()
   }
 
+  async ErrorLargoContrasenas(){
+    const alert = await this.alertController.create({
+      header:'Error de Contraseñas',
+      message: 'La contraseña debe tener 6 caracteres',
+      buttons: ['OK']
+    })
+    await alert.present()
+  }
 
   async ErrorContrasenas(){
     const alert = await this.alertController.create({
@@ -117,72 +280,38 @@ export class RegisterPage implements OnInit {
     })
     await alert.present()
   }
+
+  async ErrorValidacionEmail(){
+    const alert = await this.alertController.create({
+      header: 'Formato de Email Incorrecto',
+      message: 'El formato del Email debe ser correo@correo.com',
+      buttons: ['OK']
+    })
+    await alert.present()
+  }
+
+  async ErrorTelefono(){
+    const alert = await this.alertController.create({
+      header:'Formato Telefono Incorrecto',
+      message: 'El numero de telefono debe tener 9 numeros',
+      buttons: ['OK']
+    })
+    await alert.present()
+  }
+
+  async ErrorRut(){
+    const alert = await this.alertController.create({
+      header:'Formato Rut Incorrecto',
+      message: 'El formato de rut debe ser 111111111-1(k)',
+      buttons: ['OK']
+    })
+    await alert.present()
+  }
+
+
   // FIN ALERTAS
+}
+    
 
-
-  //agrega los registros del paseador y revuelve un mensaje de enviado o no envido, ademas de su validacion de campos vacios
-  addRegistro(form: NgForm){ 
-    try{
-      if(this.edadValidation(Number(this.trabajadorService.selectedTrabajador.fechaNacimiento.substring(0,4)), 2022) == true){ 
-        if(this.Comparar()== true){
-          this.trabajadorService.crearSolicitud(form.value, this.antecedentes, this.fotoDelantera, this.fotoTrasera).subscribe(
-        res =>{
-         console.log(res);
-         if(form.valid && (this.antecedentes && this.fotoDelantera && this.fotoTrasera)){
-          this.presentAlert();
-          form.onReset()
-        }else{
-          this.RequiredDataAlert()
-        }
-
-      },
-      err =>{console.log(err)
-        this.ValidacionesEstados(err);
-      } 
-    );
-    return false;
-      }
-    }
-      
-      
-  }
-  catch(err){
-    alert(err)
-  }
-  }
-  //FIN AGREGAR REGISTRO TRABAJADOR
-
-
-  //VALIDACIONES
-  Comparar(){
-    if(this.trabajadorService.selectedTrabajador.contrasena == this.pass2){
-      return true;
-
-    }else{
-      this.ErrorContrasenas();
-      return false
-    }
-
-  }
-
-  edadValidation(anioTrabajador, anioActual){
-
-    const calculo = (anioActual - anioTrabajador)
-    if(calculo <= 18){
-      this.ErrorEdad();
-      return false;
-    }else{
-      console.log('es mayor')
-      return true;
-    }
-  }
-
-  ValidacionesEstados(err){
-    if(err.status == 409){
-      this.GmailExistente();
-    }    
-  }
 
   
-}
-    // FIN VALIDACIONES

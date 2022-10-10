@@ -26,8 +26,9 @@
         <ion-input id="telefono"  type="Number" pattern="[0-9]" name="telefono" [(ngModel)]="consumidorService.selectedConsumidor.telefono" required><ion-text>+56</ion-text></ion-input>
         
         <ion-label>Correo</ion-label>
-        <ion-input id="email" name="correo" placeholder="usuario@gmail.com" [(ngModel)]="consumidorService.selectedConsumidor.correo"></ion-input>
-
+        <ion-input id="email" type="email"  name="correo" placeholder="usuario@gmail.com" [(ngModel)]="consumidorService.selectedConsumidor.correo"></ion-input>
+        <span id="emailOK"></span>
+        
         <ion-label>Contraseña</ion-label>
         <ion-input maxLength="6" name="contrasena" placeholder="Contraseña" type="password" [(ngModel)]="consumidorService.selectedConsumidor.contrasena"></ion-input>
         

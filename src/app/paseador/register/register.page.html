@@ -81,13 +81,10 @@
 
     <ion-item>
       <ion-label position="fixed">Teléfono</ion-label>
-      <ion-input  type="tel" pattern="[0-9]*" maxlength="9" name="telefono" [(ngModel)]="trabajadorService.selectedTrabajador.telefono" required><ion-text>+56 </ion-text></ion-input>
+      <ion-input  type="number" name="telefono" [(ngModel)]="trabajadorService.selectedTrabajador.telefono" required><ion-text>+56 </ion-text></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Fecha Nacimiento</ion-label>
-      <ion-input type="date" name="fechaNacimiento" [(ngModel)]="trabajadorService.selectedTrabajador.fechaNacimiento" required></ion-input>
-    </ion-item>
+    <ion-datetime name="fechaNacimiento" [(ngModel)]="trabajadorService.selectedTrabajador.fechaNacimiento" presentation="date"></ion-datetime>
     
     <ion-header >
       <ion-toolbar>
