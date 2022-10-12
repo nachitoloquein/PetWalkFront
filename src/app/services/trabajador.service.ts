@@ -12,7 +12,7 @@ export class TrabajadorService {
   selectedTrabajador : Trabajador ={
     nombre : '',
     apellido: '',
-    comuna: '',
+    comuna: '', 
     genero: '',
     telefono: '',
     correo: '',
@@ -42,6 +42,4 @@ export class TrabajadorService {
     fd.append('documentosTodos', fotoTrasera);
     return this.http.post(this.URL_API, fd);
   }
-
-
 }

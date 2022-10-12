@@ -20,7 +20,7 @@
   --ion-color-secondary-tint: #50c8ff;
 
   /** tertiary **/
-  --ion-color-tertiary: #5260ff;
+  --ion-color-tertiary: #d484e8;
   --ion-color-tertiary-rgb: 82, 96, 255;
   --ion-color-tertiary-contrast: #ffffff;
   --ion-color-tertiary-contrast-rgb: 255, 255, 255;
@@ -74,9 +74,50 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /*Color Paseador*/
+  
+    --ion-color-paseador: #CDA2EA;
+    --ion-color-paseador-rgb: 205,162,234;
+    --ion-color-paseador-contrast: #ffffff;
+    --ion-color-paseador-contrast-rgb: 0,0,0;
+    --ion-color-paseador-shade: #b48fce;
+    --ion-color-paseador-tint: #d2abec;
+  
+  .ion-color-paseador {
+    --ion-color-base: var(--ion-color-paseador);
+    --ion-color-base-rgb: var(--ion-color-paseador-rgb);
+    --ion-color-contrast: var(--ion-color-paseador-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-paseador-contrast-rgb);
+    --ion-color-shade: var(--ion-color-paseador-shade);
+    --ion-color-tint: var(--ion-color-paseador-tint);
+  }
+  /*Color Consumidor*/
+  
+    --ion-color-consumidor: #A074BD;
+    --ion-color-consumidor-rgb: 160,116,189;
+    --ion-color-consumidor-contrast: #ffffff;
+    --ion-color-consumidor-contrast-rgb: 0,0,0;
+    --ion-color-consumidor-shade: #8d66a6;
+    --ion-color-consumidor-tint: #aa82c4;
+  
+  .ion-color-consumidor {
+    --ion-color-base: var(--ion-color-consumidor);
+    --ion-color-base-rgb: var(--ion-color-consumidor-rgb);
+    --ion-color-contrast: var(--ion-color-consumidor-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-consumidor-contrast-rgb);
+    --ion-color-shade: var(--ion-color-consumidor-shade);
+    --ion-color-tint: var(--ion-color-consumidor-tint);
+  }
+
+
 }
 
-@media (prefers-color-scheme: dark) {
+ 
+  
+  
+
+@media (prefers-color-scheme: default) {
   /*
    * Dark Colors
    * -------------------------------------------
@@ -90,7 +131,8 @@
     --ion-color-primary-shade: #3a7be0;
     --ion-color-primary-tint: #5598ff;
 
-    --ion-color-secondary: #50c8ff;
+    --ion-color-secondary:  
+    #50c8ff;
     --ion-color-secondary-rgb: 80,200,255;
     --ion-color-secondary-contrast: #ffffff;
     --ion-color-secondary-contrast-rgb: 255,255,255;

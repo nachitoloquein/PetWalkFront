@@ -1,0 +1,64 @@
+*{
+      font-family: sans-serif;
+}
+
+.block{
+      position:absolute;
+      width: 100%;
+      height: 40%;
+      background-color: rgba(225, 186, 247, 0.408);
+}
+
+ion-img{
+      padding-top: 18%;
+      padding-left: 5%;
+      width: 95%;
+
+}
+
+.Acuerdos{
+      font-size: 12px; 
+      padding-top: 5%;
+      width: 100%;
+      text-align: center;
+}
+.Acuerdos p{
+      width: 95%;
+      padding-left:5%;
+      color: black; 
+      font-weight: bold;
+}
+
+#perro{
+      width: 70%;
+      padding-left:30%;
+}
+
+.consumidor{
+      margin: 15px;
+      
+}
+
+
+.paseador{
+      margin: 15px;
+}
+
+
+.ion-color-consumidor {
+      --ion-color-base: var(--ion-color-consumidor);
+      --ion-color-base-rgb: var(--ion-color-consumidor-rgb);
+      --ion-color-contrast: var(--ion-color-consumidor-contrast);
+      --ion-color-contrast-rgb: var(--ion-color-consumidor-contrast-rgb);
+      --ion-color-shade: var(--ion-color-consumidor-shade);
+      --ion-color-tint: var(--ion-color-consumidor-tint);
+}
+
+.ion-color-paseador {
+      --ion-color-base: var(--ion-color-paseador);
+      --ion-color-base-rgb: var(--ion-color-paseador-rgb);
+      --ion-color-contrast: var(--ion-color-paseador-contrast);
+      --ion-color-contrast-rgb: var(--ion-color-paseador-contrast-rgb);
+      --ion-color-shade: var(--ion-color-paseador-shade);
+      --ion-color-tint: var(--ion-color-paseador-tint);
+    }

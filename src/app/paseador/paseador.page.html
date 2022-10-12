@@ -1,23 +1,53 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>LOGIN</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-item>
-    <ion-label position="floating">Usuario</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="home"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Paseador de Mascotas</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+  <div class="block">
 
-  <ion-button color="success">Login</ion-button>
-  <ion-button color="secondary" [routerLink]="['/register']">Registrarse</ion-button>
+  
+      
 
+
+    <ion-img id="perro" src="../../assets/img/paseando.png"></ion-img>
+    <div class="content">
+
+
+    
+      <div class="ion-padding">
+        <ion-label text="large"><p>Login</p></ion-label>
+        <ion-input type="text" placeholder="Usuario"></ion-input>
+        <ion-input type="password" placeholder="Contraseña"></ion-input>
+      </div>
+    
+      <ion-button color="success" expand="block" fill="solid" shape="round" [routerLink]="['/register']">Iniciar Sesion</ion-button>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="line" size="4">
+
+          </ion-col>
+
+          <ion-col size="2" class="o">
+            o
+          </ion-col>
+
+          <ion-col class="line" size="4">
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-button color="primary" expand="block" fill="solid" [routerLink]="['/register']">Registrate</ion-button>
+
+      <ion-label><a href="">Recuperar Contraseña</a></ion-label>
+
+    </div>
+  </div>
+  
 </ion-content>
 
 
