@@ -21,13 +21,9 @@ export class ConsumidorService {
   }
 
   constructor(private http: HttpClient) {
-    
-
   }
 
   crearRegistroConsum(consumidor: Consumidor){ 
-
-    
     return this.http.post(this.URL_API,consumidor);
   }
 
