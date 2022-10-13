@@ -3,6 +3,7 @@ import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { ComunasService } from 'src/app/services/comunas.service';
 import { NgForm } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-registerconsum',
   templateUrl: './registerconsum.page.html',
@@ -12,7 +13,9 @@ export class RegisterconsumPage implements OnInit {
 
   pass2: string;
 
-  constructor(private alertController: AlertController,
+  constructor(
+    private router : Router,
+    private alertController: AlertController,
     public consumidorService: ConsumidorService,
     public comunaService: ComunasService){
     this.getComunas();
@@ -22,7 +25,11 @@ export class RegisterconsumPage implements OnInit {
 
   }
 
-  // Codigo funcion principal para agregar registrar Consumidor
+  /**
+   * It validates the form, and if it's valid, it sends the data to the server.
+   * @param {NgForm} form - NgForm
+   * @returns The error is being returned.
+   */
   addRegistro(form: NgForm){
     try {
       if(!this.ValidacionEmail()){
@@ -42,6 +49,10 @@ export class RegisterconsumPage implements OnInit {
           console.log(res)
           this.Mensaje('Registro exitoso!','Le enviaremos un correo de confirmación para verificar su registro');
           form.onReset();
+          setTimeout(() => {
+            this.router.navigate(['../consumidor'])
+          }, 500);
+          
         },
         err =>{
           console.log(err)
@@ -54,6 +65,10 @@ export class RegisterconsumPage implements OnInit {
   }
 
   //OBTENER COMUNAS
+  /**
+   * It's a function that calls a service that calls an API that returns a list of comunas (cities) and
+   * then assigns that list to a variable in the service.
+   */
   getComunas(){
     this.comunaService.listarComunas().subscribe(
       res => {
@@ -83,6 +98,13 @@ export class RegisterconsumPage implements OnInit {
     }
   }
 
+  /**
+   * A function that validates the status of the response of the server, if it is 409 it shows a
+   * message that the email is already registered, if it is 400 it shows a message that it is missing
+   * data.
+   * @param err - the error object
+   * @returns the value of the function that is being called.
+   */
   ValidacionesEstados(err){
     if(err.status == 409){
       this.Mensaje('Correo Electronico Existente','El correo que ha ingresado ya esta registrado');

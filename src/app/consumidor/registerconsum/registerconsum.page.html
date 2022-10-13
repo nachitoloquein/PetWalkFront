@@ -3,85 +3,52 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Registro Consumidor</ion-title>
+    <ion-title>PetWalk</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content scroll-y="true">
 
-  <form form #ConsumidorForm="ngForm" (ngSubmit)="addRegistro(ConsumidorForm)">
-
-    <div class="formulario">
-
-      <div class="inputs">
-
-
-        <ion-label>Nombre</ion-label>
-        <ion-input name="nombre" placeholder="Nombre" [(ngModel)]="consumidorService.selectedConsumidor.nombre" ></ion-input>
-
-        <ion-label>Apellido</ion-label>
-        <ion-input placeholder="Apellido" name="apellido" [(ngModel)]="consumidorService.selectedConsumidor.apellido"></ion-input>
-
-        <ion-label>Telefono</ion-label>
-        <ion-input id="telefono"  type="Number" pattern="[0-9]" name="telefono" [(ngModel)]="consumidorService.selectedConsumidor.telefono" required><ion-text>+56</ion-text></ion-input>
-        
-        <ion-label>Correo</ion-label>
-        <ion-input id="email" type="email"  name="correo" placeholder="usuario@gmail.com" [(ngModel)]="consumidorService.selectedConsumidor.correo"></ion-input>
-        <span id="emailOK"></span>
-        
-        <ion-label>Contraseña</ion-label>
-        <ion-input maxLength="6" name="contrasena" placeholder="Contraseña" type="password" [(ngModel)]="consumidorService.selectedConsumidor.contrasena"></ion-input>
-        
-        <ion-label>Confirmar Contraseña</ion-label>
-        <ion-input maxLength="6" name="contrasena" type="password" placeholder="Confirmar Contraseña" [(ngModel)]="pass2"></ion-input>
-
-        <ion-label>Dirección</ion-label>
-        <ion-input name="direccion" placeholder="Dirección" [(ngModel)]="consumidorService.selectedConsumidor.direccion" ></ion-input>
-        
-        <ion-text>Comuna
-        <ion-select placeholder="Seleccione Comuna " name="comuna" [(ngModel)]="consumidorService.selectedConsumidor.comuna" required>
-          <ion-select-option *ngFor="let comuna of comunaService.comunas" [value]="comuna.nombre">{{comuna.nombre}}</ion-select-option>
-        </ion-select></ion-text>
-
-        <div class="fecha">
-
-          <ion-label >Fecha de Nacimiento</ion-label>
-
-          <ion-datetime name="fechaNacimiento" [(ngModel)]="consumidorService.selectedConsumidor.fechaNacimiento" presentation="date"></ion-datetime>
-            
-
-          
-    
-        </div>
+  <form  form #ConsumidorForm="ngForm" (ngSubmit)="addRegistro(ConsumidorForm)">
+    <div class="form-register">
+      <h4><ion-icon name="paw-outline"></ion-icon> Registro Consumidor <ion-icon name="paw-outline"></ion-icon></h4>
+      <ion-input class="controls" placeholder=" Nombre" name="nombre" [(ngModel)]="consumidorService.selectedConsumidor.nombre"></ion-input>
       
-        <ion-button color="consumidor" shape="round"><button style="background: none;">Registro</button></ion-button>
-        
+      <ion-input class="controls" placeholder=" Apellido" name="apellido"  [(ngModel)]="consumidorService.selectedConsumidor.apellido"></ion-input>
+      
+      <ion-input class="controls" placeholder=" Correo" name="correo" id="email" type="email" [(ngModel)]="consumidorService.selectedConsumidor.correo"></ion-input>
+      
+      <ion-input class="controls" placeholder=" Contraseña" name="contrasena" maxLength="6" type="password" [(ngModel)]="consumidorService.selectedConsumidor.contrasena"></ion-input>
+      
+      <ion-input class="controls" placeholder=" Confirmar Contraseña" name="contrasena" maxLength="6" type="password" [(ngModel)]="pass2"></ion-input>
+      
+      <ion-input class="controls" placeholder=" Telefono" name="telefono" type="Number" [(ngModel)]="consumidorService.selectedConsumidor.telefono"></ion-input>
+      
+      <ion-input class="controls" placeholder=" Dirección" name="direccion" [(ngModel)]="consumidorService.selectedConsumidor.direccion"></ion-input>
+      
+      <ion-select class="controls" placeholder="Seleccione Comuna " name="comuna" [(ngModel)]="consumidorService.selectedConsumidor.comuna" required>
+        <ion-select-option *ngFor="let comuna of comunaService.comunas" [value]="comuna.nombre">{{comuna.nombre}}</ion-select-option>
+      </ion-select>
 
+      <div class="controls">
+        <h6>Fecha de nacimiento</h6>
+        <ion-datetime-button datetime="date"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime class="controlsFecha" presentation="date" id="date" name="fechaNacimiento" [(ngModel)]="consumidorService.selectedConsumidor.fechaNacimiento"></ion-datetime>
+          </ng-template>
+        </ion-modal>
       </div>
-
       
+
+      <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
+      
+      
+      <button class="botons" type="submit">Registrarse</button>
+      
+      <p><a [routerLink]="['../consumidor']">Ya tengo cuenta</a></p>
 
     </div>
-
   </form>
-
-
-
-
-  <div class="form-register">
-    <h4>Registro Consumidor</h4>
-    <ion-input class="controls" placeholder=" Nombre"></ion-input>
-    <ion-input class="controls" placeholder=" Apellido"></ion-input>
-    <ion-input class="controls" placeholder=" Correo"></ion-input>
-    <ion-input class="controls" placeholder=" Contraseña"></ion-input>
-    <ion-input class="controls" placeholder=" Confirmar Contraseña"></ion-input>
-    <ion-input class="controls" placeholder=" Telefono"></ion-input>
-    <ion-input class="controls" placeholder=" Dirección"></ion-input>
-    <ion-input class="controls" placeholder=" Comuna"></ion-input>
-    <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
-    <input class="botons" type="submit" value="Registrar">
-    <p><a href="#">Ya tengo cuenta</a></p>
-  </div>
-
 
 </ion-content>
