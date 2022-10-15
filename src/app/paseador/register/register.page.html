@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title><ion-icon name="paw-outline"></ion-icon> Registro Paseador <ion-icon name="paw-outline"></ion-icon></ion-title>
+    <ion-title class="title">PetWalk Paseador</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,101 +13,68 @@
 <ion-content scroll-y="true"> 
 
   <form id="quickForm" form #trabajadorForm="ngForm" (ngSubmit)="addRegistro(trabajadorForm)">
-
-
-    <ion-toolbar >
-      <ion-title class="title">Datos Cuenta</ion-title>
-    </ion-toolbar>
-
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" name="nombre" [(ngModel)]="trabajadorService.selectedTrabajador.nombre"   required></ion-input>
-    </ion-item> 
-    
-    <ion-item>
-      <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="text" name="apellido" [(ngModel)]="trabajadorService.selectedTrabajador.apellido" required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Correo</ion-label>
-      <ion-input type="email" name="correo" [(ngModel)]="trabajadorService.selectedTrabajador.correo" required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password"  name="contrasena" [(ngModel)]="trabajadorService.selectedTrabajador.contrasena" maxlength="6" required ></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Confirmar Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="pass2"   name="contrasenaa" maxlength="6" required ></ion-input>
-    </ion-item>
-
-    <ion-header>
-      <ion-toolbar>
-        <ion-title class="var">Datos Personales</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-item>
-      <ion-label position="floating">Rut</ion-label>
-      <ion-input oninput="checkRut(rut)" name="rut" id="rut" [(ngModel)]="trabajadorService.selectedTrabajador.rut" required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Direccion</ion-label>
-      <ion-input name="direccion" [(ngModel)]="trabajadorService.selectedTrabajador.direccion" required></ion-input>
-    </ion-item>
-
-    <ion-list>
-      <ion-item>
-        <ion-select placeholder="Comuna" name="comuna" [(ngModel)]="trabajadorService.selectedTrabajador.comuna" required>
-          <ion-select-option *ngFor="let comuna of comunaService.comunas" [value]="comuna.nombre">{{comuna.nombre}}</ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ion-list>
-
-    <ion-list>
-      <ion-item>
-        <ion-select placeholder="Genero" name="genero" [(ngModel)]="trabajadorService.selectedTrabajador.genero" required>
-          <ion-select-option value="Masculino">Masculino</ion-select-option>
-          <ion-select-option value="Femenino">Femenino</ion-select-option>
+    <div class="form-register">
+      <h4><ion-icon name="paw-outline"></ion-icon> Registro Paseador <ion-icon name="paw-outline"></ion-icon></h4>
+      <ion-input class="controls" placeholder="Rut"  name="rut" id="rut" [(ngModel)]="trabajadorService.selectedTrabajador.rut"><ion-icon name="wallet-outline"></ion-icon></ion-input>
+      <ion-input class="controls" type="text" placeholder="Nombre" name="nombre" [(ngModel)]="trabajadorService.selectedTrabajador.nombre"><ion-icon name="person-outline"></ion-icon></ion-input>
+      <ion-input class="controls" type="text" placeholder="Apellido" name="apellido" [(ngModel)]="trabajadorService.selectedTrabajador.apellido" ><ion-icon name="person-outline"></ion-icon></ion-input>
+      
+      <ion-input  class="controls"><ion-icon name="transgender-outline"></ion-icon>
+        <ion-select placeholder="Genero" name="genero" [(ngModel)]="trabajadorService.selectedTrabajador.genero">
+          <ion-select-option value="Masculino"> Masculino</ion-select-option>
+          <ion-select-option value="Femenino">Femenino </ion-select-option>
           <ion-select-option value="Otro">Otro</ion-select-option>
         </ion-select>
-      </ion-item>
-    </ion-list>
+      </ion-input>
+       
+      <ion-input class="controls" placeholder="Telefono" type="number" name="telefono" [(ngModel)]="trabajadorService.selectedTrabajador.telefono"><ion-icon name="call-outline"></ion-icon><ion-text class="numero">+56</ion-text></ion-input>
+      <ion-input class="controls" placeholder="Correo" name="correo" [(ngModel)]="trabajadorService.selectedTrabajador.correo"><ion-icon name="mail-outline"></ion-icon></ion-input>
+      <ion-input class="controls" placeholder="Contraseña" type="password" name="contrasena" [(ngModel)]="trabajadorService.selectedTrabajador.contrasena" maxlength="6"><ion-icon name="finger-print-outline"></ion-icon></ion-input>
+      <ion-input class="controls" placeholder="Confirmar Contraseña" type="password" [(ngModel)]="pass2"   name="contrasenaa" maxlength="6"><ion-icon name="finger-print-outline"></ion-icon></ion-input>
+      <ion-input class="controls" placeholder="Direccion" name="direccion" [(ngModel)]="trabajadorService.selectedTrabajador.direccion"><ion-icon name="home-outline"></ion-icon></ion-input>
+      
+      <ion-input class="controls"><ion-icon name="location-outline"></ion-icon>
+        <ion-select placeholder="Seleccione Comuna" name="comuna" [(ngModel)]="trabajadorService.selectedTrabajador.comuna" required>
+          <ion-select-option *ngFor="let comuna of comunaService.comunas" [value]="comuna.nombre">{{comuna.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-input>
+
+      <div class="controls"> 
+        <h6>Fecha de nacimiento <ion-icon name="calendar-outline"></ion-icon></h6>
+        <ion-datetime-button datetime="date"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime class="controlsFecha" presentation="date" id="date" name="fechaNacimiento" [(ngModel)]="trabajadorService.selectedTrabajador.fechaNacimiento"></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </div>
+
+      <div class="controls">
+        <ion-text>Certificado Antecedentes</ion-text><ion-icon name="document-text-outline"></ion-icon>
+        <ion-input type="file" (change)="subirAntecedentes($event)" name="antecedentes" ></ion-input>
+      </div>
+
+      <div class="controls">
+        <ion-text>Foto Carnet Frontal</ion-text><ion-icon name="document-text-outline"></ion-icon>
+        <ion-input type="file" (change)="subirFotoDelantera($event)" name="carnetF" ></ion-input>
+      </div>
+
+      <div class="controls">
+        <ion-text>Foto Carnet Trasera</ion-text><ion-icon name="document-text-outline"></ion-icon>
+        <ion-input type="file" (change)="subirFotoTrasera($event)" name="carnetT" ></ion-input>
+      </div>
 
 
-    <ion-item>
-      <ion-label position="fixed">Teléfono</ion-label>
-      <ion-input  type="number" name="telefono" [(ngModel)]="trabajadorService.selectedTrabajador.telefono" required><ion-text>+56 </ion-text></ion-input>
-    </ion-item>
+      <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
+      
+      
+      <button class="botons" type="submit">Registrarse</button>
+      
+      <p><a [routerLink]="['../loginPaseador']">Ya tengo cuenta</a></p>
 
-    <ion-datetime name="fechaNacimiento" [(ngModel)]="trabajadorService.selectedTrabajador.fechaNacimiento" presentation="date"></ion-datetime>
-    
-    <ion-header >
-      <ion-toolbar>
-        <ion-title class="var">Documento Antecedentes</ion-title>
-      </ion-toolbar>
-    </ion-header>
 
-    <ion-item>
-      <ion-label>Cert.Antecedentes</ion-label>
-      <ion-input type="file" (change)="subirAntecedentes($event)" name="antecedentes" required></ion-input>
-    </ion-item>
+    </div>
 
-    <ion-item>
-      <ion-label>Foto carnet delantera</ion-label>
-      <ion-input type="file" (change)="subirFotoDelantera($event)" name="carnetF" required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Foto carnet trasera</ion-label>
-      <ion-input type="file" (change)="subirFotoTrasera($event)" name="carnetT" required></ion-input>
-    </ion-item>
-
-    <ion-button><button>Registro</button></ion-button>
   </form>
 
 </ion-content>

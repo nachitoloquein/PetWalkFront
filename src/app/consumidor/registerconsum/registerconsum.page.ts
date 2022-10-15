@@ -33,7 +33,7 @@ export class RegisterconsumPage implements OnInit {
   addRegistro(form: NgForm){
     try {
       if(!this.ValidacionEmail()){
-        this.Mensaje('Error en el formato de correo electrónico','El formato de correo electrónico debe ser el siguiente: gmail@gmail.com');
+        this.Mensaje('Error en el formato de correo electrónico','El formato de correo electrónico debe ser el siguiente: Usuario@Dominio.com');
         return false;
       }
       if(!this.comparar()) return false

@@ -1,71 +1,83 @@
-.content{
-      width: 90%;
-      height: auto;
-      margin-top: 20px;
-      margin-left: 20px;
-      background-color: rgb(166, 150, 249);
-      border-radius: 5%;
-}
-#perro{
-      width: 70%;
-      padding-left:30%;
-      margin-top: 10%;
-}
-
-ion-button{
-      width: 85%;
-      align-items: center;
-      margin-left: 20px;
+.form-login{
+      width: 100%;
+      background-size: cover;
+      background-size:auto;
+      padding: 30px;
+      margin: auto;
+      margin-top: 45%;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      color: black;
 
 }
 
-ion-input{
-      background-color: rgb(255, 255, 255);
-      border-radius: 5px ;
-      font-size: small;
-      margin: 5px;
-      color: rgb(0, 0, 0);
-}
-
-.line{
-      border-bottom: 1px solid rgb(10, 10, 10);
-      margin-top: 16px;
-      margin-left: 15px;
+.form-login h1{
       text-align: center;
-
+      margin: 0;
+      font-size: 15px;
+      font-weight: bold;
 }
 
-.o{
-      text-align: center;
-}
-
-ion-row{
-      margin-bottom: 10px;
-}
-
-a{
-      margin-left: 20px;
-      text-decoration:solid;
-      color: rgb(84, 20, 134);
-      font-size: medium;
-      font-family:cursive;
-}
-
-
-p{
-      color: aliceblue;
-      text-align: center;
+.form-login h4{
       font-size: 30px;
-      padding: 5%;
-      font-family: Roboto;
-      font-family: cursive;
+      text-align: center;
+      color: rgb(0, 0, 0);
+
+}
+.controls{
+      width: 100%;
+      background-color: #f8f8f8;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      border: 2px solid #0b597e;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 14px;
+      text-align: start;
+}
+
+ion-icon{
+      font-size: 20px;
+      margin-left: 5px;
+      margin-right: 7px;
+}
+
+.title{
+      text-align: center;
 }
 
 .block{
       position:absolute;
       width: 100%;
       height: 40%;
-      background-color: rgba(225, 186, 247, 0.408);
+      background-color: rgba(227, 196, 245, 0.658);
 }
+
+.content{
+      width: 90%;
+      height: auto;
+      margin-top: 20px;
+      margin-left: 20px;
+      background-image: url('../../assets/img/fondoslogin.png');
+      background-size: cover;
+      border-radius: 5%;
+}
+#perro{
+      width: 70%;
+      padding-left:30%;
+      margin-left: 10px;
+      margin-top: 5%;
+      position: absolute;
+}
+
+a{
+      margin-left: 20px;
+      text-decoration:solid;
+      color: rgb(0, 0, 0);
+      font-size: medium;
+}
+
+
+
+
 
 

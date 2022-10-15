@@ -1,34 +1,96 @@
-
-.title {
-      color: #A074BD;
-      font-weight: bold;
+*{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
 }
 
 
 
-span{
+.form-register{
+      width: 100%;
+      background-image: url('../../../assets/img/fondospaseador.png');
+      background-size: cover;
+      background-size:auto;
+      padding: 30px;
+      margin: auto;
+      margin-top: 0;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      color: black;
+
+}
+
+.form-register h4{
+      font-size: 17px;
+      margin-bottom: 20px;
+      color:#14252d;
+      text-align: center;
+      font-weight:bold;
+      
+}
+
+
+
+.controls{
+      width: 100%;
+      background-color: #f8f8f8;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      border: 2px solid #9f3fda;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 14px;
+      
+}
+
+
+
+.controlsFecha{
+      width: 100%;
       color: rgb(0, 0, 0);
+      background-color: #e3e5f7;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      border: 2px solid #126fbb;
+}
+
+
+.form-register p{
+      height: 40px;
+      text-align: center;
+      font-size: 15px;
+      line-height: 20px;
       font-weight: bold;
 }
-   
-button{
-      background: none;
-      color: azure;
+
+.form-register a{
+      color: #0b597e;
+      font-weight: bold;   
 }
 
-.registro{
-      background-color: #A074BD;
+.form-register .botons{
+      width: 100%;
+      background:#9f3fda;
+      border: none;
+      padding: 12px;
+      color: white;
+      margin: 16px 0;
+      font-size: 16px;
+      border-radius: 10px;
 }
 
-#btnRegistro{
-      background-color: #ac73d2;
+.title{
+      text-align: center;
 }
 
-ion-item{
-      width: 90%;
-      align-items: center;
-      border-radius: 10%;
-      font-family: Helvetica, sans-serif;
+ion-icon{
+      font-size: 20px;
+      margin-left: 5px;
+      margin-right: 7px;
 }
 
-
+.numero{
+      font-size: 14px;
+      margin-left: 5px;
+      margin-right: 7px;
+}

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title><ion-icon name="paw-outline"></ion-icon> PetWalk <ion-icon name="paw-outline"></ion-icon></ion-title>
+    <ion-title class="title"><ion-icon name="paw-outline"></ion-icon> PetWalk <ion-icon name="paw-outline"></ion-icon></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,26 +12,27 @@
   <form  form #ConsumidorForm="ngForm" (ngSubmit)="addRegistro(ConsumidorForm)">
     <div class="form-register">
       <h4><ion-icon name="paw-outline"></ion-icon> Registro Consumidor <ion-icon name="paw-outline"></ion-icon></h4>
-      <ion-input class="controls" placeholder=" Nombre" name="nombre" [(ngModel)]="consumidorService.selectedConsumidor.nombre"></ion-input>
+      <ion-input class="controls" placeholder="Nombre" name="nombre" [(ngModel)]="consumidorService.selectedConsumidor.nombre"><ion-icon name="person-outline"></ion-icon></ion-input>
       
-      <ion-input class="controls" placeholder=" Apellido" name="apellido"  [(ngModel)]="consumidorService.selectedConsumidor.apellido"></ion-input>
+      <ion-input class="controls" placeholder="Apellido" name="apellido"  [(ngModel)]="consumidorService.selectedConsumidor.apellido"><ion-icon name="person-outline"></ion-icon></ion-input>
       
-      <ion-input class="controls" placeholder=" Correo" name="correo" id="email" type="email" [(ngModel)]="consumidorService.selectedConsumidor.correo"></ion-input>
+      <ion-input class="controls" placeholder="Correo" name="correo" id="email" type="email" [(ngModel)]="consumidorService.selectedConsumidor.correo"><ion-icon name="mail-outline"></ion-icon></ion-input>
       
-      <ion-input class="controls" placeholder=" Contraseña" name="contrasena" maxLength="6" type="password" [(ngModel)]="consumidorService.selectedConsumidor.contrasena"></ion-input>
+      <ion-input class="controls" placeholder="Contraseña" name="contrasena" maxLength="6" type="password" [(ngModel)]="consumidorService.selectedConsumidor.contrasena"><ion-icon name="finger-print-outline"></ion-icon></ion-input>
       
-      <ion-input class="controls" placeholder=" Confirmar Contraseña" name="contrasena" maxLength="6" type="password" [(ngModel)]="pass2"></ion-input>
+      <ion-input class="controls" placeholder="Confirmar Contraseña" name="contrasena" maxLength="6" type="password" [(ngModel)]="pass2"><ion-icon name="finger-print-outline"></ion-icon></ion-input>
       
-      <ion-input class="controls" placeholder=" Telefono" name="telefono" type="Number" [(ngModel)]="consumidorService.selectedConsumidor.telefono"></ion-input>
+      <ion-input class="controls" placeholder="Telefono" name="telefono" type="Number" [(ngModel)]="consumidorService.selectedConsumidor.telefono"><ion-icon name="call-outline"></ion-icon></ion-input>
       
-      <ion-input class="controls" placeholder=" Dirección" name="direccion" [(ngModel)]="consumidorService.selectedConsumidor.direccion"></ion-input>
+      <ion-input class="controls" placeholder="Dirección" name="direccion" [(ngModel)]="consumidorService.selectedConsumidor.direccion"><ion-icon name="home-outline"></ion-icon></ion-input>
       
-      <ion-select class="controls" placeholder="Seleccione Comuna " name="comuna" [(ngModel)]="consumidorService.selectedConsumidor.comuna" required>
+      <ion-input class="controls"><ion-icon name="location-outline"></ion-icon>
+      <ion-select placeholder="Seleccione Comuna" name="comuna" [(ngModel)]="consumidorService.selectedConsumidor.comuna" required>
         <ion-select-option *ngFor="let comuna of comunaService.comunas" [value]="comuna.nombre">{{comuna.nombre}}</ion-select-option>
-      </ion-select>
+      </ion-select></ion-input>
 
-      <div class="controls">
-        <h6>Fecha de nacimiento</h6>
+      <div class="controls"> 
+        <h6>Fecha de nacimiento <ion-icon name="calendar-outline"></ion-icon></h6>
         <ion-datetime-button datetime="date"></ion-datetime-button>
         <ion-modal [keepContentsMounted]="true">
           <ng-template>

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
 import { ComunasService } from 'src/app/services/comunas.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class RegisterPage implements OnInit {
   fotoTrasera: File;
 
   constructor(
+    private router : Router,
     private alertController: AlertController, 
     public trabajadorService: TrabajadorService,
     public comunaService: ComunasService) {
@@ -31,7 +33,7 @@ export class RegisterPage implements OnInit {
   addRegistro(form: NgForm){
     try {
       if(!this.ValidacionEmail()){
-        this.Mensaje('Formato de Email Incorrecto','El formato del Email debe ser correo@correo.com');
+        this.Mensaje('Formato de Email Incorrecto','El formato del Email debe ser Usuario@Dominio.com');
         return false;
       }
       if(!this.Comparar()) return false
@@ -50,6 +52,9 @@ export class RegisterPage implements OnInit {
           if(form.valid && (this.antecedentes && this.fotoDelantera && this.fotoTrasera)){
             this.Mensaje('Solicitud Correctamente enviada','Estimado, disponemos de 2 días hábiles para la respuesta, se enviará un correo de confirmación');
             form.onReset();
+            setTimeout(() => {
+              this.router.navigate(['../consumidor'])
+            }, 500);
           }else{
             this.Mensaje('Error','Faltan datos')
           }
@@ -185,6 +190,8 @@ export class RegisterPage implements OnInit {
   }
 
   // FIN ALERTAS
+
+
 }
     
 
