@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { Trabajador } from '../model/trabajador';
 import { HttpClient } from '@angular/common/http';
 import { dominio } from '../conexion';
+import { Observable } from 'rxjs';
+import { Comuna } from '../model/comuna';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrabajadorService {
   URL_API = `${dominio}/api/trabajador`;
+  
+  Trabajadores: Trabajador[]
 
   selectedTrabajador : Trabajador ={
     nombre : '',
@@ -42,4 +46,13 @@ export class TrabajadorService {
     fd.append('documentosTodos', fotoTrasera);
     return this.http.post(this.URL_API, fd);
   }
+
+  
+
+  ListarTrabajadores(){
+    return this.http.get<Trabajador[]>(this.URL_API)
+  }
+
+
+  
 }

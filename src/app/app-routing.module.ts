@@ -28,8 +28,6 @@ const routes: Routes = [
     loadChildren: () => import('./consumidor/registerconsum/registerconsum.module').then(m => m.RegisterconsumPageModule) 
   }
 
-
-
 ];
 
 @NgModule({

@@ -4,6 +4,7 @@ import { ComunasService } from 'src/app/services/comunas.service';
 import { NgForm } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-registerconsum',
   templateUrl: './registerconsum.page.html',
