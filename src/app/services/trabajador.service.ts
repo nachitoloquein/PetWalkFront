@@ -51,8 +51,8 @@ export class TrabajadorService {
     return this.http.get<Trabajador[]>(this.URL_API)
   }
 
-  Logear(correo, contrasena){
-    return this.http.post(`${this.URL_API}/login`, correo, contrasena);
+  Logear(correo: string, contrasena:string){
+    return this.http.post(`${this.URL_API}/login`, {correo, contrasena});
   }
 
   
