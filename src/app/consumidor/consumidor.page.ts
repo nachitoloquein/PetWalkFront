@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ConsumidorService} from '../services/consumidor.service'
 
 @Component({
   selector: 'app-consumidor',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsumidorPage implements OnInit {
 
-  constructor() { }
+  correo: string;
+  contrasena: string;
+
+  constructor(private consumidorService: ConsumidorService) { }
 
   ngOnInit() {
   }
 
+
+ /*  login(){
+    this.consumidorService.
+  } */
 }

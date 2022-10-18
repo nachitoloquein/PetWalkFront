@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { logging } from 'protractor';
+import { TrabajadorService } from '../services/trabajador.service';
 
 
 
@@ -9,14 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaseadorPage implements OnInit {
 
-  
+  correo: string;
+  contrasena: string;
 
+  constructor(public trabajadorService: TrabajadorService){
 
+  }
+  ngOnInit() {}
 
-
-  ngOnInit() {
-
-    
+  login(){
+    try{
+    this.trabajadorService.Logear(this.correo, this.contrasena).subscribe(res=> 
+      console.log('se mando bien' + res), 
+      err=> console.log(err));
+    }
+    catch{
+      alert('F');
+    }
   }
 
 }

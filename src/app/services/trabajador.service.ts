@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Trabajador } from '../model/trabajador';
 import { HttpClient } from '@angular/common/http';
 import { dominio } from '../conexion';
-import { Observable } from 'rxjs';
-import { Comuna } from '../model/comuna';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +51,9 @@ export class TrabajadorService {
     return this.http.get<Trabajador[]>(this.URL_API)
   }
 
+  Logear(correo, contrasena){
+    return this.http.post(`${this.URL_API}/login`, correo, contrasena);
+  }
 
   
 }

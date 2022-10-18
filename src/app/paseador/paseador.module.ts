@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PaseadorPageRoutingModule } from './paseador-routing.module';
 
 import { PaseadorPage } from './paseador.page';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PaseadorPageRoutingModule
+    PaseadorPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [PaseadorPage]
 })
