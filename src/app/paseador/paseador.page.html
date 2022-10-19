@@ -15,27 +15,15 @@
         <h4>Login</h4>
         <ion-input class="controls" type="text" placeholder="Correo Electronico" [(ngModel)]="correo" name="correo"><ion-icon name="mail-outline"></ion-icon></ion-input>
         <ion-input class="controls" type="password" placeholder="Contraseña" [(ngModel)]="contrasena" name="contrasena"><ion-icon name="finger-print-outline"></ion-icon></ion-input>
-
         <ion-button color="success" expand="block" fill="solid" (click)="login()">Iniciar Sesion</ion-button>
         <br>
         <h1>____ O puedes ____</h1> 
-        <br>
-        
-        <ion-button color="primary" expand="block" fill="solid" [routerLink]="['/register']">Registrate</ion-button>
-        
+        <br>  
+        <ion-button color="primary" expand="block" fill="solid" [routerLink]="['/register']">Registrate</ion-button>   
         <ion-label><a href="">Recuperar Contraseña</a></ion-label>
-      
       </div>
-    
-      
-      
-      
-
-      
-
     </div>
-  </div>
-  
+  </div>  
 </ion-content>
 
 

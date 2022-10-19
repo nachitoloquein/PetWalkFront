@@ -27,4 +27,8 @@ export class ConsumidorService {
     return this.http.post(this.URL_API,consumidor);
   }
 
+  Logear(correo: string, contrasena:string){
+    return this.http.post(`${this.URL_API}/login`, {correo, contrasena});
+  }
+
 }

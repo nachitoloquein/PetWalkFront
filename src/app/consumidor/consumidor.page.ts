@@ -17,7 +17,13 @@ export class ConsumidorPage implements OnInit {
   }
 
 
- /*  login(){
-    this.consumidorService.
-  } */
+  login(){
+    try{
+    this.consumidorService.Logear(this.correo, this.contrasena).subscribe(
+      res=>console.log(res), 
+      err=>console.log(err))
+    }catch(error){
+      alert(error)
+    }
+  }
 }
