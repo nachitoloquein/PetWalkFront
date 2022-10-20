@@ -20,8 +20,9 @@ export class PaseadorPage implements OnInit {
 
   login(){
     try{
-    this.trabajadorService.Logear(this.correo, this.contrasena).subscribe(res=> 
-      console.log(res), 
+    this.trabajadorService.Logear(this.correo, this.contrasena).subscribe(res=> {
+      console.log(res);
+      sessionStorage.setItem('token', res['token'])}, 
       err=> console.log(err));
     }
     catch{

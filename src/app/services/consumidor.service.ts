@@ -30,5 +30,9 @@ export class ConsumidorService {
   Logear(correo: string, contrasena:string){
     return this.http.post(`${this.URL_API}/login`, {correo, contrasena});
   }
+  
+  verificarToken(){
+    return localStorage.getItem('token');
+  }
 
 }

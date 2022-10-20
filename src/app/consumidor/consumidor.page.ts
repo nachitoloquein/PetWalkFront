@@ -20,8 +20,11 @@ export class ConsumidorPage implements OnInit {
   login(){
     try{
     this.consumidorService.Logear(this.correo, this.contrasena).subscribe(
-      res=>console.log(res), 
-      err=>console.log(err))
+      res=>{
+        console.log(res);
+        localStorage.setItem('token', res['token']);
+    }, 
+      err=>console.log(err));
     }catch(error){
       alert(error)
     }

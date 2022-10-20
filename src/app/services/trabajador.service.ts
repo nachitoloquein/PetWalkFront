@@ -45,8 +45,6 @@ export class TrabajadorService {
     return this.http.post(this.URL_API, fd);
   }
 
-  
-
   ListarTrabajadores(){
     return this.http.get<Trabajador[]>(this.URL_API)
   }
@@ -55,5 +53,7 @@ export class TrabajadorService {
     return this.http.post(`${this.URL_API}/login`, {correo, contrasena});
   }
 
-  
+  verificarToken(){
+    return sessionStorage.getItem('token');
+  }
 }
