@@ -26,6 +26,21 @@ const routes: Routes = [
   {
     path: 'registerconsum',
     loadChildren: () => import('./consumidor/registerconsum/registerconsum.module').then(m => m.RegisterconsumPageModule) 
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./consumidor/perfil/perfil.module').then( m => m.PerfilPageModule)
+  },{
+    path: 'buscar',
+    loadChildren: () => import('./consumidor/buscar/buscar.module').then( m => m.BuscarPageModule)
+  },
+  {
+    path: 'billetera',
+    loadChildren: () => import('./consumidor/billetera/billetera.module').then( m => m.BilleteraPageModule)
+  },
+  {
+    path: 'historial',
+    loadChildren: () => import('./consumidor/historial/historial.module').then( m => m.HistorialPageModule)
   }
 
 ];
