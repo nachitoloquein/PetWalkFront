@@ -53,7 +53,12 @@ const routes: Routes = [
     path: 'historial',
     loadChildren: () => import('./consumidor/historial/historial.module').then( m => m.HistorialPageModule),
     canActivate: [AuthConsumidorGuard]
-  }
+  },
+
+  {
+    path: 'home-paseador',
+    loadChildren: () => import('./paseador/home-paseador/home-paseador.module').then( m => m.HomePaseadorPageModule)
+  },
 
 ];
 

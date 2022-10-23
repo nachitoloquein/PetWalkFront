@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ConsumidorService} from '../services/consumidor.service'
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-consumidor',
@@ -11,7 +13,10 @@ export class ConsumidorPage implements OnInit {
   correo: string;
   contrasena: string;
 
-  constructor(private consumidorService: ConsumidorService) { }
+  constructor(
+    private consumidorService: ConsumidorService, 
+    private router : Router,
+  ){}
 
   ngOnInit() {
   }
@@ -23,10 +28,13 @@ export class ConsumidorPage implements OnInit {
       res=>{
         console.log(res);
         localStorage.setItem('token', res['token']);
+        this.router.navigate(['../consumidor'])
     }, 
       err=>console.log(err));
     }catch(error){
       alert(error)
     }
   }
+
+  
 }
