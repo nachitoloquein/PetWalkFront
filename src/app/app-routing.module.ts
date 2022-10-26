@@ -59,6 +59,10 @@ const routes: Routes = [
     path: 'home-paseador',
     loadChildren: () => import('./paseador/home-paseador/home-paseador.module').then( m => m.HomePaseadorPageModule)
   },
+  {
+   path : 'mostrarperfil/:id', 
+   loadChildren : () => import('./consumidor/buscar/mostrarperfil/mostrarperfil.module').then(m => m.MostrarperfilPageModule) 
+  }
 
 ];
 

@@ -46,7 +46,7 @@ export class TrabajadorService {
   }
 
   ListarAllTrabajadores(){
-    return this.http.get<Trabajador[]>(this.URL_API)
+    return this.http.get<Trabajador[]>(this.URL_API + '/all')
   }
 
   Logear(correo: string, contrasena:string){
@@ -55,6 +55,10 @@ export class TrabajadorService {
 
   verificarToken(){
     return sessionStorage.getItem('token');
+  }
+
+  getTrabajadorId(idTrabajador : string){
+    return this.http.get(`${this.URL_API}/perfil/${idTrabajador}`)
   }
 
   

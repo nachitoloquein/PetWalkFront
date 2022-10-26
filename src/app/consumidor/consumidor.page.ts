@@ -28,7 +28,7 @@ export class ConsumidorPage implements OnInit {
       res=>{
         console.log(res);
         localStorage.setItem('token', res['token']);
-        this.router.navigate(['../consumidor'])
+        this.router.navigate(['/tab'])
     }, 
       err=>console.log(err));
     }catch(error){

@@ -6,14 +6,17 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-buscar',
   templateUrl: './buscar.page.html',
-  styleUrls: ['./buscar.page.scss'],
+  styleUrls: ['./buscar.page.scss']
 })
 export class BuscarPage implements OnInit {
+
+  filterTerm : string;
+
 
   constructor(
     private router : Router, 
     public obtenerTrabajadores : TrabajadorService,
-    public SeleccionarTrabajador : TrabajadorService) {
+    public verPerfilTrabajador : TrabajadorService) {
     this.listarTrabajadores();
    }
 
@@ -24,18 +27,13 @@ export class BuscarPage implements OnInit {
     this.obtenerTrabajadores.ListarAllTrabajadores().subscribe(
       res => {
         console.log(res)
-        this.obtenerTrabajadores.Trabajadores = res 
+        this.obtenerTrabajadores.Trabajadores = res.filter((m) => m.estado == 'Activo')
       },
       err => {
-        console.log(err )
+        console.log(err)
 
       }
     )
-  }
-
-  Seleccionar(Item : Trabajador){
-    let link = ['/buscar/', Item._id];
-    this.router.navigate(link)
   }
 
 }

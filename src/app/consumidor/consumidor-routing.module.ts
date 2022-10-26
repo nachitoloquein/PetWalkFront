@@ -14,7 +14,13 @@ const routes: Routes = [
   },
   {
     path: 'buscar',
-    loadChildren: () => import('./buscar/buscar.module').then( m => m.BuscarPageModule)
+    loadChildren: () => import('./buscar/buscar.module').then( m => m.BuscarPageModule),
+    children :[
+      {
+        path: 'mostrarperfil',
+        loadChildren: () => import('./buscar/mostrarperfil/mostrarperfil.module').then( m => m.MostrarperfilPageModule)
+      }
+    ]
   },
   {
     path: 'billetera',
@@ -28,6 +34,8 @@ const routes: Routes = [
     path: 'historial',
     loadChildren: () => import('./historial/historial.module').then( m => m.HistorialPageModule)
   }
+
+
 
 ];
 

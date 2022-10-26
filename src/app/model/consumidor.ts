@@ -1,4 +1,5 @@
 export interface Consumidor{
+      _id?:string,
       nombre: string;
       apellido: string;
       comuna: string;

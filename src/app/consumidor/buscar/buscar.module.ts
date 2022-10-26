@@ -9,13 +9,16 @@ import { BuscarPageRoutingModule } from './buscar-routing.module';
 import { TabsComponent } from '../tabs/tabs.component';
 
 import { BuscarPage } from './buscar.page';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BuscarPageRoutingModule
+    BuscarPageRoutingModule,
+    Ng2SearchPipeModule
   ],
   declarations: [BuscarPage, TabsComponent]
 })

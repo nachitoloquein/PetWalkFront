@@ -34,9 +34,4 @@ export class ConsumidorService {
   verificarToken(){
     return localStorage.getItem('token');
   }
-
-  PerfilTrabajador(){
-    return this.http.get(`${this.URL_API}/:id`);
-  }
-
 }

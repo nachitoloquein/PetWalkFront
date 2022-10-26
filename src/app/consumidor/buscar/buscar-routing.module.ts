@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: BuscarPage
+  },
+  {
+    path: 'mostrarperfil/:id',
+    loadChildren: () => import('./mostrarperfil/mostrarperfil.module').then( m => m.MostrarperfilPageModule)
   }
+
 ];
 
 @NgModule({

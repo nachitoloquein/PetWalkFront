@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlanesService } from 'src/app/services/planes.service';
 
 @Component({
   selector: 'app-billetera',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BilleteraPage implements OnInit {
 
-  constructor() { }
+  constructor(public MostrarPlanes : PlanesService) { 
+    this.ListarPlanes();
+  }
 
   ngOnInit() {
+  }
+
+  ListarPlanes(){
+    this.MostrarPlanes.ListarAllPlanes().subscribe(
+      res => {
+        console.log(res)
+        this.MostrarPlanes.planes = res
+        
+
+      },err => {
+        console.log(err)
+      }
+    )
   }
 
 }

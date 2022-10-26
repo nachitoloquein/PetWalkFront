@@ -11,11 +11,13 @@ import { AuthConsumidorGuard } from './guards/auth-consumidor.guard';
 import { NoAuthConsumidorGuard } from './guards/no-auth-consumidor.guard';
 import { AuthTrabajadorGuard } from './guards/auth-trabajador.guard';
 import { NoAuthTrabajadorGuard } from './guards/no-auth-trabajador.guard';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule ],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,Ng2SearchPipeModule, ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AuthConsumidorGuard, NoAuthConsumidorGuard, AuthTrabajadorGuard, AuthTrabajadorGuard],
   bootstrap: [AppComponent],
 })

@@ -1,33 +1,28 @@
 
-
-<ion-header>
-  <ion-toolbar>
-    <ion-title>buscar</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
+<ion-content scroll-y="true" >
   <app-tabs></app-tabs>
-
-  <ion-searchbar animated="true" placeholder="Buscar Paseador"></ion-searchbar>
-
-
-  <ion-card *ngFor="let trabajador of obtenerTrabajadores.Trabajadores">
-    <ion-card-header>
-      <ion-card-title>{{trabajador.nombre}} {{trabajador.apellido}}</ion-card-title>
-      <ion-card-subtitle>{{trabajador.comuna}}</ion-card-subtitle>
-    </ion-card-header>
   
-    <ion-card-content>
-      Here's a small text description for the card content. Nothing more, nothing less.
-    </ion-card-content>
   
-    <ion-button fill="clear" (click)="Seleccionar(Item)">Perfil</ion-button>
-  </ion-card>
-
-  
+  <form >
+    <ion-searchbar animated="true" placeholder="Buscar Paseador" [(ngModel)]="filterTerm" name="filterTerm"></ion-searchbar>
 
 
+    <ion-card *ngFor="let trabajador of obtenerTrabajadores.Trabajadores | filter: filterTerm " >
+      <ion-card-header>
+        <ion-card-title>{{trabajador.nombre}} {{trabajador.apellido}}</ion-card-title>
+        <ion-card-subtitle>{{trabajador.comuna}}</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        {{trabajador._id}}
+      </ion-card-content>
+    
+      <ion-button fill="clear" [routerLink]="['mostrarperfil/' + trabajador._id]" >Perfil</ion-button>
+    </ion-card>
+  </form>
   
+ 
+
+ 
 </ion-content>
 

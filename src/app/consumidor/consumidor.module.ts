@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { ConsumidorPageRoutingModule } from './consumidor-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConsumidorPage } from './consumidor.page';
-
 @NgModule({
   imports: [
     CommonModule,

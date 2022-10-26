@@ -12,4 +12,9 @@ export class PerfilPage implements OnInit {
   ngOnInit() {
   }
 
+  LogOut(){
+    localStorage.removeItem('token')
+    setInterval("location.reload()", 1000);
+  }
+
 }

@@ -1,5 +1,5 @@
 export interface Trabajador{
-    _id?:string,
+    _id?: string,
     nombre: string, 
     apellido: string, 
     comuna: string, 
@@ -10,5 +10,6 @@ export interface Trabajador{
     rut: string, 
     direccion: string,
     fechaNacimiento: string,
-    documentos: string[]
+    documentos: string[],
+    estado? : string
 }
