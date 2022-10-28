@@ -21,7 +21,6 @@ export class BuscarPage implements OnInit {
   listarTrabajadores(){
     this.trabajadorService.ListarAllTrabajadores().subscribe(
       res => {
-        console.log(res)
         this.trabajadores = res.filter((m) => m.estado == 'Activo')
       },
       err => {

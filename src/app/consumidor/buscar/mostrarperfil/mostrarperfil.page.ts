@@ -10,20 +10,31 @@ import { Trabajador } from 'src/app/model/trabajador';
 })
 export class MostrarperfilPage implements OnInit {
 
-  trabajador : Trabajador;
+  trabajador : any;
+  edad: number;
 
-  constructor(
-    private route : ActivatedRoute,
-    private trabajadorService : TrabajadorService){}
+  constructor(private route : ActivatedRoute,
+    private trabajadorService : TrabajadorService){
+      const idTrabajador = this.route.snapshot.params['id']
+      this.cargarTrabajador(idTrabajador);
+    }
 
       
 
   ngOnInit() {
-    const idTrabajador = this.route.snapshot.params['id']
-    this.trabajadorService.getTrabajadorId(idTrabajador).subscribe(
-      res => this.trabajador // = res       (aca esta el erro comentado, dice que faltan los demas datos como nombre y apellido, etc)  
-    )
-    console.log(idTrabajador)
+  }
+
+
+  cargarTrabajador(id: string){
+    this.trabajadorService.getTrabajadorId(id).subscribe(
+      res=> {this.trabajador = res;
+      console.log(this.trabajador);}, 
+      err=> console.log(err));
+  }
+
+  calcularEdad(){
+    const anio = this.trabajador.fechaNacimiento
+    console.log(anio);
   }
 
   

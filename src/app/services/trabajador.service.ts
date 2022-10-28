@@ -9,8 +9,6 @@ import { dominio } from '../conexion';
 export class TrabajadorService {
   URL_API = `${dominio}/api/trabajador`;
   
-  Trabajadores: Trabajador[]
-
   selectedTrabajador : Trabajador ={
     nombre : '',
     apellido: '',

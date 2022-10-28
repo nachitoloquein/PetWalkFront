@@ -1,20 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title></ion-title>
+    <ion-title>{{trabajador?.nombre | titlecase}} {{trabajador?.apellido | titlecase}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content>
+  <ion-card>
+    <img [src]="'http://localhost:4000/'+trabajador?.documentos[0]" />
+    <ion-card-header>
+      <ion-card-title>{{trabajador?.comuna}}</ion-card-title>
+      <ion-card-subtitle>{{trabajador?.direccion}}</ion-card-subtitle>
+    </ion-card-header>
 
-   <ion-text>Nombre y apelldido</ion-text>
-   <ion-text>Comuna</ion-text>
-   <ion-text>Edad</ion-text>
-   <ion-text>Paseos Realizados</ion-text>
-   <br>
-   <ion-text>Calificacion <ion-icon name="star-outline"></ion-icon> <ion-icon name="star-outline"></ion-icon> <ion-icon name="star-outline"></ion-icon><ion-icon name="star-half-outline"></ion-icon></ion-text>
-    <ion-button>Solicitar Paseador</ion-button>
-
+    <ion-card-content>
+      Contacto: +56 {{trabajador?.telefono}}
+      <a [href]="'https://api.whatsapp.com/send?phone=56'+trabajador?.telefono">Enviar Mensaje</a>
+      Fecha de nacimiento: {{trabajador?.fechaNacimiento | date: 'dd/MM/yyyy'}}
+      <ion-button>Solicitar Servicio</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+
+
