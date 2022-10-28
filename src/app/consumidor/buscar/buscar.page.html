@@ -7,7 +7,7 @@
     <ion-searchbar animated="true" placeholder="Buscar Paseador" [(ngModel)]="filterTerm" name="filterTerm"></ion-searchbar>
 
 
-    <ion-card *ngFor="let trabajador of obtenerTrabajadores.Trabajadores | filter: filterTerm " >
+    <ion-card *ngFor="let trabajador of trabajadores | filter: filterTerm " >
       <ion-card-header>
         <ion-card-title>{{trabajador.nombre}} {{trabajador.apellido}}</ion-card-title>
         <ion-card-subtitle>{{trabajador.comuna}}</ion-card-subtitle>

@@ -7,36 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: ConsumidorPage
-  },
-  {
-    path: 'registerconsum',
-    loadChildren: () => import('./registerconsum/registerconsum.module').then( m => m.RegisterconsumPageModule)
-  },
-  {
-    path: 'buscar',
-    loadChildren: () => import('./buscar/buscar.module').then( m => m.BuscarPageModule),
-    children :[
-      {
-        path: 'mostrarperfil',
-        loadChildren: () => import('./buscar/mostrarperfil/mostrarperfil.module').then( m => m.MostrarperfilPageModule)
-      }
-    ]
-  },
-  {
-    path: 'billetera',
-    loadChildren: () => import('./billetera/billetera.module').then( m => m.BilleteraPageModule)
-  },
-  {
-    path: 'perfil',
-    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
-  },
-  {
-    path: 'historial',
-    loadChildren: () => import('./historial/historial.module').then( m => m.HistorialPageModule)
   }
-
-
-
 ];
 
 @NgModule({

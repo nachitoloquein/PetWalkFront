@@ -1,34 +1,37 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>billetera</ion-title>
+    <ion-title>Billetera</ion-title>
+    <ion-title slot="end">Tienes 0 coins</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content scroll-y="true">
   <app-tabs></app-tabs>
-  
+  <div *ngFor=" let plan of planes ">
+    <div *ngIf="plan.descuentoActivo">
+      <ion-card>
+          <ion-card-header>
+            <ion-card-title class="tachado">${{plan.costo}}</ion-card-title>
+            <ion-card-title>${{plan.costoNuevo}}</ion-card-title>
+            <ion-card-subtitle>{{plan.cantidadCoins}} PetCoins</ion-card-subtitle>
+            <ion-card-subtitle>{{plan.porcentajeDescuento}} Off</ion-card-subtitle>
+            <ion-card-subtitle>Oferta vigente hasta: {{plan.fechaTermino}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>{{plan.descripcion}}</ion-card-content>
+          <ion-button fill="clear">Lo quiero</ion-button>
+      </ion-card>   
+    </div>
 
-  <div class="cartera">
-    <ion-text>Cartera</ion-text>
-    <br>
-    <ion-text>2 PetCoins</ion-text>
-    <ion-button>Comprar PetCoins</ion-button>
+  <div *ngIf="!plan.descuentoActivo">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>${{plan.costo}}</ion-card-title>
+        <ion-card-subtitle>{{plan.cantidadCoins}} PetCoins</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>{{plan.descripcion}}</ion-card-content>
+      <ion-button fill="clear">Lo quiero</ion-button>
+    </ion-card>
   </div>
-
-  <ion-card *ngFor=" let planes of MostrarPlanes.planes ">
-    <ion-card-header>
-      <ion-card-title>${{planes.costo}}</ion-card-title>
-      <ion-card-subtitle>{{planes.cantidadCoins}} PetCoins</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-      {{planes.descripcion}}
-    </ion-card-content>
-
-    <ion-button fill="clear">Lo quiero</ion-button>
-  </ion-card>
-
-
-
+</div>
 </ion-content>
 

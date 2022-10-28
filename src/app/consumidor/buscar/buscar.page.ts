@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Trabajador } from 'src/app/model/trabajador';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
-import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-buscar',
   templateUrl: './buscar.page.html',
@@ -11,12 +8,10 @@ import { Router } from '@angular/router';
 export class BuscarPage implements OnInit {
 
   filterTerm : string;
-
+  trabajadores = [];
 
   constructor(
-    private router : Router, 
-    public obtenerTrabajadores : TrabajadorService,
-    public verPerfilTrabajador : TrabajadorService) {
+    public trabajadorService : TrabajadorService) {
     this.listarTrabajadores();
    }
 
@@ -24,10 +19,10 @@ export class BuscarPage implements OnInit {
   }
 
   listarTrabajadores(){
-    this.obtenerTrabajadores.ListarAllTrabajadores().subscribe(
+    this.trabajadorService.ListarAllTrabajadores().subscribe(
       res => {
         console.log(res)
-        this.obtenerTrabajadores.Trabajadores = res.filter((m) => m.estado == 'Activo')
+        this.trabajadores = res.filter((m) => m.estado == 'Activo')
       },
       err => {
         console.log(err)

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { plan } from '../model/planes';
+import { Plan } from '../model/plan';
 import { HttpClient } from '@angular/common/http';
 import { dominio } from '../conexion';
 
@@ -9,11 +9,9 @@ import { dominio } from '../conexion';
 export class PlanesService {
   URL_API = `${dominio}/api/plan`;
 
-  planes : plan[]
-
   constructor(private http : HttpClient) { }
 
   ListarAllPlanes(){
-    return this.http.get<plan[]>(this.URL_API)
+    return this.http.get<Plan[]>(this.URL_API)
   }
 }

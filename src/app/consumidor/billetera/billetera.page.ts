@@ -8,7 +8,9 @@ import { PlanesService } from 'src/app/services/planes.service';
 })
 export class BilleteraPage implements OnInit {
 
-  constructor(public MostrarPlanes : PlanesService) { 
+  planes= [];
+
+  constructor(private planService : PlanesService) { 
     this.ListarPlanes();
   }
 
@@ -16,12 +18,10 @@ export class BilleteraPage implements OnInit {
   }
 
   ListarPlanes(){
-    this.MostrarPlanes.ListarAllPlanes().subscribe(
+    this.planService.ListarAllPlanes().subscribe(
       res => {
-        console.log(res)
-        this.MostrarPlanes.planes = res
-        
-
+        console.log(res);
+        this.planes = res;
       },err => {
         console.log(err)
       }
