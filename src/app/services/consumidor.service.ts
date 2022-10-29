@@ -34,4 +34,9 @@ export class ConsumidorService {
   verificarToken(){
     return localStorage.getItem('token');
   }
+
+  obtenerConsumidorLogeado(){
+    return this.http.get(`${this.URL_API}/consumidorConectado`, {headers: {'authorization':this.verificarToken()}})
+  }
+
 }

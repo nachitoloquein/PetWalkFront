@@ -6,7 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthConsumidorGuard } from './guards/auth-consumidor.guard';
 import { NoAuthConsumidorGuard } from './guards/no-auth-consumidor.guard';
 import { AuthTrabajadorGuard } from './guards/auth-trabajador.guard';

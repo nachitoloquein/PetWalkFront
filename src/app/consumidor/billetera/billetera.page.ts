@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BilleteraService } from 'src/app/services/billetera.service';
+import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { PlanesService } from 'src/app/services/planes.service';
 
 @Component({
@@ -9,9 +11,14 @@ import { PlanesService } from 'src/app/services/planes.service';
 export class BilleteraPage implements OnInit {
 
   planes= [];
+  idConsumidor: string;
+  billetera: any;
 
-  constructor(private planService : PlanesService) { 
+  constructor(private planService : PlanesService, 
+    private consumidorService: ConsumidorService,
+    private billeteraService: BilleteraService) { 
     this.ListarPlanes();
+    this.obtenerIDUsuarioConectado();
   }
 
   ngOnInit() {
@@ -20,7 +27,6 @@ export class BilleteraPage implements OnInit {
   ListarPlanes(){
     this.planService.ListarAllPlanes().subscribe(
       res => {
-        console.log(res);
         this.planes = res;
       },err => {
         console.log(err)
@@ -28,4 +34,14 @@ export class BilleteraPage implements OnInit {
     )
   }
 
+  obtenerIDUsuarioConectado(){
+    this.consumidorService.obtenerConsumidorLogeado().subscribe(
+      res=>{
+        this.billeteraService.obtenerMonto(res['_id']).subscribe(
+          res=>{this.billetera = res}
+        );
+      },
+      err=>console.log(err)
+    )
+  }
 }
