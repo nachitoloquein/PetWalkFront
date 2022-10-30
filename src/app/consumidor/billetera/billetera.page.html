@@ -15,7 +15,7 @@
             <ion-card-title>${{plan.costoNuevo}}</ion-card-title>
             <ion-card-subtitle>{{plan.cantidadCoins}} PetCoins</ion-card-subtitle>
             <ion-card-subtitle>{{plan.porcentajeDescuento}} Off</ion-card-subtitle>
-            <ion-card-subtitle>Oferta vigente hasta: {{plan.fechaTermino}}</ion-card-subtitle>
+            <ion-card-subtitle>Oferta vigente hasta: {{plan.fechaTermino | date:'dd/MM/yyyy'}}</ion-card-subtitle>
          </div>
           <div *ngIf="!plan.descuentoActivo">
             <ion-card-title>${{plan.costo}}</ion-card-title>
@@ -23,26 +23,13 @@
          </div>
         </ion-card-header>
         <ion-card-content>{{plan.descripcion}}</ion-card-content>
-        <ion-button fill="clear" (click)="comprarCoins(plan.costo)" id="open-modal">Lo quiero</ion-button>
+        <div *ngIf="!plan.descuentoActivo">
+        <ion-button fill="clear" (click)="comprarCoinsBaratas(plan.costo)" id="open-modal">Lo quiero</ion-button>
+        </div>
+        <div *ngIf="plan.descuentoActivo">
+          <ion-button fill="clear" (click)="comprarCoins(plan.costoNuevo)" id="open-modal">Lo quiero</ion-button>
+          </div>
     </ion-card>
 </div>
-<ion-modal trigger="open-modal">
-  <ng-template>
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-button (click)="cancel()">Cancel</ion-button>
-        </ion-buttons>
-        <ion-title>Pagar</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <form action="{{respuesta?.url}}" method="POST">
-        <input type="hidden" name="token_ws" value="{{respuesta?.token}}"/>
-        <button type="submit"> Pagar</button>
-     </form>
-    </ion-content>
-  </ng-template>
-</ion-modal>
 </ion-content>
 

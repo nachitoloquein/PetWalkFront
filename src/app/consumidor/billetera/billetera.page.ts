@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonModal } from '@ionic/angular';
 import { BilleteraService } from 'src/app/services/billetera.service';
 import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { PlanesService } from 'src/app/services/planes.service';
@@ -12,11 +11,11 @@ import { WebpayService } from 'src/app/services/webpay.service';
 })
 export class BilleteraPage implements OnInit {
 
-  @ViewChild(IonModal) modal: IonModal;
   planes= [];
   idConsumidor: string;
   billetera: any;
   respuesta:any;
+  urlDePago: string;
 
   constructor(private planService : PlanesService, 
     private consumidorService: ConsumidorService,
@@ -50,19 +49,27 @@ export class BilleteraPage implements OnInit {
     )
   }
 
-  comprarCoins(costo:number){
-    this.webpayService.generarCompra(costo).subscribe(
+  activarWebPay(cantidadDinero){
+    this.webpayService.generarCompra(cantidadDinero).subscribe(
       res=>{
         this.respuesta = res;
-        console.log(this.respuesta);
+        this.urlDePago = (`${this.respuesta['url']}?token_ws=${this.respuesta['token']}`);
+        window.location.href=this.urlDePago;
       },
       err=> console.log(err)
     )
   }
 
-  cancel(){
-    this.modal.dismiss('cancel');
+  comprarCoins(costo:number){
+    this.activarWebPay(costo);
+    console.log(costo);
   }
+
+  comprarCoinsBaratas(costoNuevo: number){
+    this.activarWebPay(costoNuevo);
+    console.log(costoNuevo);
+  }
+
 
 
 
