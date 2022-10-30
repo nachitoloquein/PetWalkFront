@@ -62,7 +62,11 @@ const routes: Routes = [
   {
    path : 'mostrarperfil/:id', 
    loadChildren : () => import('./consumidor/buscar/mostrarperfil/mostrarperfil.module').then(m => m.MostrarperfilPageModule) 
-  }
+  },
+  {
+    path : 'transaccionBuena', 
+    loadChildren : () => import('./consumidor/transaccion-buena/transaccion-buena.module').then(m => m.TransaccionBuenaPageModule) 
+   }
 ];
 
 @NgModule({

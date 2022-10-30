@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: ConsumidorPage
+  },  {
+    path: 'transaccion-buena',
+    loadChildren: () => import('./transaccion-buena/transaccion-buena.module').then( m => m.TransaccionBuenaPageModule)
   }
+
 ];
 
 @NgModule({
