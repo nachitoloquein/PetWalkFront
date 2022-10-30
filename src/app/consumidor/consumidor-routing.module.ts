@@ -10,6 +10,10 @@ const routes: Routes = [
   },  {
     path: 'transaccion-buena',
     loadChildren: () => import('./transaccion-buena/transaccion-buena.module').then( m => m.TransaccionBuenaPageModule)
+  },
+  {
+    path: 'confirmarpago',
+    loadChildren: () => import('./confirmarpago/confirmarpago.module').then( m => m.ConfirmarpagoPageModule)
   }
 
 ];
