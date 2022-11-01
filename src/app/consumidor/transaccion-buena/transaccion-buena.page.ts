@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransaccionBuenaPage implements OnInit {
 
+  fechaActual = Date.now();
   constructor() { 
     window.print();
   }
+
+
 
   ngOnInit() {
   }
