@@ -70,6 +70,11 @@ export class BilleteraPage implements OnInit {
     console.log(costoNuevo);
   }
 
+  RecargaCoins(){
+    this.billeteraService.obtenerMonto
+  }
+
+
 
 
 

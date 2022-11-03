@@ -16,4 +16,8 @@ export class BilleteraService {
     return this.http.get(`${this.URL_API}/${idConsumidor}`);
   }
 
+  RecargaCoinsIdConsumidor(idConsumidor){
+    return this.http.put(`${this.URL_API}/CargarCoinsIdConsumidor/${idConsumidor}`, {'monto': '8'})
+  }
+
 }
