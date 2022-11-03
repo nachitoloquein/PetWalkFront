@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BilleteraService } from 'src/app/services/billetera.service';
+import { ConsumidorService } from 'src/app/services/consumidor.service';
 
 @Component({
   selector: 'app-transaccion-buena',
@@ -7,11 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransaccionBuenaPage implements OnInit {
 
-  constructor() { 
+  idConsumidor:any;
+  fechaActual = Date.now();
+  constructor(private consumidorService: ConsumidorService, 
+    private billeteraService: BilleteraService) { 
+      this.obtenerid();
+      //this.cargarCoins();
+  }
+
+
+
+  ngOnInit() {
     window.print();
   }
 
-  ngOnInit() {
+  obtenerid(){
+    this.consumidorService.obtenerConsumidorLogeado().subscribe(
+    res=>{this.idConsumidor = res['_id']  
+      this.cargarCoins()},
+    err=>console.log(err));
   }
+
+  cargarCoins(){
+    this.billeteraService.cargarBilletera(this.idConsumidor).subscribe(
+      res=>console.log(res),
+      err=>console.log(err)
+    )
+  }
+
 
 }
