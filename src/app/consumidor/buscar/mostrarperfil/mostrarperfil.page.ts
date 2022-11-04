@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Reporte } from 'src/app/model/reporte';
 import { ReportesService } from 'src/app/services/reportes.service';
 import { ConsumidorService } from 'src/app/services/consumidor.service';
 
