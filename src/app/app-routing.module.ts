@@ -72,7 +72,7 @@ const routes: Routes = [
     loadChildren : () => import('./consumidor/transaccion-mala/transaccion-mala.module').then(m => m.TransaccionMalaPageModule)
    },
    {
-    path : 'home-consumidor',
+    path : 'tab',
     loadChildren : () => import('./consumidor/tabnav/tabnav.module').then(m => m.TabnavPageModule),
     canActivate: [AuthConsumidorGuard]
    }

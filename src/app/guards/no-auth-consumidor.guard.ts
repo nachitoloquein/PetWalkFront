@@ -15,7 +15,7 @@ export class NoAuthConsumidorGuard implements CanActivate {
       return true;
     }
     else{
-      this.router.navigate(['/home-consumidor/perfil']);
+      this.router.navigate(['/tab/perfil']);
       return false;
     };
   }
