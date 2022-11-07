@@ -7,13 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: ConsumidorPage
-  },  {
+  },
+  {
     path: 'transaccion-buena',
     loadChildren: () => import('./transaccion-buena/transaccion-buena.module').then( m => m.TransaccionBuenaPageModule)
   },
   {
-    path: 'confirmarpago',
-    loadChildren: () => import('./confirmarpago/confirmarpago.module').then( m => m.ConfirmarpagoPageModule)
+    path: 'transaccion-mala',
+    loadChildren: () => import('./transaccion-mala/transaccion-mala.module').then( m => m.TransaccionMalaPageModule)
   }
 
 ];

@@ -16,10 +16,6 @@ export class WebpayService {
     return this.http.post(`${this.URL_API}/create`, {costo});
   }
 
-  ConfirmarPago(){
-    return this.http.get(`${this.URL_API}/confirmar`);
-  }
-
 }
 
 

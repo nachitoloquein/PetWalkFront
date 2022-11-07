@@ -1,23 +1,31 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { BilleteraService } from 'src/app/services/billetera.service';
 import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { PlanesService } from 'src/app/services/planes.service';
 import { WebpayService } from 'src/app/services/webpay.service';
+
+
 
 @Component({
   selector: 'app-billetera',
   templateUrl: './billetera.page.html',
   styleUrls: ['./billetera.page.scss'],
 })
+
+
+
 export class BilleteraPage implements OnInit {
+  
 
   planes= [];
   idConsumidor: string;
   billetera: any;
   respuesta:any;
   urlDePago: string;
+  Coins : any
 
-  constructor(private planService : PlanesService, 
+  constructor(
+    private planService : PlanesService, 
     private consumidorService: ConsumidorService,
     private billeteraService: BilleteraService,
     private webpayService: WebpayService) { 
@@ -42,7 +50,8 @@ export class BilleteraPage implements OnInit {
     this.consumidorService.obtenerConsumidorLogeado().subscribe(
       res=>{
         this.billeteraService.obtenerMonto(res['_id']).subscribe(
-          res=>{this.billetera = res}
+          res=>{this.billetera = res
+          this.cargarCoins();}
         );
       },
       err=>console.log(err)
@@ -65,16 +74,27 @@ export class BilleteraPage implements OnInit {
     console.log(costo);
   }
 
-  comprarCoinsBaratas(costoNuevo: number){
+  comprarCoinsBaratas(costoNuevo: number, cantidadCoins:string){
     this.activarWebPay(costoNuevo);
-    console.log(costoNuevo);
+    console.log(costoNuevo, cantidadCoins)
+    localStorage.setItem('coins', cantidadCoins);
   }
 
-  RecargaCoins(){
-    this.billeteraService.obtenerMonto
+  RecargaCoins(cantidadCoins: any){
+    this.Coins = cantidadCoins
+    console.log(this.Coins)
+
+
   }
 
-
+  cargarCoins(){
+    this.billeteraService.cargarBilletera(this.idConsumidor, this.Coins).subscribe(
+      res=>{
+        console.log(this.Coins)
+      },
+      err=>console.log(err)
+    ) 
+  }
 
 
 

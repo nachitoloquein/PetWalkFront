@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ConfirmarpagoPageRoutingModule } from './confirmarpago-routing.module';
+import { TransaccionMalaPageRoutingModule } from './transaccion-mala-routing.module';
 
-import { ConfirmarpagoPage } from './confirmarpago.page';
+import { TransaccionMalaPage } from './transaccion-mala.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ConfirmarpagoPageRoutingModule
+    TransaccionMalaPageRoutingModule
   ],
-  declarations: [ConfirmarpagoPage]
+  declarations: [TransaccionMalaPage]
 })
-export class ConfirmarpagoPageModule {}
+export class TransaccionMalaPageModule {}

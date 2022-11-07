@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { TransaccionBuenaPageRoutingModule } from './transaccion-buena-routing.module';
 
 import { TransaccionBuenaPage } from './transaccion-buena.page';
+import { BilleteraPageModule } from '../billetera/billetera.module';
+import { BilleteraPage } from '../billetera/billetera.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TransaccionBuenaPageRoutingModule
+    TransaccionBuenaPageRoutingModule,
+    BilleteraPageModule
+    
   ],
   declarations: [TransaccionBuenaPage]
 })

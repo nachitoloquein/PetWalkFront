@@ -68,8 +68,8 @@ const routes: Routes = [
     loadChildren : () => import('./consumidor/transaccion-buena/transaccion-buena.module').then(m => m.TransaccionBuenaPageModule) 
    },
    {
-    path : 'confirmarPago',
-    loadChildren : () => import('./consumidor/confirmarpago/confirmarpago.module').then(m => m.ConfirmarpagoPageModule)
+    path : 'transaccionMala',
+    loadChildren : () => import('./consumidor/transaccion-mala/transaccion-mala.module').then(m => m.TransaccionMalaPageModule)
    }
 ];
 
