@@ -34,7 +34,7 @@ export class ConsumidorPage implements OnInit {
         
         console.log(res);
         localStorage.setItem('token', res['token']);
-        this.router.navigate(['/perfil'])
+        this.router.navigate(['/home-consumidor'])
     }, 
       err=>{console.log(err),
         this.ValidarCuenta(err);});

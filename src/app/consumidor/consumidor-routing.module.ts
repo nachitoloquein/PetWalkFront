@@ -17,6 +17,7 @@ const routes: Routes = [
     loadChildren: () => import('./transaccion-mala/transaccion-mala.module').then( m => m.TransaccionMalaPageModule)
   }
 
+
 ];
 
 @NgModule({
