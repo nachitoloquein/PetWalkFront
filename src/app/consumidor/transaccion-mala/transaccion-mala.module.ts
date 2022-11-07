@@ -4,16 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { BilleteraPageRoutingModule } from './billetera-routing.module';
-import { BilleteraPage } from './billetera.page';
+import { TransaccionMalaPageRoutingModule } from './transaccion-mala-routing.module';
+
+import { TransaccionMalaPage } from './transaccion-mala.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BilleteraPageRoutingModule
+    TransaccionMalaPageRoutingModule
   ],
-  declarations: [BilleteraPage]
+  declarations: [TransaccionMalaPage]
 })
-export class BilleteraPageModule {}
+export class TransaccionMalaPageModule {}

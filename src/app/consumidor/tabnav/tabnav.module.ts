@@ -4,16 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { BilleteraPageRoutingModule } from './billetera-routing.module';
-import { BilleteraPage } from './billetera.page';
+import { TabnavPageRoutingModule } from './tabnav-routing.module';
+
+import { TabnavPage } from './tabnav.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BilleteraPageRoutingModule
+    TabnavPageRoutingModule
   ],
-  declarations: [BilleteraPage]
+  declarations: [TabnavPage]
 })
-export class BilleteraPageModule {}
+export class TabnavPageModule {}

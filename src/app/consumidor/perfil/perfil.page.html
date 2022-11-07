@@ -5,10 +5,19 @@
 </ion-header>
 
 <ion-content>
-  <app-tabs></app-tabs>
 
-  <div>
-    <ion-text>{{consumidor?.nombre | titlecase}} {{consumidor?.apellido | titlecase}}</ion-text>
+  <div class="perfil">
+    <div class="nombres">
+      <ion-label>Nombre</ion-label>
+      <ion-text>{{consumidor?.nombre | titlecase}} </ion-text>
+      <ion-label>Apellido</ion-label>
+      <ion-text>{{consumidor?.apellido | titlecase}}</ion-text>
+    </div>
+    <div class="datos">
+      <ion-label>Dirección</ion-label>
+      <ion-text>Direccion {{consumidor?.direccion}}</ion-text>
+      <ion-label>Edad</ion-label>
+    </div>
   </div>
   
 

@@ -5,9 +5,13 @@
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content scroll-y="true">
-  <app-tabs></app-tabs>
-  <div *ngFor=" let plan of planes ">
+  
+
+  <ion-text>Planes</ion-text>
+<div *ngFor=" let plan of planes ">
     <ion-card>
         <ion-card-header>
           <div *ngIf="plan.descuentoActivo">
@@ -24,12 +28,20 @@
         </ion-card-header>
         <ion-card-content>{{plan.descripcion}}</ion-card-content>
         <div *ngIf="!plan.descuentoActivo">
-        <ion-button fill="clear" (click)="comprarCoinsBaratas(plan.costo)" id="open-modal">Lo quiero</ion-button>
+        <ion-button fill="clear" (click)="comprarCoinsBaratas(plan.costo, plan.cantidadCoins)" id="open-modal">Lo quiero</ion-button>
+
         </div>
         <div *ngIf="plan.descuentoActivo">
           <ion-button fill="clear" (click)="comprarCoins(plan.costoNuevo)" id="open-modal">Lo quiero</ion-button>
+          
           </div>
     </ion-card>
 </div>
+
+
 </ion-content>
+
+
+  
+
 

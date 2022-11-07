@@ -8,6 +8,8 @@ import { dominio } from '../conexion';
 export class WebpayService {
 
   URL_API = `${dominio}/api/webpay`;
+
+
   constructor(private http: HttpClient) { }
 
   generarCompra(costo:number){
@@ -15,3 +17,5 @@ export class WebpayService {
   }
 
 }
+
+

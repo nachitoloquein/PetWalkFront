@@ -6,7 +6,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { BuscarPageRoutingModule } from './buscar-routing.module';
 
-import { TabsComponent } from '../tabs/tabs.component';
 
 import { BuscarPage } from './buscar.page';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -20,6 +19,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     BuscarPageRoutingModule,
     Ng2SearchPipeModule
   ],
-  declarations: [BuscarPage, TabsComponent]
+  declarations: [BuscarPage]
 })
 export class BuscarPageModule {}

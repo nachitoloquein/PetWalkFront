@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Billetera } from '../model/billetera';
 import { dominio } from '../conexion';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,8 +17,8 @@ export class BilleteraService {
     return this.http.get(`${this.URL_API}/${idConsumidor}`);
   }
 
-  cargarBilletera(idConsumidor){
-    return this.http.put(`${this.URL_API}/CargarCoinsIdConsumidor/${idConsumidor}`, {'monto':'400'})
+  cargarBilletera(idConsumidor, monto){
+    return this.http.put(`${this.URL_API}/CargarCoinsIdConsumidor/${idConsumidor}`, {monto})
   }
 
 }

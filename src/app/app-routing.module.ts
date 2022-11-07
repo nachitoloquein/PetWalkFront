@@ -66,6 +66,15 @@ const routes: Routes = [
   {
     path : 'transaccionBuena', 
     loadChildren : () => import('./consumidor/transaccion-buena/transaccion-buena.module').then(m => m.TransaccionBuenaPageModule) 
+   },
+   {
+    path : 'transaccionMala',
+    loadChildren : () => import('./consumidor/transaccion-mala/transaccion-mala.module').then(m => m.TransaccionMalaPageModule)
+   },
+   {
+    path : 'tab',
+    loadChildren : () => import('./consumidor/tabnav/tabnav.module').then(m => m.TabnavPageModule),
+    canActivate: [AuthConsumidorGuard]
    }
 ];
 
