@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-12">
           <h2 class="page-header">
-            <i class="fas fa-globe"></i> PetWalk
+            <img src="../../../assets/img/logopetwalk.png" width="140px" height="70px" alt="">
             <small class="float-right">Fecha: {{fechaActual | date: 'dd/MM/yyyy'}}</small>
           </h2>
         </div>
@@ -19,21 +19,21 @@
           Desde:
           <address>
             <strong>Administración</strong><br>
-            795 Folsom Ave, Suite 600<br>
-            San Francisco, CA 94107<br>
-            Phone: (804) 123-5432<br>
-            Email: info@almasaeedstudio.com
+            Duoc Uc<br>
+            San Bernardo, Freire 862<br>
+            Telefono: (569) 11111111<br>
+            Email: petwalk.petsolution@gmail.com
           </address>
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
-          To
+          Para:
           <address>
-            <strong>John Doe</strong><br>
-            795 Folsom Ave, Suite 600<br>
-            San Francisco, CA 94107<br>
-            Phone: (555) 539-1037<br>
-            Email: john.doe@example.com
+            <strong>{{consumidor?.nombre | titlecase}} {{consumidor?.apellido | titlecase}}</strong><br>
+            {{consumidor?.direccion | titlecase}}<br>
+            {{consumidor?.comuna | titlecase}}<br>
+            Telefono: (569) {{consumidor?.telefono | titlecase}}<br>
+            Email: {{consumidor?.correo | titlecase}}
           </address>
         </div>
         <!-- /.col -->
@@ -54,20 +54,20 @@
           <table class="table table-striped">
             <thead>
             <tr>
-              <th>Qty</th>
-              <th>Product</th>
+              <th>Cantidad</th>
+              <th>Producto</th>
               <th>Serial #</th>
-              <th>Description</th>
+              <th>Descripción</th>
               <th>Subtotal</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <td></td>
+              <td>{{CantidadCoins}}</td>
               <td>PetsCoins</td>
               <td>455-981-221</td>
               <td>PetsCoins para contratar paseos</td>
-              <td></td>
+              <td>$ {{total | currency: 'CLP' }}</td>
             </tr>
             </tbody>
           </table>
@@ -98,7 +98,7 @@
             <table class="table">
               <tr>
                 <th>Total:</th>
-                <td>$265.24</td>
+                <td>$ {{total | currency: 'CLP' }}</td>
               </tr>
             </table>
           </div>

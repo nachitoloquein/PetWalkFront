@@ -12,8 +12,11 @@ export class TransaccionBuenaPage implements OnInit {
 
   idConsumidor:any;
   Coins : any;
-
+  CantidadCoins = localStorage.getItem('coins')
+  total = localStorage.getItem('total')
   fechaActual = Date.now();
+
+  consumidor: any;
   
   constructor(
     private router : Router,
@@ -27,6 +30,7 @@ export class TransaccionBuenaPage implements OnInit {
 
   ngOnInit() {
     window.print();
+    this.obtenerDatos();
   }
 
   obtenerid(){
@@ -42,12 +46,21 @@ export class TransaccionBuenaPage implements OnInit {
   cargarCoins(){
     this.billeteraService.cargarBilletera(this.idConsumidor, localStorage.getItem('coins')).subscribe(
       res=> {
-        console.log(res),
-        localStorage.removeItem('coins');
+        console.log(res)
+          localStorage.removeItem('coins');
+          localStorage.removeItem('total');
         
       },
       err=>console.log(err)
     ) 
+  }
+
+  obtenerDatos(){
+    this.consumidorService.obtenerConsumidorLogeado().subscribe(
+      res=>{
+        this.consumidor = res
+      console.log(this.consumidor)}, 
+      err => console.log(err));
   }
 
 

@@ -70,15 +70,18 @@ export class BilleteraPage implements OnInit {
     )
   }
 
-  comprarCoins(costo:number){
+  comprarCoins(costo:string, cantidadCoins: string){
     this.activarWebPay(costo);
+    localStorage.setItem('total', costo);
+    localStorage.setItem('coins', cantidadCoins)
     console.log(costo);
   }
 
-  comprarCoinsBaratas(costoNuevo: number, cantidadCoins:string){
+  comprarCoinsBaratas(costoNuevo: string, cantidadCoins:string){
     this.activarWebPay(costoNuevo);
     console.log(costoNuevo, cantidadCoins)
-    localStorage.setItem('coins', cantidadCoins);
+    localStorage.setItem('coins', cantidadCoins)
+    localStorage.setItem('total', costoNuevo);
   }
 
   RecargaCoins(cantidadCoins: any){
