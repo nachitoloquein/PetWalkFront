@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistorialPage implements OnInit {
 
+  fechaActual = Date.now();
+
   constructor() { }
 
   ngOnInit() {
