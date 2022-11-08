@@ -3,7 +3,7 @@ import { TrabajadorService } from 'src/app/services/trabajador.service';
 @Component({
   selector: 'app-buscar',
   templateUrl: './buscar.page.html',
-  styleUrls: ['./buscar.page.scss']
+  styleUrls: ['./buscar.page.scss', '../consumidorGlobalStyles.scss']
 })
 export class BuscarPage implements OnInit {
 

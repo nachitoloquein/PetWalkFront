@@ -9,7 +9,7 @@ import { ConsumidorService } from 'src/app/services/consumidor.service';
 @Component({
   selector: 'app-mostrarperfil',
   templateUrl: './mostrarperfil.page.html',
-  styleUrls: ['./mostrarperfil.page.scss'],
+  styleUrls: ['./mostrarperfil.page.scss', '../../consumidorGlobalStyles.scss'],
 })
 export class MostrarperfilPage implements OnInit {
 

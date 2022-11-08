@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-transaccion-buena',
   templateUrl: './transaccion-buena.page.html',
-  styleUrls: ['./transaccion-buena.page.scss'],
+  styleUrls: ['./transaccion-buena.page.scss', '../consumidorGlobalStyles.scss'],
 })
 export class TransaccionBuenaPage implements OnInit {
 
