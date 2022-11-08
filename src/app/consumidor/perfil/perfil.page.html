@@ -1,26 +1,65 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Perfil</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="LogOut()">
+        <ion-icon name="log-out-outline" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
 
-  <div class="perfil">
-    <div class="nombres">
-      <ion-label>Nombre</ion-label>
-      <ion-text>{{consumidor?.nombre | titlecase}} </ion-text>
-      <ion-label>Apellido</ion-label>
-      <ion-text>{{consumidor?.apellido | titlecase}}</ion-text>
-    </div>
-    <div class="datos">
-      <ion-label>Dirección</ion-label>
-      <ion-text>Direccion {{consumidor?.direccion}}</ion-text>
-      <ion-label>Edad</ion-label>
-    </div>
-  </div>
-  
+          <!-- Profile Image -->
+          <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+              <div class="text-center">
+                <img class="profile-user-img img-fluid img-circle"
+                    src="https://www.pngitem.com/pimgs/m/659-6591764_golden-retriever-hd-png-download.png"
+                    alt="User profile picture">
+              </div>
 
-  <ion-button (click)="LogOut()">Cerrar Sesion</ion-button>
+              <h3 class="profile-username text-center">{{consumidor?.nombre | titlecase}} {{consumidor?.apellido | titlecase}}</h3>
 
+              <p class="text-muted text-center">+ 56 {{consumidor?.telefono}}</p>
+
+              <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item">
+                  <b>Saldo de PetCoins</b> <a class="float-right">{{billetera}}</a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+          <!-- About Me Box -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Información</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <strong><i class="fas fa-map-marker-alt mr-1"></i> Ubicación</strong>
+
+              <p class="text-muted">{{consumidor?.direccion}} | {{consumidor?.comuna}}</p>
+
+              <hr>
+
+              <strong><i class="fas fa-birthday-cake mr-1"></i> Fecha de Nacimiento</strong>
+
+              <p class="text-muted">{{consumidor?.fechaNacimiento | date: 'dd/MM/yyyy'}}</p>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
 </ion-content>

@@ -51,8 +51,7 @@ export class BilleteraPage implements OnInit {
     this.consumidorService.obtenerConsumidorLogeado().subscribe(
       res=>{
         this.billeteraService.obtenerMonto(res['_id']).subscribe(
-          res=>{this.billetera = res
-          this.cargarCoins();}
+          res=>this.billetera = res
         );
       },
       err=>console.log(err)

@@ -2,27 +2,72 @@
   <ion-toolbar>
     <ion-title>{{trabajador?.nombre | titlecase}} {{trabajador?.apellido | titlecase}}</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="home"></ion-back-button>
+      <ion-back-button defaultHref="tab/buscar"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <img [src]="'http://localhost:4000/'+trabajador?.documentos[0]" />
-    <ion-card-header>
-      <ion-card-title>{{trabajador?.comuna}}</ion-card-title>
-      <ion-card-subtitle>{{trabajador?.direccion}}</ion-card-subtitle>
-    </ion-card-header>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
 
-    <ion-card-content>
-      Contacto: +56 {{trabajador?.telefono}}
-      <a [href]="'https://api.whatsapp.com/send?phone=56'+trabajador?.telefono">Enviar Mensaje</a>
-      Fecha de nacimiento: {{trabajador?.fechaNacimiento | date: 'dd/MM/yyyy'}}
-      <ion-button>Solicitar Servicio</ion-button>
-    </ion-card-content>
-  </ion-card>
+          <!-- Profile Image -->
+          <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+              <div class="text-center" >
+                <img class="profile-user-img img-fluid img-circle"
+                    src="https://static.vecteezy.com/system/resources/previews/004/607/806/original/man-face-emotive-icon-smiling-bearded-male-character-in-yellow-flat-illustration-isolated-on-white-happy-human-psychological-portrait-positive-emotions-user-avatar-for-app-web-design-vector.jpg"
+                    alt="User profile picture" *ngIf="trabajador?.genero == 'Masculino'">
+                    <img class="profile-user-img img-fluid img-circle"
+                    src="https://static.vecteezy.com/system/resources/previews/001/312/575/non_2x/beautiful-teenage-girl-with-different-facial-expression-vector.jpg"
+                    alt="User profile picture" *ngIf="trabajador?.genero == 'Femenino'">
+              </div>
+
+              <h3 class="profile-username text-center">{{trabajador?.nombre | titlecase}} {{trabajador?.apellido | titlecase}}</h3>
+
+              <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item">
+                  <b>Contacto</b> <a class="float-right" [href]="'https://api.whatsapp.com/send?phone=56'+trabajador?.telefono">Enviar mensaje</a>
+                  
+                </li>
+                <li class="list-group-item">
+                  <b>Género</b> 
+                  <a class="float-right" *ngIf="trabajador?.genero == 'Femenino'"><ion-icon name="female-outline"></ion-icon></a>
+                  <a class="float-right" *ngIf="trabajador?.genero == 'Masculino'"><ion-icon name="male-outline"></ion-icon></a>
+                </li>
+              </ul>
+              <button href="#" class="btn btn-primary btn-block"><b>Solicitar Servicio</b></button>
+              <button (click)="abrirAlert()" class="btn btn-danger btn-block"><b>Reportar Trabajador</b></button>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+          <!-- About Me Box -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Información</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <strong><i class="fas fa-map-marker-alt mr-1"></i> Ubicación</strong>
+
+              <p class="text-muted">{{trabajador?.direccion}} | {{trabajador?.comuna}}</p>
+
+              <hr>
+
+              <strong><i class="fas fa-birthday-cake mr-1"></i> Fecha de Nacimiento</strong>
+
+              <p class="text-muted">{{trabajador?.fechaNacimiento | date: 'dd/MM/yyyy'}}</p>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
 </ion-content>
-
-
-

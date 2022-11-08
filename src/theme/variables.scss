@@ -11,6 +11,15 @@
   --ion-color-primary-shade: #3171e0;
   --ion-color-primary-tint: #4c8dff;
 
+  /** new **/
+  
+  --ion-color-new: #8063BD;
+  --ion-color-new-rgb: 128,99,189;
+  --ion-color-new-contrast: #ffffff;
+  --ion-color-new-contrast-rgb: 255,255,255;
+  --ion-color-new-shade: #7157a6;
+  --ion-color-new-tint: #8d73c4;
+
   /** secondary **/
   --ion-color-secondary: #3dc2ff;
   --ion-color-secondary-rgb: 61, 194, 255;
@@ -91,6 +100,15 @@
     --ion-color-contrast-rgb: var(--ion-color-paseador-contrast-rgb);
     --ion-color-shade: var(--ion-color-paseador-shade);
     --ion-color-tint: var(--ion-color-paseador-tint);
+  }
+  
+  .ion-color-new {
+    --ion-color-base: var(--ion-color-new);
+    --ion-color-base-rgb: var(--ion-color-new-rgb);
+    --ion-color-contrast: var(--ion-color-new-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-new-contrast-rgb);
+    --ion-color-shade: var(--ion-color-new-shade);
+    --ion-color-tint: var(--ion-color-new-tint);
   }
   /*Color Consumidor*/
   
