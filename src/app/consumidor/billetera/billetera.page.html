@@ -1,45 +1,98 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Billetera</ion-title>
-    <ion-title slot="end">Tienes {{billetera?.monto}} coins</ion-title>
+    <ion-title slot="secondary">Billetera</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 
 <ion-content scroll-y="true">
-  
 
-  <ion-text>Planes</ion-text>
-<div *ngFor=" let plan of planes ">
-    <ion-card>
-        <ion-card-header>
-          <div *ngIf="plan.descuentoActivo">
-            <ion-card-title class="tachado">${{plan.costo}}</ion-card-title>
-            <ion-card-title>${{plan.costoNuevo}}</ion-card-title>
-            <ion-card-subtitle>{{plan.cantidadCoins}} PetCoins</ion-card-subtitle>
-            <ion-card-subtitle>{{plan.porcentajeDescuento}} Off</ion-card-subtitle>
-            <ion-card-subtitle>Oferta vigente hasta: {{plan.fechaTermino | date:'dd/MM/yyyy'}}</ion-card-subtitle>
-         </div>
-          <div *ngIf="!plan.descuentoActivo">
-            <ion-card-title>${{plan.costo}}</ion-card-title>
-            <ion-card-subtitle>{{plan.cantidadCoins}} PetCoins</ion-card-subtitle>
-         </div>
-        </ion-card-header>
-        <ion-card-content>{{plan.descripcion}}</ion-card-content>
-        <div *ngIf="!plan.descuentoActivo">
-        <ion-button fill="clear" (click)="comprarCoinsBaratas(plan.costo, plan.cantidadCoins)" id="open-modal">Lo quiero</ion-button>
+  <div class="coins">
+    <ion-icon name="alert-circle-outline" (click)="MensajeInfo()"><ion-button ></ion-button></ion-icon>
+    <h4>Cartera PetCoins</h4>
+    <label class="cantidadCoins fig" for=""><span>{{billetera?.monto}}</span></label>
+    <br>
+    
+  </div>
 
-        </div>
-        <div *ngIf="plan.descuentoActivo">
-          <ion-button fill="clear" (click)="comprarCoins(plan.costoNuevo)" id="open-modal">Lo quiero</ion-button>
+  <div class="oferta" >
+    <div class="ribbon bg-danger center">
+      OFERTAS
+    </div>
+    <ion-slides #slider pager="true" [options]="slideOpts" >
+      <ng-container *ngFor=" let plan of planes">
+        <ion-slide *ngIf="plan.descuentoActivo" >
+          <ion-card class="card">
+            <div class="ribbon-wrapper ribbon-xl">
+              <div class="ribbon bg-danger">
+                OFERTA {{plan.porcentajeDescuento}} OFF
+              </div>
+            </div>
+            <ion-card-header >
+              <ion-card-title class="tachado">${{plan.costo}}</ion-card-title>
+              <ion-card-title>${{plan.costoNuevo}} </ion-card-title>
+              <ion-card-subtitle class="cantidadCoins">{{plan.cantidadCoins}} PetsCoins</ion-card-subtitle>
+            </ion-card-header>
           
-          </div>
-    </ion-card>
-</div>
+            <ion-card-content class="infoPlan">
+              Este plan equivale a {{plan.cantidadCoins}} paseos de mascota
+            </ion-card-content>
+            <ion-card-content class="fechaTermino">
+              Vence el {{plan.fechaTermino | date:'dd-MM-yyyy'}}
+            </ion-card-content>
+
+            <div id="countdown1"></div>
+          
+            <ion-button (click)="comprarCoinsBaratas(plan.costoNuevo, plan.cantidadCoins)" color="success" fill="clear">Comprar<ion-icon name="cash-outline"></ion-icon></ion-button>
+          </ion-card>
+      </ion-slide>
+      </ng-container>
+    </ion-slides>
+  </div>
+
+  <div class="planes" >
+    <div class="ribbon bg-success center">
+      PLANES
+    </div>
+    <ion-slides #slider pager="true" [options]="slideOpts" >
+      <ng-container *ngFor=" let plan of planes">
+        <ion-slide *ngIf="!plan.descuentoActivo" >
+          <ion-card class="card">
+            <div class="ribbon-wrapper ribbon-lg">
+              <div class="ribbon bg-success">
+                Plan
+              </div>
+            </div>
+            <ion-card-header >
+              <ion-card-title>${{plan.costo}}</ion-card-title>
+              <ion-card-subtitle class="cantidadCoins">{{plan.cantidadCoins}} PetsCoins</ion-card-subtitle>
+            </ion-card-header>
+          
+            <ion-card-content class="infoPlan">
+              Este plan equivale a {{plan.cantidadCoins}} paseos de mascota
+            </ion-card-content>
+
+            <div id="countdown1"></div>
+          
+            <ion-button (click)="comprarCoinsBaratas(plan.costoNuevo, plan.cantidadCoins)" color="success" fill="clear">Comprar<ion-icon name="cash-outline"></ion-icon></ion-button>
+          </ion-card>
+      </ion-slide>
+      </ng-container>
+
+    </ion-slides >
+  </div>
 
 
-</ion-content>
+
+
+
+
+
+
+
+
+
 
 
   

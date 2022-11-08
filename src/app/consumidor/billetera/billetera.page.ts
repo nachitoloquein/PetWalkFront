@@ -3,6 +3,7 @@ import { BilleteraService } from 'src/app/services/billetera.service';
 import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { PlanesService } from 'src/app/services/planes.service';
 import { WebpayService } from 'src/app/services/webpay.service';
+import { AlertController } from '@ionic/angular';
 
 
 
@@ -25,6 +26,7 @@ export class BilleteraPage implements OnInit {
   Coins : any
 
   constructor(
+    private alertController : AlertController,
     private planService : PlanesService, 
     private consumidorService: ConsumidorService,
     private billeteraService: BilleteraService,
@@ -39,13 +41,12 @@ export class BilleteraPage implements OnInit {
   ListarPlanes(){
     this.planService.ListarAllPlanes().subscribe(
       res => {
-        this.planes = res;
+        this.planes = res;    
       },err => {
         console.log(err)
       }
     )
   }
-
   obtenerIDUsuarioConectado(){
     this.consumidorService.obtenerConsumidorLogeado().subscribe(
       res=>{
@@ -94,6 +95,17 @@ export class BilleteraPage implements OnInit {
       },
       err=>console.log(err)
     ) 
+  }
+
+  async MensajeInfo(){
+    const alert = await this.alertController.create({
+      
+      header : "*Los PetsCoins sirven para comprar un paseo de mascotas*",
+      message: "1 Petscoin = 1 paseo de mascota",
+      buttons: ["Entendido"]
+
+    })
+    await alert.present();
   }
 
 

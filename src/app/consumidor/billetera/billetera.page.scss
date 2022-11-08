@@ -1,3 +1,108 @@
+@import url("https://adminlte.io/themes/v3/dist/css/adminlte.css%22");
+@import url("https://adminlte.io/themes/v3/plugins/fontawesome-free/css/all.min.css%22");
+
 .tachado{
     text-decoration: line-through;
 }
+
+//Coins
+.coins{
+    width: 80%;
+    height: 95px;
+    text-align: center;
+    margin-left: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 2%;
+    border-radius: 15px;
+    background-color: #d0d0d0a0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-box-shadow: 10px 22px 48px -25px rgba(0,0,0,1);
+-moz-box-shadow: 10px 22px 48px -25px rgba(0,0,0,1);
+box-shadow: 10px 22px 48px -25px rgba(0,0,0,1);
+}
+.coins span{
+    font-size: 20px;
+}
+.coins ion-icon{
+    color: #17a2b8;
+    float: left;
+    font-size: 30px;
+    margin-left: 1px;
+}
+
+
+// Ofertas
+.oferta{
+    width: 90%;
+    border-radius: 5%;
+    background-color: #86434aa7;
+    margin: 5%;
+}
+
+.center{
+    text-align: center;
+    border-radius: 5px;
+    font-size: 20px;
+}
+.oferta h3{
+    text-align: center;
+}
+
+// Planes
+
+.planes{
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 5%;
+    background-color: #6cbd9f;
+}
+.planes h3{
+    font-size: 30px;
+    font-family: monospace;
+    text-align: center;
+}
+
+
+// Iconos
+ion-icon{
+    margin-left: 10px;
+}
+
+// Cards
+
+.card{
+    margin-bottom: 30px;
+}
+
+.cantidadCoins{
+    color: rgb(202, 173, 6);
+
+}
+
+.fechaTermino{
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+.infoPlan{
+    color: #088598;
+}
+.fig{
+    padding: 2px;
+    margin-left: 2%;
+    width: 40px;
+    height:40px;
+    border-radius: 50px;
+    text-align: center;
+    color: black;
+    border:ridge;
+    border-width: 3px;
+    border-color: rgb(231, 234, 66);
+    background-color: rgb(255, 217, 0);
+}
+
+
+
+
+

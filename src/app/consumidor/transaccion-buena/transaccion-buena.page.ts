@@ -34,7 +34,7 @@ export class TransaccionBuenaPage implements OnInit {
     res=>{this.idConsumidor = res['_id']  
       this.cargarCoins()
       setTimeout(() => {
-        this.router.navigate(['/home-consumidor/billetera'])
+        this.router.navigate(['/tab/billetera'])
       }, 5000)},
     err=>console.log(err));
   }
