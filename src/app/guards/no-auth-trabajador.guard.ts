@@ -14,7 +14,7 @@ export class NoAuthTrabajadorGuard implements CanActivate {
     return true;
   }
   else{
-    //this.router.navigate(['/loginPaseador']);
+    this.router.navigate(['/home-paseador']);
     return false;
   };
 

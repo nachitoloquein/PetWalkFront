@@ -5,7 +5,6 @@ import { AlertController } from '@ionic/angular';
 import { ReportesService } from 'src/app/services/reportes.service';
 import { ConsumidorService } from 'src/app/services/consumidor.service';
 
-
 @Component({
   selector: 'app-mostrarperfil',
   templateUrl: './mostrarperfil.page.html',
@@ -18,7 +17,9 @@ export class MostrarperfilPage implements OnInit {
   edad: number;
   idConsumidor: any;
 
-  constructor(private route : ActivatedRoute,
+
+  constructor(
+    private route : ActivatedRoute,
     private trabajadorService : TrabajadorService,
     private alertController: AlertController,
     private reporteService: ReportesService,
@@ -86,6 +87,10 @@ export class MostrarperfilPage implements OnInit {
         this.idConsumidor = res['_id']},
       err => console.log(err));
   }
+
+  
+
+  
 
 
 }

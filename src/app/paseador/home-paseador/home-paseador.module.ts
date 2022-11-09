@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { HomePaseadorPageRoutingModule } from './home-paseador-routing.module';
 
 import { HomePaseadorPage } from './home-paseador.page';
-import { GoogleMapComponent } from '../google-map/google-map.component';
 
 @NgModule({
   imports: [
@@ -15,7 +14,6 @@ import { GoogleMapComponent } from '../google-map/google-map.component';
     FormsModule,
     IonicModule,
     HomePaseadorPageRoutingModule,
-    GoogleMapComponent
 
   ],
   declarations: [HomePaseadorPage]

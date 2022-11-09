@@ -27,14 +27,12 @@ export class ConsumidorPage implements OnInit {
 
   login(){
     try{
-      
     this.consumidorService.Logear(this.correo, this.contrasena).subscribe(
-      
-      res=>{
+       res=>{
         
         console.log(res);
         localStorage.setItem('token', res['token']);
-        this.router.navigate(['/tab'])
+        this.router.navigate(['/tab/perfil'])
     }, 
       err=>{console.log(err),
         this.ValidarCuenta(err);});
@@ -44,6 +42,9 @@ export class ConsumidorPage implements OnInit {
   }
 
   ValidarCuenta(err){
+    if(err.status == 400){
+      this.Mensaje('Usuario o Contraseña Incorrecto', '')
+    }
     if(err.status == 401){
       this.Mensaje('Usuario o Contraseña Incorrecto', '')
     }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthConsumidorGuard } from './guards/auth-consumidor.guard';
+import { AuthTrabajadorGuard } from './guards/auth-trabajador.guard';
 import { NoAuthConsumidorGuard } from './guards/no-auth-consumidor.guard';
 import { NoAuthTrabajadorGuard } from './guards/no-auth-trabajador.guard';
 
@@ -57,19 +58,23 @@ const routes: Routes = [
 
   {
     path: 'home-paseador',
-    loadChildren: () => import('./paseador/home-paseador/home-paseador.module').then( m => m.HomePaseadorPageModule)
+    loadChildren: () => import('./paseador/home-paseador/home-paseador.module').then( m => m.HomePaseadorPageModule),
+    canActivate: [AuthTrabajadorGuard]
   },
   {
    path : 'mostrarperfil/:id', 
-   loadChildren : () => import('./consumidor/buscar/mostrarperfil/mostrarperfil.module').then(m => m.MostrarperfilPageModule) 
+   loadChildren : () => import('./consumidor/buscar/mostrarperfil/mostrarperfil.module').then(m => m.MostrarperfilPageModule),
+   canActivate: [AuthConsumidorGuard]
   },
   {
     path : 'transaccionBuena', 
-    loadChildren : () => import('./consumidor/transaccion-buena/transaccion-buena.module').then(m => m.TransaccionBuenaPageModule) 
+    loadChildren : () => import('./consumidor/transaccion-buena/transaccion-buena.module').then(m => m.TransaccionBuenaPageModule),
+    canActivate: [AuthConsumidorGuard]
    },
    {
     path : 'transaccionMala',
-    loadChildren : () => import('./consumidor/transaccion-mala/transaccion-mala.module').then(m => m.TransaccionMalaPageModule)
+    loadChildren : () => import('./consumidor/transaccion-mala/transaccion-mala.module').then(m => m.TransaccionMalaPageModule),
+    canActivate: [AuthConsumidorGuard]
    },
    {
     path : 'tab',
