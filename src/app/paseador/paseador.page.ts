@@ -28,7 +28,7 @@ export class PaseadorPage implements OnInit {
       res=> {
         console.log(res);
         sessionStorage.setItem('token', res['token'])
-        this.router.navigate(['/home-paseador'])
+        this.router.navigate(['/tabPaseador/perfilP'])
       },
       err => {
         console.log(err)

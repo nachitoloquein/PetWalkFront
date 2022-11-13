@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    canActivate: [NoAuthConsumidorGuard]
+    canActivate: [NoAuthConsumidorGuard,NoAuthTrabajadorGuard],
   },
   {
     path: '',
@@ -55,12 +55,6 @@ const routes: Routes = [
     loadChildren: () => import('./consumidor/historial/historial.module').then( m => m.HistorialPageModule),
     canActivate: [AuthConsumidorGuard]
   },
-
-  {
-    path: 'home-paseador',
-    loadChildren: () => import('./paseador/home-paseador/home-paseador.module').then( m => m.HomePaseadorPageModule),
-    canActivate: [AuthTrabajadorGuard]
-  },
   {
    path : 'mostrarperfil/:id', 
    loadChildren : () => import('./consumidor/buscar/mostrarperfil/mostrarperfil.module').then(m => m.MostrarperfilPageModule),
@@ -80,7 +74,17 @@ const routes: Routes = [
     path : 'tab',
     loadChildren : () => import('./consumidor/tabnav/tabnav.module').then(m => m.TabnavPageModule),
     canActivate: [AuthConsumidorGuard]
-   }
+   },
+   {
+    path : 'tabPaseador',
+    loadChildren : () => import('./paseador/tabnav/tabnav.module').then(m => m.TabnavPageModule),
+    canActivate: [AuthTrabajadorGuard]
+   },
+   {
+    path: 'perfilP',
+    loadChildren: () => import('./paseador/perfil-paseador/perfil-paseador.module').then( m => m.PerfilPaseadorPageModule),
+    canActivate : [AuthTrabajadorGuard]
+  }
 ];
 
 @NgModule({

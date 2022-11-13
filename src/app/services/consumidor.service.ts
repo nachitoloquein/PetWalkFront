@@ -37,6 +37,6 @@ export class ConsumidorService {
 
   obtenerConsumidorLogeado(){
     return this.http.get(`${this.URL_API}/consumidorConectado`, {headers: {'authorization':this.verificarToken()}})
-  }
+  } 
 
 }
