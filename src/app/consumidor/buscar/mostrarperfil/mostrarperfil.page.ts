@@ -101,6 +101,8 @@ export class MostrarperfilPage implements OnInit {
     this.matchService.hacerMatch(this.idConsumidor, this.idTrabajador , this.horaTrabajo, this.idConsumidor.cantidadCoins).subscribe(
       res =>{
         console.log(res);
+        this.MatchCreado();
+        
       },
       err => {
            console.log(err)
@@ -126,6 +128,16 @@ export class MostrarperfilPage implements OnInit {
   async ErrorHora(){
     const alert =  await this.alertController.create({
       header: 'Debe escoger un horario',
+      buttons: ['OK']
+    })
+
+    await alert.present()
+  }
+
+  async MatchCreado(){
+    const alert =  await this.alertController.create({
+      header: 'Solicitud Enviada',
+      message: 'debe esperar ACEPTACION del paseador',
       buttons: ['OK']
     })
 
