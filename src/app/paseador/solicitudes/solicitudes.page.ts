@@ -46,6 +46,7 @@ export class SolicitudesPage implements OnInit {
       res => {
         this.matches = res
         console.log(this.matches)
+        console.log(this.matches)
       },err =>{
         console.log(err)
       }
@@ -64,5 +65,6 @@ export class SolicitudesPage implements OnInit {
       }
     )
   }
+
 
 }
