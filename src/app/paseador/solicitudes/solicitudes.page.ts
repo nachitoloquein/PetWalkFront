@@ -13,7 +13,7 @@ export class SolicitudesPage implements OnInit {
   
   id : any;
   matches : any
-  consumidor : any
+  consumidores : any
 
   constructor(
     private consumidorService : ConsumidorService,
@@ -56,9 +56,8 @@ export class SolicitudesPage implements OnInit {
   ObtenerDatosConsumidor(idConsumidor){
     this.consumidorService.datosConsumidor(idConsumidor).subscribe(
       res => {
-        console.log(res)
-        this.consumidor = res
-        console.log(this.consumidor)
+        this.consumidores = res
+        console.log(this.consumidores)
       },err =>{
         console.log(err)
       }
