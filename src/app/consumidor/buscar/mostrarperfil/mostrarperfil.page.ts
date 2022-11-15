@@ -5,8 +5,8 @@ import { AlertController } from '@ionic/angular';
 import { ReportesService } from 'src/app/services/reportes.service';
 import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { MatchService } from 'src/app/services/match.service';
-import { IonModal } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core/components';
+
+
 
 @Component({
   selector: 'app-mostrarperfil',
@@ -20,7 +20,9 @@ export class MostrarperfilPage implements OnInit {
   edad: number;
   idConsumidor: any;
   isModalOpen = false;
-  something;
+  fechaHoy = Date.now();
+  Disponible = true
+
 
   //test
   horaTrabajo : any;
@@ -117,8 +119,12 @@ export class MostrarperfilPage implements OnInit {
 
   hora(hora : any){
     this.horaTrabajo = hora
-  }
+    console.log(hora)
+    this.Disponible = false
+    
 
+
+  }
   ValidarHora(err){
     if(err.status == 400){
       this.ErrorHora();

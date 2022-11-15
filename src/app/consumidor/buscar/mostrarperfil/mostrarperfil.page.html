@@ -55,18 +55,25 @@
                   </ion-toolbar>
                 </ion-header>
                 <ion-content class="ion-padding">
-                  <div class="btnHorario">
-                    <ion-button (click)="hora('8:00 ')">8:00 </ion-button>
-                    <ion-button (click)="hora('9:00 ')">9:00 </ion-button>
-                    <ion-button (click)="hora('10:00')">10:00</ion-button>
-                    <ion-button (click)="hora('11:00')">11:00</ion-button>
-                    <ion-button (click)="hora('12:00')">12:00</ion-button>
-                    <ion-button (click)="hora('13:00')">13:00</ion-button>
-                    <ion-button (click)="hora('14:00')">14:00</ion-button>
-                    <ion-button (click)="hora('15:00')">15:00</ion-button>
-                    <ion-button (click)="hora('16:00')">16:00</ion-button>
-                    <ion-button (click)="hora('17:00')">17:00</ion-button>
-                    <ion-button (click)="hora('18:00')">18:00</ion-button>
+                  <div class="horarios">
+                      <h4>{{fechaHoy | date: 'EEEE, MMMM d, y'}}</h4>
+                      <h1>________________</h1>
+                      
+                      <div class="horas">
+                        <div>
+                          <ion-text ><strong>08:00 - 09:00</strong> 🐶(1hr) </ion-text> <br><ion-text>{{trabajador?.comuna}}</ion-text>
+                        </div>
+                        <button (click)="hora('08:00')"><ion-text >Reservar</ion-text> </button>
+                      </div>
+                      
+                      
+                     
+
+
+                      
+
+                      
+                  
                   </div>
                 </ion-content>
               </ng-template>
