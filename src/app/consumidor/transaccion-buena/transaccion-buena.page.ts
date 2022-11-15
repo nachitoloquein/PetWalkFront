@@ -2,6 +2,7 @@ import { Component, OnInit, Output , EventEmitter, Input} from '@angular/core';
 import { BilleteraService } from 'src/app/services/billetera.service';
 import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { Router } from '@angular/router';
+import { BoletaService } from 'src/app/services/boleta.service';
 
 @Component({
   selector: 'app-transaccion-buena',
@@ -11,7 +12,6 @@ import { Router } from '@angular/router';
 export class TransaccionBuenaPage implements OnInit {
 
   idConsumidor:any;
-  Coins : any;
   CantidadCoins = localStorage.getItem('coins')
   total = localStorage.getItem('total')
   fechaActual = Date.now();
@@ -21,7 +21,8 @@ export class TransaccionBuenaPage implements OnInit {
   constructor(
     private router : Router,
     private consumidorService: ConsumidorService, 
-    private billeteraService: BilleteraService) { 
+    private billeteraService: BilleteraService,
+    private boletaService: BoletaService) { 
       this.obtenerid();
      
   }
@@ -30,16 +31,20 @@ export class TransaccionBuenaPage implements OnInit {
 
   ngOnInit() {
     window.print();
-    this.obtenerDatos();
+  }
+
+  generarBoleta(idConsumidor){
+    this.boletaService.generarBoleta(idConsumidor, this.CantidadCoins, this.total, this.fechaActual).subscribe(
+      res=>console.log(res),
+      e=>console.log(e)
+    );
   }
 
   obtenerid(){
     this.consumidorService.obtenerConsumidorLogeado().subscribe(
-    res=>{this.idConsumidor = res['_id']  
-      this.cargarCoins()
-      setTimeout(() => {
-        this.router.navigate(['/tab/billetera'])
-      }, 5000)},
+    res=>{this.idConsumidor = res['_id'];
+          this.generarBoleta(this.idConsumidor);
+          this.cargarCoins()},
     err=>console.log(err));
   }
 
@@ -48,19 +53,10 @@ export class TransaccionBuenaPage implements OnInit {
       res=> {
         console.log(res)
           localStorage.removeItem('coins');
-          localStorage.removeItem('total');
-        
+          localStorage.removeItem('total');      
       },
       err=>console.log(err)
     ) 
-  }
-
-  obtenerDatos(){
-    this.consumidorService.obtenerConsumidorLogeado().subscribe(
-      res=>{
-        this.consumidor = res
-      console.log(this.consumidor)}, 
-      err => console.log(err));
   }
 
 

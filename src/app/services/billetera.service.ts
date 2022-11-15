@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Billetera } from '../model/billetera';
 import { dominio } from '../conexion';
 
 
