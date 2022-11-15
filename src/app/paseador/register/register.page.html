@@ -11,11 +11,17 @@
  
 
 <ion-content scroll-y="true"> 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/css/inputmask.min.css" rel="stylesheet"/>
+
 
   <form id="quickForm" form #trabajadorForm="ngForm" (ngSubmit)="addRegistro(trabajadorForm)">
     <div class="form-register">
       <h4><ion-icon name="paw-outline"></ion-icon> Registro Paseador <ion-icon name="paw-outline"></ion-icon></h4>
-      <ion-input class="controls" placeholder="Rut"  name="rut" id="rut" [(ngModel)]="trabajadorService.selectedTrabajador.rut"><ion-icon name="wallet-outline"></ion-icon></ion-input>
+      <ion-input class="controls" placeholder="Rut"  name="rut" id="rut"  ><ion-icon name="wallet-outline"></ion-icon></ion-input>
+
+      <input type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT">
+
+      <input type="text" name="rut" placeholder="RUT" class="controls" oninput="checkRut(this)" name="rut" id="rut"  [(ngModel)]="trabajadorService.selectedTrabajador.rut" >
       <ion-input class="controls" type="text" placeholder="Nombre" name="nombre" [(ngModel)]="trabajadorService.selectedTrabajador.nombre"><ion-icon name="person-outline"></ion-icon></ion-input>
       <ion-input class="controls" type="text" placeholder="Apellido" name="apellido" [(ngModel)]="trabajadorService.selectedTrabajador.apellido" ><ion-icon name="person-outline"></ion-icon></ion-input>
       
@@ -73,8 +79,15 @@
       <p><a [routerLink]="['../loginPaseador']">Ya tengo cuenta</a></p>
 
 
+
     </div>
 
   </form>
+
+  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.js"></script>
 
 </ion-content>

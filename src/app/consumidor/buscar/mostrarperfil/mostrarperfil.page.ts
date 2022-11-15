@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ReportesService } from 'src/app/services/reportes.service';
 import { ConsumidorService } from 'src/app/services/consumidor.service';
+import { MatchService } from 'src/app/services/match.service';
+
+
 
 @Component({
   selector: 'app-mostrarperfil',
@@ -16,9 +19,17 @@ export class MostrarperfilPage implements OnInit {
   trabajador : any;
   edad: number;
   idConsumidor: any;
+  isModalOpen = false;
+  fechaHoy = Date.now();
+  Disponible = true
+
+
+  //test
+  horaTrabajo : any;
 
 
   constructor(
+    private matchService : MatchService,
     private route : ActivatedRoute,
     private trabajadorService : TrabajadorService,
     private alertController: AlertController,
@@ -86,6 +97,57 @@ export class MostrarperfilPage implements OnInit {
       res=>{
         this.idConsumidor = res['_id']},
       err => console.log(err));
+  }
+
+  hacerMatch(){
+    this.matchService.hacerMatch(this.idConsumidor, this.idTrabajador , this.horaTrabajo, this.idConsumidor.cantidadCoins).subscribe(
+      res =>{
+        console.log(res);
+        this.MatchCreado();
+        
+      },
+      err => {
+           console.log(err)
+           this.ValidarHora(err);
+      }
+    )
+  }
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+
+  hora(hora : any){
+    this.horaTrabajo = hora
+    console.log(hora)
+    this.Disponible = false
+    
+
+
+  }
+  ValidarHora(err){
+    if(err.status == 400){
+      this.ErrorHora();
+    }
+  }
+
+  async ErrorHora(){
+    const alert =  await this.alertController.create({
+      header: 'Debe escoger un horario',
+      buttons: ['OK']
+    })
+
+    await alert.present()
+  }
+
+  async MatchCreado(){
+    const alert =  await this.alertController.create({
+      header: 'Solicitud Enviada',
+      message: 'debe esperar ACEPTACION del paseador',
+      buttons: ['OK']
+    })
+
+    await alert.present()
   }
 
   

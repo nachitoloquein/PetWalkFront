@@ -59,6 +59,10 @@ export class TrabajadorService {
     return this.http.get(`${this.URL_API}/perfil/${idTrabajador}`)
   }
 
+  ObtenerTrabajadorLogeado(){
+    return this.http.get(`${this.URL_API}/trabajadorConectado`, {headers: {'authorization':this.verificarToken()}})
+  }
+
   
 
   

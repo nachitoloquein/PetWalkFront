@@ -7,7 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: PaseadorPage
-  }
+  },  {
+    path: 'solicitudes',
+    loadChildren: () => import('./solicitudes/solicitudes.module').then( m => m.SolicitudesPageModule)
+  },
+
+  
+
+  
   
 
   

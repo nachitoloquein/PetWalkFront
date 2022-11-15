@@ -38,9 +38,49 @@
                   <a class="float-right" *ngIf="trabajador?.genero == 'Masculino'"><ion-icon name="male-outline"></ion-icon></a>
                 </li>
               </ul>
-              <button href="#" class="btn btn-primary btn-block" id="horario"><b>Solicitar Servicio</b></button>
-              <button (click)="abrirAlert()" class="btn btn-danger btn-block"><b>Reportar Trabajador</b></button>
+              <button href="#" class="btn btn-primary btn-block" id="horarios"  (click)="setOpen(true)" ><b>Solicitar Servicio</b></button>
             </div>
+
+            <ion-modal trigger="horarios" [isOpen]="isModalOpen">
+              <ng-template>
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-buttons slot="start">
+                      <ion-button (click)="setOpen(false)" >Cancel</ion-button>
+                    </ion-buttons>
+                    <ion-title>Horarios Disponibles</ion-title>
+                    <ion-buttons slot="end">
+                      <ion-button (click)="hacerMatch()">Confirm</ion-button>
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-content class="ion-padding">
+                  <div class="horarios">
+                      <h4>{{fechaHoy | date: 'EEEE, MMMM d, y'}}</h4>
+                      <h1>________________</h1>
+                      
+                      <div class="horas">
+                        <div>
+                          <ion-text ><strong>08:00 - 09:00</strong> 🐶(1hr) </ion-text> <br><ion-text>{{trabajador?.comuna}}</ion-text>
+                        </div>
+                        <button (click)="hora('08:00')"><ion-text >Reservar</ion-text> </button>
+                      </div>
+                      
+                      
+                     
+
+
+                      
+
+                      
+                  
+                  </div>
+                </ion-content>
+              </ng-template>
+            </ion-modal>
+
+
+            
 
             <!-- /.card-body -->
           </div>
