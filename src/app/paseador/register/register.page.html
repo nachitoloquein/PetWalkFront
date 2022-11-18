@@ -17,7 +17,7 @@
   <form id="quickForm" form #trabajadorForm="ngForm" (ngSubmit)="addRegistro(trabajadorForm)">
     <div class="form-register">
       <h4><ion-icon name="paw-outline"></ion-icon> Registro Paseador <ion-icon name="paw-outline"></ion-icon></h4>
-      <input type="text" name="rut" placeholder="RUT" class="controls"  name="rut" id="rut"  [(ngModel)]="trabajadorService.selectedTrabajador.rut" >
+      <ion-input type="text" name="rut" placeholder="RUT" class="controls"  name="rut" id="rut"  [(ngModel)]="trabajadorService.selectedTrabajador.rut" ><ion-icon name="person-outline"></ion-icon></ion-input>
       <ion-input class="controls" type="text" placeholder="Nombre" name="nombre" [(ngModel)]="trabajadorService.selectedTrabajador.nombre"><ion-icon name="person-outline"></ion-icon></ion-input>
       <ion-input class="controls" type="text" placeholder="Apellido" name="apellido" [(ngModel)]="trabajadorService.selectedTrabajador.apellido" ><ion-icon name="person-outline"></ion-icon></ion-input>
       
