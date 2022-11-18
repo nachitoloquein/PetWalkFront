@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
+import { HorasService } from 'src/app/services/horas.service';
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-perfil-paseador',
@@ -8,16 +11,31 @@ import { TrabajadorService } from 'src/app/services/trabajador.service';
   styleUrls: ['./perfil-paseador.page.scss'],
 })
 export class PerfilPaseadorPage implements OnInit {
-
   trabajador : any;
+  idTrabajador: any;
+  horaInicio : any
+  horaTermino : any
+  horarios : any
+  fechaHoy = Date.now();
 
   constructor(
+    private toastController : ToastController,
+    private horarioService : HorasService,
     private trabajadorService : TrabajadorService,
     private router: Router
-  ) { }
+  ) {
+    
+   }
 
   ngOnInit() {
     this.obtenerDatos();
+  }
+
+  formatiFecha
+
+  isModalOpen = false;
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
   }
 
   LogOut(){
@@ -28,8 +46,59 @@ export class PerfilPaseadorPage implements OnInit {
   obtenerDatos(){
     this.trabajadorService.ObtenerTrabajadorLogeado().subscribe(
       res=>{
-        this.trabajador = res}, 
+        this.trabajador = res,
+        this.ListarHorarioDisponible(this.trabajador['_id'])
+      },
       err => console.log(err));
   }
 
+  CrearHorarioDisponible(){    
+   this.horarioService.CrearHorario(this.trabajador['_id'], this.horaInicio +'-'+ this.horaTermino).subscribe(
+    res => {
+      this.presentToast('top', 'Horario Creado Correctamente', "success")
+      this.horarios = res
+    }, err => {
+      console.log(err)
+    }
+   )  
+  }
+
+  BorrarHorarioDisponible(id){
+    this.horarioService.EliminarHorario(id).subscribe(
+      res => {
+        this.presentToast('top', 'Horario Eliminado Correctamente', 'danger' );
+        console.log(res)
+      }, err => {
+        console.log(err)
+      }
+    )
+  }
+
+  ListarHorarioDisponible(id){
+    this.horarioService.ListarHorasDisponibleTrabajador(id).subscribe(
+      res => {
+        this.horarios = res
+        console.log(this.horarios)
+      }, err => {
+        console.log(err)
+      }
+    )
+  }
+  async presentToast(position: 'top' | 'middle' | 'bottom', message, color) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 1500,
+      position: position,
+      color
+    });
+
+    await toast.present();
+  }
+
+  handleRefresh(event) {
+    setTimeout(() => {
+      this.obtenerDatos();
+      event.target.complete();
+    }, 2000);
+  };
 }

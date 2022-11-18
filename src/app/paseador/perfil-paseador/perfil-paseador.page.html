@@ -7,6 +7,7 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+  
 </ion-header>
 <ion-content>
   <section class="content">
@@ -39,9 +40,63 @@
                   <span class="info-box-number text-center text-light mb-0">0</span>
                 </div>
               </div>  
+              <button id="gestion" class="gestion" (click)="setOpen(true)">Gestionar Horas</button>
             </div>
             <!-- /.card-body -->
           </div>
+
+          <ion-modal [isOpen]="isModalOpen">
+            <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-title>Gestion de Horas</ion-title>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="setOpen(false)">Close</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content class="ion-padding">
+                <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+                  <ion-refresher-content></ion-refresher-content>
+                </ion-refresher>
+                
+                <div class="horarios">
+                  <h4>{{fechaHoy | date: 'EEEE, MMMM d, y'}}</h4>
+                  <h1>________________</h1>
+                  
+
+                  <div class="defHoras">
+                    
+                    <ion-label>Inicio</ion-label>
+                    <input type="time" [(ngModel)]="horaInicio" name="horaInicio" id="">
+                    
+                    <ion-label>Termino</ion-label>
+                    <input type="time" [(ngModel)]="horaTermino" name="horaTermino" id="">
+  
+                    <button (click)="CrearHorarioDisponible()"> Guardar</button>
+                  </div>
+
+                  
+                  
+                  <div class="horas" *ngFor="let horas of horarios">
+                    <div>
+                      <ion-text ><strong>{{horas.horaIntervalos }}</strong> 🐶(hrs) </ion-text> <br><ion-text>{{trabajador.comuna}}</ion-text>
+                    </div>
+                    <button  (click)="BorrarHorarioDisponible(horas?._id)"><ion-text >Borrar</ion-text> </button>
+                  
+                  </div>
+                  
+                </div>
+
+                
+                
+                
+
+              </ion-content>
+            </ng-template>
+
+            
+          </ion-modal>
           <!-- /.card -->
 
           <!-- About Me Box -->

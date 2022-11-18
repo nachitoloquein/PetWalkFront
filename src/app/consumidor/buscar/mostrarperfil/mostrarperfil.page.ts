@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { ReportesService } from 'src/app/services/reportes.service';
 import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { MatchService } from 'src/app/services/match.service';
+import { HorasService } from 'src/app/services/horas.service';
 
 
 
@@ -22,6 +23,7 @@ export class MostrarperfilPage implements OnInit {
   isModalOpen = false;
   fechaHoy = Date.now();
   Disponible = true
+  horarios : any;
 
 
   //test
@@ -29,6 +31,7 @@ export class MostrarperfilPage implements OnInit {
 
 
   constructor(
+    private horasService : HorasService,
     private matchService : MatchService,
     private route : ActivatedRoute,
     private trabajadorService : TrabajadorService,
@@ -49,6 +52,7 @@ export class MostrarperfilPage implements OnInit {
   cargarTrabajador(id: string){
     this.trabajadorService.getTrabajadorId(id).subscribe(
       res=> {this.trabajador = res;
+        this.listarHorasTrabajador();
       console.log(this.trabajador);}, 
       err=> console.log(err));
   }
@@ -99,16 +103,26 @@ export class MostrarperfilPage implements OnInit {
       err => console.log(err));
   }
 
-  hacerMatch(){
-    this.matchService.hacerMatch(this.idConsumidor, this.idTrabajador , this.horaTrabajo, this.idConsumidor.cantidadCoins).subscribe(
+  hacerMatch(idHoraTrabajo){
+    this.matchService.hacerMatch(idHoraTrabajo ,this.idConsumidor, this.idTrabajador , this.horaTrabajo, this.idConsumidor.cantidadCoins).subscribe(
       res =>{
         console.log(res);
         this.MatchCreado();
-        
       },
       err => {
            console.log(err)
            this.ValidarHora(err);
+      }
+    )
+  }
+
+  listarHorasTrabajador(){
+    this.horasService.ListarHorasDisponibleTrabajador(this.trabajador['_id']).subscribe(
+      res => {
+        console.log(res),
+        this.horarios = res
+      }, err =>{
+        console.log(err)
       }
     )
   }

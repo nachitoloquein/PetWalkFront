@@ -17,9 +17,9 @@ export class MatchService {
   verMatchTrabajador(id: string){
     return this.http.get(`${this.URL_API}/trabajador/${id}`)
   }
- 
-  hacerMatch(idConsumidor: string, idTrabajador: string, horaTrabajo: string, monto:number){
-    return this.http.post(`${this.URL_API}`, {idConsumidor, idTrabajador, horaTrabajo, monto});
+  
+  hacerMatch(idHoraTrabajo, idConsumidor: string, idTrabajador: string, horaTrabajo: string, monto:number){
+    return this.http.post(`${this.URL_API}/${idHoraTrabajo}`, {idConsumidor, idTrabajador, horaTrabajo, monto});
   }
 
 }
