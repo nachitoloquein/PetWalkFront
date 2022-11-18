@@ -68,5 +68,9 @@ export class SolicitudesPage implements OnInit {
     )
   }
 
+  ConfirmarPaseo(){
+    
+  }
+
 
 }
