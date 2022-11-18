@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatchService } from 'src/app/services/match.service';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
 import { ConsumidorService } from 'src/app/services/consumidor.service';
+import { HorasService } from 'src/app/services/horas.service';
 
 @Component({
   selector: 'app-solicitudes',
@@ -16,6 +17,7 @@ export class SolicitudesPage implements OnInit {
   consumidor : any
 
   constructor(
+    private horaService : HorasService,
     private consumidorService : ConsumidorService,
     private trabajadorService : TrabajadorService,
     private matchService : MatchService,
@@ -46,7 +48,7 @@ export class SolicitudesPage implements OnInit {
       res => {
         this.matches = res
         console.log(this.matches)
-        console.log(this.matches)
+        this.ObtenerDatosConsumidor(res['idConsumidor'])
       },err =>{
         console.log(err)
       }
@@ -62,7 +64,7 @@ export class SolicitudesPage implements OnInit {
         console.log(this.consumidor)
       },err =>{
         console.log(err)
-      }
+      } 
     )
   }
 
