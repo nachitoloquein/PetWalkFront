@@ -38,6 +38,9 @@ export class TransaccionBuenaPage implements OnInit {
       res=>console.log(res),
       e=>console.log(e)
     );
+    setTimeout(() =>{
+      this.router.navigate(['tab/billetera'])
+    }, 1000)
   }
 
   obtenerid(){

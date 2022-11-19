@@ -20,14 +20,14 @@
               </div>
               <!-- /.timeline-label -->
               <!-- timeline item -->
-              <div>
+              <div *ngFor="let fin of finalizado">
                 <i class="fas fa-paw bg-purple"></i>
                 <div class="timeline-item">
-                  <span class="time bg-black" ><i class="fas fa-clock"></i> 12:05</span>
+                  <span class="time bg-black" ><i class="fas fa-clock"></i> {{fin.fechaCreacion | date:'shortTime'}}</span>
                   <h3 class="timeline-header bg-green"><a href="#">PetWalk</a> Paseo Realizado</h3>
 
                   <div class="timeline-body">
-                    Paseo realizado exitosamente por el paseador "Insertar Nombre"
+                    Paseo realizado exitosamente por el paseador "{{fin.idTrabajador}}"
                   </div>
                   <div class="timeline-footer">
                     <a class="btn btn-primary btn-sm">Detalles</a>
@@ -35,11 +35,14 @@
                 </div>
               </div>
               
-              <div>
+              <div *ngFor="let can of cancelado">
                 <i class="fas fa-paw bg-purple"></i>
                 <div class="timeline-item">
-                  <span class="time bg-black" ><i class="fas fa-clock"></i> 12:05</span>
+                  <span class="time bg-black" ><i class="fas fa-clock"></i>{{can.fechaCreacion | date:'shortTime'}}</span>
                   <h3 class="timeline-header bg-red"><a href="#">PetWalk</a> Paseo Cancelado</h3>
+                  <div class="timeline-body">
+                    Paseo Cancelado por el paseador "{{can.idTrabajador}}"
+                  </div>
                   <div class="timeline-footer">
                     <a class="btn btn-primary btn-sm">Detalles</a>
                   </div>

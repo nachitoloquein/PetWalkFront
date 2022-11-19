@@ -37,7 +37,7 @@ export class TabnavPage implements OnInit {
     this.matchService.verMatchTrabajador(id).subscribe(
       res => {
         this.contador = res,
-        this.total = this.contador.length
+        this.total = this.contador.filter(m => m.estadoTrabajo == 'Pendiente').length
         
       
       }

@@ -15,6 +15,7 @@ export class SolicitudesPage implements OnInit {
   id : any;
   matches : any
   consumidor : any
+  pendientes : any
 
   constructor(
     private horaService : HorasService,
@@ -48,6 +49,7 @@ export class SolicitudesPage implements OnInit {
       res => {
         this.matches = res
         console.log(this.matches)
+        this.pendientes = this.matches.filter(m => m.estadoTrabajo == "Pendiente")
         this.ObtenerDatosConsumidor(res['idConsumidor'])
       },err =>{
         console.log(err)
