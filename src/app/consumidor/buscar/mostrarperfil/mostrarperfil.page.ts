@@ -7,6 +7,7 @@ import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { MatchService } from 'src/app/services/match.service';
 import { ValoracionService } from 'src/app/services/valoracion.service';
 import { HorasService } from 'src/app/services/horas.service';
+import { BilleteraService } from 'src/app/services/billetera.service';
 
 
 
@@ -25,6 +26,7 @@ export class MostrarperfilPage implements OnInit {
   fechaHoy = Date.now();
   Disponible = true;
   valoracion: {};
+  billetera: any;
   horarios: any;
 
   //test
@@ -39,7 +41,8 @@ export class MostrarperfilPage implements OnInit {
     private alertController: AlertController,
     private reporteService: ReportesService,
     private consumidorService: ConsumidorService,
-    private valoracionService: ValoracionService){
+    private valoracionService: ValoracionService,
+    private billeteraService: BilleteraService){
       this.idTrabajador = this.route.snapshot.params['id']
       this.cargarTrabajador(this.idTrabajador);
       this.obtenerIDConsumidor();
@@ -104,22 +107,30 @@ export class MostrarperfilPage implements OnInit {
   obtenerIDConsumidor(){
     this.consumidorService.obtenerConsumidorLogeado().subscribe(
       res=>{
-        this.idConsumidor = res['_id']},
+        this.idConsumidor = res['_id'];
+        this.obtenerSaldo(this.idConsumidor)},
       err => console.log(err));
   }
 
   hacerMatch(idHoraTrabajo){
-    this.matchService.hacerMatch(idHoraTrabajo ,this.idConsumidor, this.idTrabajador , this.horaTrabajo, this.idConsumidor.cantidadCoins).subscribe(
+    this.matchService.hacerMatch(idHoraTrabajo ,this.idConsumidor, this.idTrabajador , this.horaTrabajo, this.billetera).subscribe(
       res =>{
         console.log(res);
         this.Confirmacion('Match Creado', 'Solo debe esperar la llegada del paseador');
-        
+        this.listarHorasTrabajador();
       },
       err => {
            console.log(err)
            this.ValidarHora(err);
       }
     )
+  }
+
+  obtenerSaldo(idConsumidor){
+    this.billeteraService.obtenerMonto(idConsumidor).subscribe(
+      res=>this.billetera = res['monto'],
+      err=>console.log(err)
+    );
   }
 
   listarHorasTrabajador(){

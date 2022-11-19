@@ -31,8 +31,6 @@ export class PerfilPaseadorPage implements OnInit {
     this.obtenerDatos();
   }
 
-  formatiFecha
-
   isModalOpen = false;
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
@@ -56,7 +54,7 @@ export class PerfilPaseadorPage implements OnInit {
    this.horarioService.CrearHorario(this.trabajador['_id'], this.horaInicio +'-'+ this.horaTermino).subscribe(
     res => {
       this.presentToast('top', 'Horario Creado Correctamente', "success")
-      this.horarios = res
+      this.ListarHorarioDisponible(this.trabajador['_id']);
     }, err => {
       console.log(err)
     }
@@ -67,7 +65,7 @@ export class PerfilPaseadorPage implements OnInit {
     this.horarioService.EliminarHorario(id).subscribe(
       res => {
         this.presentToast('top', 'Horario Eliminado Correctamente', 'danger' );
-        console.log(res)
+        this.ListarHorarioDisponible(this.trabajador['_id']);
       }, err => {
         console.log(err)
       }
