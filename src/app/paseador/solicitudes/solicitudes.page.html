@@ -1,18 +1,21 @@
-<div class="column">     
-      <div class="col-lg-6">
-            <div *ngFor="let match of matches">
-                  <div class="card card-primary card-outline" >
-                    <div class="card-header">
-                      <h5 class="m-0">{{match.idConsumidor.nombre}} {{match.idConsumidor.apellido}}</h5>
-                    </div>
-                    <div class="card-body">
-                      <h6 class="card-title">Estado: {{match.estadoTrabajo}}</h6>
-                  
-                      <p class="card-text"> Hora: {{match.idHoraTrabajo.horaIntervalos}}</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
+<ion-content>
+
+  <div class="column">     
+    <div class="col-lg-6">
+          <div *ngFor="let match of matches">
+                <div class="card card-primary card-outline" >
+                  <div class="card-header">
+                    <h5 class="m-0">{{match.idConsumidor.nombre}} {{match.idConsumidor.apellido}}</h5>
                   </div>
-            </div>
-      </div>
+                  <div class="card-body">
+                    <h6 class="card-title">Estado: {{match.estadoTrabajo}}</h6>
+                
+                    <p class="card-text"> Hora: {{match.idHoraTrabajo.horaIntervalos}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+          </div>
+    </div>
 
 </div>
+</ion-content>

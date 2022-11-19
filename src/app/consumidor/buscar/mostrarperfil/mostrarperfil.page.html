@@ -52,7 +52,6 @@
                     </ion-buttons>
                     <ion-title>Horarios Disponibles</ion-title>
                     <ion-buttons slot="end">
-                      <ion-button (click)="hacerMatch()">Confirm</ion-button>
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
@@ -61,11 +60,11 @@
                       <h4>{{fechaHoy | date: 'EEEE, MMMM d, y'}}</h4>
                       <h1>________________</h1>
                       
-                      <div class="horas">
+                      <div class="horas" *ngFor="let horas of horarios">
                         <div>
-                          <ion-text ><strong>08:00 - 09:00</strong> 🐶(1hr) </ion-text> <br><ion-text>{{trabajador?.comuna}}</ion-text>
+                          <ion-text ><strong>{{horas.horaIntervalos}}</strong> 🐶(1hr) </ion-text> <br><ion-text>{{trabajador?.comuna}}</ion-text>
                         </div>
-                        <button (click)="hora('08:00')"><ion-text >Reservar</ion-text> </button>
+                        <button (click)="hora(horas.horaIntervalos)" (click)="hacerMatch(horas._id)" ><ion-text >Reservar</ion-text> </button>
                       </div>
                   </div>
                 </ion-content>
