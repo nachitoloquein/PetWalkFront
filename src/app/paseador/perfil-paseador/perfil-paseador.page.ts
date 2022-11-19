@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
 import { HorasService } from 'src/app/services/horas.service';
 import { ToastController } from '@ionic/angular';
+import { MatchService } from 'src/app/services/match.service';
 
 
 @Component({
@@ -17,8 +18,12 @@ export class PerfilPaseadorPage implements OnInit {
   horaTermino : any
   horarios : any
   fechaHoy = Date.now();
+  contador : any
+  matches : any
+  ganancias : any
 
   constructor(
+    private matchService : MatchService,
     private toastController : ToastController,
     private horarioService : HorasService,
     private trabajadorService : TrabajadorService,
@@ -48,6 +53,7 @@ export class PerfilPaseadorPage implements OnInit {
       res=>{
         this.trabajador = res,
         this.ListarHorarioDisponible(this.trabajador['_id'])
+        this.ContadorPaseosRealizados();
       },
       err => console.log(err));
   }
@@ -72,6 +78,16 @@ export class PerfilPaseadorPage implements OnInit {
         console.log(err)
       }
     )
+  }
+
+  ContadorPaseosRealizados(){
+    this.matchService.verMatchTrabajador(this.trabajador['_id']).subscribe(
+      res =>{
+        this.matches = res
+        this.contador = this.matches.filter(m => m.estadoTrabajo == "Finalizado").length
+        this.ganancias = this.contador * 4600
+      }
+    ) 
   }
 
   ListarHorarioDisponible(id){
