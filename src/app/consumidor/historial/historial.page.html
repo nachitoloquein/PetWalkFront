@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>historial</ion-title>
+    <ion-title>Historial</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,6 +20,7 @@
               </div>
               <!-- /.timeline-label -->
               <!-- timeline item -->
+<<<<<<< HEAD
               <div *ngFor="let fin of finalizado">
                 <i class="fas fa-paw bg-purple"></i>
                 <div class="timeline-item">
@@ -92,33 +93,55 @@
                     <img src="https://placehold.it/150x100" alt="...">
                     <img src="https://placehold.it/150x100" alt="...">
                     <img src="https://placehold.it/150x100" alt="...">
+=======
+              <div *ngFor="let match of matches">
+                <div *ngIf="match.estadoTrabajo == 'Finalizado'">
+                  <div>
+                    <i class="fas fa-paw bg-purple"></i>
+                    <div class="timeline-item">
+                      <span class="time bg-black" ><i class="fas fa-clock"></i> 12:05</span>
+                      <h3 class="timeline-header bg-green"><a href="#">PetWalk</a> Paseo Realizado</h3>
+
+                      <div class="timeline-body">
+                        Paseo realizado exitosamente por el paseador "Insertar Nombre"
+                      </div>
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-sm">Detalles</a>
+                      </div>
+                    </div>
+>>>>>>> 4aff127be542aaeef2dbfafc0e6ad61a4fbd0385
+                  </div>
+                </div>
+                <div *ngIf="match.estadoTrabajo == 'Pendiente'">
+                  <div>
+                    <i class="fas fa-paw bg-purple"></i>
+                    <div class="timeline-item">
+                      <span class="time bg-black" ><i class="fas fa-clock"></i> 12:05</span>
+                      <h3 class="timeline-header bg-green"><a href="#">PetWalk</a> Paseo en estado pendiente</h3>
+
+                      <div class="timeline-body">
+                        Paseo realizado exitosamente por el paseador "Insertar Nombre"
+                      </div>
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-sm">Detalles</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <div *ngIf="match.estadoTrabajo == 'Cancelado'">
+                  <div>
+                    <i class="fas fa-paw bg-purple"></i>
+                    <div class="timeline-item">
+                      <span class="time bg-black" ><i class="fas fa-clock"></i> 12:05</span>
+                      <h3 class="timeline-header bg-red"><a href="#">PetWalk</a> Paseo Cancelado</h3>
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-sm">Detalles</a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <!-- END timeline item -->
-              <!-- timeline item -->
-              <!--<div>
-                <i class="fas fa-video bg-maroon"></i>
-
-                <div class="timeline-item">
-                  <span class="time"><i class="fas fa-clock"></i> 5 days ago</span>
-
-                  <h3 class="timeline-header"><a href="#">Mr. Doe</a> shared a video</h3>
-
-                  <div class="timeline-body">
-                    <div class="embed-responsive embed-responsive-16by9">
-                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tMWkeBIohBs" allowfullscreen></iframe>
-                    </div>
-                  </div>
-                  <div class="timeline-footer">
-                    <a href="#" class="btn btn-sm bg-maroon">See comments</a>
-                  </div>
-                </div>
-              </div> -->
-              <!-- END timeline item -->
-              <!--<div>
-                <i class="fas fa-clock bg-gray"></i>
-              </div>-->
             </div>
           </div>
           <!-- /.col -->

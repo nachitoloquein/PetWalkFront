@@ -5,7 +5,9 @@ import { AlertController } from '@ionic/angular';
 import { ReportesService } from 'src/app/services/reportes.service';
 import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { MatchService } from 'src/app/services/match.service';
+import { ValoracionService } from 'src/app/services/valoracion.service';
 import { HorasService } from 'src/app/services/horas.service';
+import { BilleteraService } from 'src/app/services/billetera.service';
 
 
 
@@ -22,9 +24,10 @@ export class MostrarperfilPage implements OnInit {
   idConsumidor: any;
   isModalOpen = false;
   fechaHoy = Date.now();
-  Disponible = true
-  horarios : any;
-
+  Disponible = true;
+  valoracion: {};
+  billetera: any;
+  horarios: any;
 
   //test
   horaTrabajo : any;
@@ -37,17 +40,19 @@ export class MostrarperfilPage implements OnInit {
     private trabajadorService : TrabajadorService,
     private alertController: AlertController,
     private reporteService: ReportesService,
-    private consumidorService: ConsumidorService){
+    private consumidorService: ConsumidorService,
+    private valoracionService: ValoracionService,
+    private billeteraService: BilleteraService){
       this.idTrabajador = this.route.snapshot.params['id']
       this.cargarTrabajador(this.idTrabajador);
       this.obtenerIDConsumidor();
+      this.cargarValoracion();
     }
 
       
 
   ngOnInit() {
   }
-
 
   cargarTrabajador(id: string){
     this.trabajadorService.getTrabajadorId(id).subscribe(
@@ -57,12 +62,14 @@ export class MostrarperfilPage implements OnInit {
       err=> console.log(err));
   }
 
-  calcularEdad(){
-    const anio = this.trabajador.fechaNacimiento
-    console.log(anio);
+  cargarValoracion(){
+    this.valoracionService.obtenerValoracionTrabajador(this.idTrabajador).subscribe(
+      res=>this.valoracion = res,
+      err=>console.log(err)
+    )
   }
 
-  async abrirAlert(){
+  async abrirReporte(){
     const alert = await this.alertController.create({
       header: 'Porfavor indica las causas del reporte',
       buttons: [
@@ -91,7 +98,8 @@ export class MostrarperfilPage implements OnInit {
   
   hacerReporte(descripcion){
     this.reporteService.reportarTrabajador(this.idTrabajador, this.idConsumidor, descripcion).subscribe(
-      res=>console.log(res),
+      res=>{console.log(res);
+        this.Confirmacion('Reporte enviado','Le llegará un mensaje de nuestros administradores para ver el estado de su reporte')},
       err=>console.log(err)
     )
   }
@@ -99,21 +107,30 @@ export class MostrarperfilPage implements OnInit {
   obtenerIDConsumidor(){
     this.consumidorService.obtenerConsumidorLogeado().subscribe(
       res=>{
-        this.idConsumidor = res['_id']},
+        this.idConsumidor = res['_id'];
+        this.obtenerSaldo(this.idConsumidor)},
       err => console.log(err));
   }
 
   hacerMatch(idHoraTrabajo){
-    this.matchService.hacerMatch(idHoraTrabajo ,this.idConsumidor, this.idTrabajador , this.horaTrabajo, this.idConsumidor.cantidadCoins).subscribe(
+    this.matchService.hacerMatch(idHoraTrabajo ,this.idConsumidor, this.idTrabajador , this.horaTrabajo, this.billetera).subscribe(
       res =>{
         console.log(res);
-        this.MatchCreado();
+        this.Confirmacion('Match Creado', 'Solo debe esperar la llegada del paseador');
+        this.listarHorasTrabajador();
       },
       err => {
            console.log(err)
            this.ValidarHora(err);
       }
     )
+  }
+
+  obtenerSaldo(idConsumidor){
+    this.billeteraService.obtenerMonto(idConsumidor).subscribe(
+      res=>this.billetera = res['monto'],
+      err=>console.log(err)
+    );
   }
 
   listarHorasTrabajador(){
@@ -135,10 +152,8 @@ export class MostrarperfilPage implements OnInit {
     this.horaTrabajo = hora
     console.log(hora)
     this.Disponible = false
-    
-
-
   }
+
   ValidarHora(err){
     if(err.status == 400){
       this.ErrorHora();
@@ -154,19 +169,75 @@ export class MostrarperfilPage implements OnInit {
     await alert.present()
   }
 
-  async MatchCreado(){
+  async Confirmacion(cabecera: string, cuerpo: string){
     const alert =  await this.alertController.create({
-      header: 'Solicitud Enviada',
-      message: 'debe esperar ACEPTACION del paseador',
+      header: cabecera,
+      message: cuerpo,
       buttons: ['OK']
     })
 
     await alert.present()
   }
 
-  
+  async abrirEstrellas(numero){
+    const alert = await this.alertController.create({
+      header: 'Valorar al paseador',
+      inputs: [
+        {
+          name: 'opcion1',
+          type: 'radio',
+          label: '⭐',
+          value: '1'
+        },
+        {
+          name: 'opcion2',
+          type: 'radio',
+          label: '⭐⭐',
+          value: '2'
+        },
+        {
+          name: 'opcion3',
+          type: 'radio',
+          label: '⭐⭐⭐',
+          value: '3'
+        },
+        {
+          name: 'opcion4',
+          type: 'radio',
+          label: '⭐⭐⭐⭐',
+          value: '4'
+        },
+        {
+          name: 'opcion5',
+          type: 'radio',
+          label: '⭐⭐⭐⭐⭐',
+          value: '5'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+        },
+        {
+          text: 'Valorar',
+          handler: data => {
+            this.valorar(data);
+          },
+        },
+      ],
+    });
 
-  
+    await alert.present();
+  }
 
+
+  valorar(calificacion){
+    this.valoracionService.valorarTrabajador(calificacion, this.idTrabajador).subscribe(
+      res=>console.log(res),
+      err=>console.log(err)
+    );
+  }
 
 }

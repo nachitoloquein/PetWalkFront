@@ -1,4 +1,5 @@
 <ion-content>
+<<<<<<< HEAD
 
   <ion-card *ngFor="let pendiente of pendientes">
     <ion-card-header>
@@ -14,5 +15,37 @@
     <ion-button color="danger" fill="clear">Rechazar</ion-button>
     
   </ion-card>
+=======
+  <div class="column">     
+    <div class="col-lg-6">
+      <div *ngIf = "cantidadMatches != 0">
+          <div *ngFor="let match of matches">
+                <div class="card card-primary card-outline" >
+                  <div class="card-header">
+                    <h5 class="m-0">Cliente: {{match.idConsumidor.nombre}} {{match.idConsumidor.apellido}}</h5>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-title">Estado: {{match.estadoTrabajo}}</h6>
+                
+                    <p class="card-text"> Hora: {{match.idHoraTrabajo.horaIntervalos}}</p>
+                    <a (click)="preguntar(match._id)" class="btn btn-danger">Cancelar Trabajo</a>
+                  </div>
+                </div>
+          </div>
+        </div>
+        <div *ngIf = "cantidadMatches == 0">
+          <ion-grid>
+            <ion-row>
+              <ion-col class="ion-align-self-center">
+                <div class="ion-text-center">
+                  <h3>No hay trabajo aún!</h3>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+    </div>
+</div>
+>>>>>>> 4aff127be542aaeef2dbfafc0e6ad61a4fbd0385
 
 </ion-content>
