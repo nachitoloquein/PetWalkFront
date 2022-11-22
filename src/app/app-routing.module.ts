@@ -84,7 +84,16 @@ const routes: Routes = [
     path: 'perfilP',
     loadChildren: () => import('./paseador/perfil-paseador/perfil-paseador.module').then( m => m.PerfilPaseadorPageModule),
     canActivate : [AuthTrabajadorGuard]
-  }
+  },
+  {
+    path: 'paseando',
+    loadChildren: () => import('./paseador/paseando/paseando.module').then( m => m.PaseandoPageModule),
+    canActivate : [AuthTrabajadorGuard]
+  },
+  {
+    path: 'fin',
+    loadChildren: () => import('./paseador/fin/fin.module').then( m => m.FinPageModule)
+  },
 ];
 
 @NgModule({

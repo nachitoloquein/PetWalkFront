@@ -25,21 +25,17 @@ export class TabnavPage implements OnInit {
 
   Trabajador(){
     this.trabajadorService.ObtenerTrabajadorLogeado().subscribe(
-      res => {console.log(res),
+      res => {
       this.ContadorMatch(res['_id'])}
+      
     )
   }
 
   ContadorMatch(id){
-    
-    
-
     this.matchService.verMatchTrabajador(id).subscribe(
       res => {
         this.contador = res,
         this.total = this.contador.filter(m => m.estadoTrabajo == 'Pendiente').length
-        
-      
       }
     )
   }

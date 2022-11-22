@@ -79,11 +79,11 @@ export class PerfilPaseadorPage implements OnInit {
   }
 
   ContadorPaseosRealizados(){
-    this.matchService.verMatchTrabajador(this.trabajador['_id']).subscribe(
+    this.matchService.verHistorialTrabajador(this.trabajador['_id']).subscribe(
       res =>{
         this.matches = res
         this.contador = this.matches.filter(m => m.estadoTrabajo == "Finalizado").length
-        this.ganancias = this.contador * 4600
+        this.ganancias = this.contador * 4500
       }
     ) 
   }

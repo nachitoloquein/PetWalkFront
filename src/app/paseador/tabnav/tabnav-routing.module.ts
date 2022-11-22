@@ -15,7 +15,15 @@ const routes: Routes = [
     {
       path : 'solicitudes',
       loadChildren: () => import('../solicitudes/solicitudes.module').then(m => m.SolicitudesPageModule)
-    }
+    },
+    {
+      path: 'historial-paseador',
+      loadChildren: () => import('../historial-paseador/historial-paseador.module').then( m => m.HistorialPaseadorPageModule)
+    },
+    {
+      path: 'cartera',
+      loadChildren: () => import('../cartera/cartera.module').then( m => m.CarteraPageModule)
+    },
     ]
   }
   ];

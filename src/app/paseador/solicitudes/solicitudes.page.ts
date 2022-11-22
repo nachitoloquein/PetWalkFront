@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatchService } from 'src/app/services/match.service';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
 import { ConsumidorService } from 'src/app/services/consumidor.service';
-<<<<<<< HEAD
-import { HorasService } from 'src/app/services/horas.service';
-=======
 import { AlertController } from '@ionic/angular';
->>>>>>> 4aff127be542aaeef2dbfafc0e6ad61a4fbd0385
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-solicitudes',
@@ -17,21 +14,14 @@ export class SolicitudesPage implements OnInit {
 
   
   id : any;
-<<<<<<< HEAD
-  matches : any
-  consumidor : any
-  pendientes : any
-
-  constructor(
-    private horaService : HorasService,
-=======
   matches : any;
   consumidor : any;
   cantidadMatches: Number;
+  pendientes : any
 
   constructor(
+    private route : Router,
     private alertController: AlertController,
->>>>>>> 4aff127be542aaeef2dbfafc0e6ad61a4fbd0385
     private consumidorService : ConsumidorService,
     private trabajadorService : TrabajadorService,
     private matchService : MatchService,
@@ -58,7 +48,7 @@ export class SolicitudesPage implements OnInit {
   }
 
   ObtenerId(idTrabajador){
-    this.matchService.verMatchTrabajador(idTrabajador).subscribe(
+    this.matchService.verHistorialTrabajador(idTrabajador).subscribe(
       res => {
         this.matches = res;
         this.cantidadMatches = Object.keys(res).length;
@@ -84,12 +74,6 @@ export class SolicitudesPage implements OnInit {
     )
   }
 
-<<<<<<< HEAD
-  ConfirmarPaseo(){
-    
-  }
-
-=======
   cancelarMatch(id){
     this.matchService.cancelarMatch(id).subscribe(
       res=>{console.log(res)
@@ -128,6 +112,10 @@ export class SolicitudesPage implements OnInit {
     });
     await alert.present();
   }
->>>>>>> 4aff127be542aaeef2dbfafc0e6ad61a4fbd0385
+
+  AceptarMatch(id){
+    sessionStorage.setItem('idMatch', id)
+    this.route.navigate(['/paseando'])
+  }
 
 }

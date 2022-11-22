@@ -34,4 +34,8 @@ export class MatchService {
     return this.http.get(`${this.URL_API}/cancelar/${idMatch}`);
   }
 
+  //FinalizarMatch(idmatch){
+  //  return this.http.put(`${this.URL_API}/finalizar/${idmatch}`);
+  //}
+
 }
