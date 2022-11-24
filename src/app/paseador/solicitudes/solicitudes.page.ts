@@ -3,6 +3,7 @@ import { MatchService } from 'src/app/services/match.service';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
 import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-solicitudes',
@@ -16,8 +17,10 @@ export class SolicitudesPage implements OnInit {
   matches : any;
   consumidor : any;
   cantidadMatches: Number;
+  pendientes : any
 
   constructor(
+    private route : Router,
     private alertController: AlertController,
     private consumidorService : ConsumidorService,
     private trabajadorService : TrabajadorService,
@@ -45,12 +48,13 @@ export class SolicitudesPage implements OnInit {
   }
 
   ObtenerId(idTrabajador){
-    this.matchService.verMatchTrabajador(idTrabajador).subscribe(
+    this.matchService.verHistorialTrabajador(idTrabajador).subscribe(
       res => {
         this.matches = res;
         this.cantidadMatches = Object.keys(res).length;
         console.log(this.matches)
-        console.log(this.matches)
+        this.pendientes = this.matches.filter(m => m.estadoTrabajo == "Pendiente")
+        this.ObtenerDatosConsumidor(res['idConsumidor'])
       },err =>{
         console.log(err)
       }
@@ -66,7 +70,7 @@ export class SolicitudesPage implements OnInit {
         console.log(this.consumidor)
       },err =>{
         console.log(err)
-      }
+      } 
     )
   }
 
@@ -107,6 +111,11 @@ export class SolicitudesPage implements OnInit {
           }],
     });
     await alert.present();
+  }
+
+  AceptarMatch(id){
+    sessionStorage.setItem('idMatch', id)
+    this.route.navigate(['/paseando'])
   }
 
 }

@@ -84,7 +84,32 @@ const routes: Routes = [
     path: 'perfilP',
     loadChildren: () => import('./paseador/perfil-paseador/perfil-paseador.module').then( m => m.PerfilPaseadorPageModule),
     canActivate : [AuthTrabajadorGuard]
-  }
+  },
+  {
+    path: 'solicitudes',
+    loadChildren: () => import('./paseador/solicitudes/solicitudes.module').then( m => m.SolicitudesPageModule),
+    canActivate : [AuthTrabajadorGuard]
+  },
+  {
+    path: 'historial-paseador',
+    loadChildren: () => import('./paseador/historial-paseador/historial-paseador.module').then( m => m.HistorialPaseadorPageModule),
+    canActivate : [AuthTrabajadorGuard]
+  },
+  {
+    path: 'cartera',
+    loadChildren: () => import('./paseador/cartera/cartera.module').then( m => m.CarteraPageModule),
+    canActivate : [AuthTrabajadorGuard]
+  },
+  {
+    path: 'fin',
+    loadChildren: () => import('./paseador/fin/fin.module').then( m => m.FinPageModule),
+    canActivate : [AuthTrabajadorGuard]
+  },
+  {
+    path: 'paseando',
+    loadChildren: () => import('./paseador/paseando/paseando.module').then( m => m.PaseandoPageModule),
+    canActivate : [AuthTrabajadorGuard]
+  },
 ];
 
 @NgModule({

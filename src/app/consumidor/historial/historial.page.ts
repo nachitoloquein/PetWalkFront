@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { MatchService } from 'src/app/services/match.service';
+import { ConsumidorService } from 'src/app/services/consumidor.service';
 
 @Component({
   selector: 'app-historial',
@@ -10,18 +10,30 @@ import { MatchService } from 'src/app/services/match.service';
 export class HistorialPage implements OnInit {
 
   fechaActual = Date.now();
-  idConsumidor: any;
+  idConsumidor: any;  
   matches: any;
+
   constructor(private matchService: MatchService, private consumidorService: ConsumidorService) {
     this.obtenerDatos();
    }
 
   ngOnInit() {
+    this.VerConsumidor();
   }
 
+  VerConsumidor(){
+    this.consumidorService.obtenerConsumidorLogeado().subscribe(
+      res => {
+      },err => {console.log(err)}
+    )
+  }
+
+  
   listarHistorial(id){
     this.matchService.verHistorialConsumidor(id).subscribe(
-      res=>console.log(res),
+      res=>{console.log(res)
+      this.matches = res
+    },
       err=>console.log(err)
     )
   }

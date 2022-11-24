@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Historial</ion-title>
+    <ion-title>Historial Paseador</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -28,14 +28,14 @@
                     <h3 class="timeline-header bg-info"><a href="#">PetWalk</a> pendiente</h3>
 
                     <div class="timeline-body">
-                      Paseo Pendiente por el paseador: <strong>{{match.idTrabajador.nombre}} {{match.idTrabajador.apellido}}</strong>
-                      
+                      Paseo Pendiente para <strong>{{match.idConsumidor.nombre}} {{match.idConsumidor.apellido}}</strong>
+
                     </div>
-                    
+
                   </div>
                 </ng-container>
-              
-              
+
+
                 <ng-container *ngIf="match.estadoTrabajo == 'Cancelado'" >
                   <i class="fa fa-times bg-red"></i>
                   <div class="timeline-item">
@@ -43,11 +43,9 @@
                     <h3 class="timeline-header bg-red"><a href="#">PetWalk</a> cancelado</h3>
 
                     <div class="timeline-body">
-                      - Paseo  Cancelado por el paseador: <strong>{{match.idTrabajador.nombre}} {{match.idTrabajador.apellido}}</strong>
-                      <br>
-                      - Se han reenbolsado {{match.valorPaseo}} PetsCoins
+                      Cancelaste el Paseo para <strong>{{match.idConsumidor.nombre}} {{match.idConsumidor.apellido}}</strong>
                     </div>
-                    
+
                   </div>
                 </ng-container>
                 <ng-container *ngIf="match.estadoTrabajo == 'Finalizado'" >
@@ -57,16 +55,16 @@
                     <h3 class="timeline-header bg-green"><a href="#">PetWalk</a> finalizado</h3>
 
                     <div class="timeline-body">
-                      Paseo  Finalizado por el paseador: <strong>{{match.idTrabajador.nombre}} {{match.idTrabajador.apellido}}</strong> 
+                      Paseo  Finalizado Exitosamente, tu ganancia fue de $4.500
                     </div>
-                    
+
                   </div>
                 </ng-container>
 
               </div>
-              
-                 
-              
+
+
+
             </div>
           </div>
           <!-- /.col -->

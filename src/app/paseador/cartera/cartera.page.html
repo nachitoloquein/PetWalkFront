@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>cartera</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+
+    <div class="cartera">
+      <h3>Mi Cartera</h3>
+      <h6></h6>
+      <h5>${{ganancias}}</h5>
+    </div>
+
+    <div class="retiro">
+      <h4>Retira tu Dinero</h4>
+      <p>* El retiro de dinero sera habilitado en un plazo de 7 dias tras finalizacion del trabajo <strong>sin incidentes</strong></p>
+    </div>
+
+    <div class="info-box bg-info">
+      <div class="info-box-content">
+        <span class="info-box-text text-center text-light">Paseos Realizador</span>
+        <span class="info-box-number text-center text-light mb-0">{{contador}}</span>
+      </div>
+    </div>
+    <div class="info-box bg-success">
+      <div class="info-box-content">
+        <span class="info-box-text text-center text-light">Ganancias Semanales</span>
+        <span class="info-box-number text-center text-light mb-0">${{ganancias}}</span>
+      </div>
+    </div>
+
+    <ion-button [disabled]="true" expand="block" color="warning">Retirar Dinero</ion-button>
+  </div>
+
+</ion-content>
