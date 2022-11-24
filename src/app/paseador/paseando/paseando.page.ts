@@ -13,6 +13,8 @@ export class PaseandoPage implements OnInit {
 
   minutes: any;
   seconds: any;
+  idConsumidor: any;
+  consumidor : any
   
 
   constructor(
@@ -24,14 +26,13 @@ export class PaseandoPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.CountDown();
-
+      this.CountDown();
   }
 
   
   CountDown(){
     
-    var date = new Date('2020-01-01 00:00:10');
+    var date = new Date('2020-01-01 00:20:02');
 
     // Función para rellenar con ceros
     var padLeft = n => "00".substring(0, "00".length - n.length) + n;
@@ -59,22 +60,8 @@ export class PaseandoPage implements OnInit {
       
     }, 1000);
     }
-
-    idTrabajador(){
-      this.trabajadorService.ObtenerTrabajadorLogeado().subscribe(
-        res =>{
-          console.log(res)
-        }
-      )
-    }
   
-    idMatch(id){
-      this.matchService.verMatchTrabajador(id).subscribe(
-        res => {
-
-        }
-      )
-    }
+    
 
   FinalizarPaseo(){
     

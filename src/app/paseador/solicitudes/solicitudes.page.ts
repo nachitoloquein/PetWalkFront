@@ -114,7 +114,7 @@ export class SolicitudesPage implements OnInit {
   }
 
   AceptarMatch(id){
-    sessionStorage.setItem('idMatch', id)
+    sessionStorage.setItem('idConsumidor', id)
     this.route.navigate(['/paseando'])
   }
 

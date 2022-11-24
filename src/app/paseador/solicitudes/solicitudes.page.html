@@ -1,19 +1,22 @@
 <ion-content>
-  <div class="column">     
+  <div class="column card">     
     <div class="col-lg-6">
       <div *ngIf = "cantidadMatches != 0">
           <div *ngFor="let match of pendientes">
-                <div class="card card-primary card-outline" >
+                <div class="card card-purple card-outline" >
                   <div class="card-header">
-                    <h5 class="m-0">Usuario: {{match.idConsumidor.nombre}} {{match.idConsumidor.apellido}}</h5>
+                    <h5 class="m-0">Usuario: <strong>{{match.idConsumidor.nombre}} {{match.idConsumidor.apellido}}</strong></h5>
                   </div>
                   <div class="card-body">
-                    <h6 class="card-title">Direccion: {{match.idConsumidor.direccion}} | {{match.idConsumidor.comuna}}</h6>
+                    <h6 class="card-title">Direccion: <strong>{{match.idConsumidor.direccion}} | {{match.idConsumidor.comuna}}</strong></h6>
                 
-                    <p class="card-text"> Hora: {{match.idHoraTrabajo.horaIntervalos}}</p>
-                    <a  (click)="AceptarMatch(match._id)"   class="btn btn-success">Iniciar Paseo</a>
+                    <p class="card-text"> Hora: <strong>{{match.idHoraTrabajo.horaIntervalos}}</strong></p>
+                    <div class="buttons">
+                      <a  (click)="AceptarMatch(match._id)"   class="btn btn-success">Iniciar Paseo</a>
                     
-                    <a (click)="preguntar(match._id)" class="btn btn-danger">Cancelar Trabajo</a>
+                      <a (click)="preguntar(match.idConsumidor)" class="btn btn-danger">Cancelar Trabajo</a>
+                    </div>
+                    
                   </div>
                 </div>
           </div>
