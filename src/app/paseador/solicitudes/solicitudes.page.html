@@ -12,7 +12,7 @@
                 
                     <p class="card-text"> Hora: <strong>{{match.idHoraTrabajo.horaIntervalos}}</strong></p>
                     <div class="buttons">
-                      <a  (click)="AceptarMatch(match.idConsumidor,match._id)"   class="btn btn-success">Iniciar Paseo</a>
+                      <a  (click)="AceptarMatch(match.idConsumidor._id,match._id)"   class="btn btn-success">Iniciar Paseo</a>
                     
                       <a (click)="preguntar(match._id)" class="btn btn-danger">Cancelar Trabajo</a>
                     </div>

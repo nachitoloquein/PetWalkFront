@@ -121,7 +121,7 @@ export class MostrarperfilPage implements OnInit {
       },
       err => {
            console.log(err)
-           this.ValidarHora(err);
+           this.mensajesError(err);
       }
     )
   }
@@ -240,4 +240,13 @@ export class MostrarperfilPage implements OnInit {
     );
   }
 
+  mensajesError(status){
+    switch (status){
+      case 402:
+        this.Confirmacion('Error de pago', 'Saldo insuficiente en la cartera');
+        break;
+      default:
+        this.Confirmacion('Error de match', 'Ha ocurrido un problema al hacer match')
+    }
+  }
 }

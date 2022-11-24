@@ -62,7 +62,7 @@
                       
                       <div class="horas" *ngFor="let horas of horarios">
                         <div>
-                          <ion-text ><strong>{{horas.horaIntervalos}}</strong> 🐶(1hr) </ion-text> <br><ion-text>{{trabajador?.comuna}}</ion-text>
+                          <ion-text ><strong>{{horas.horaIntervalos}}</strong> 🐶 </ion-text> <br><ion-text>{{trabajador?.comuna}}</ion-text>
                         </div>
                         <button (click)="hora(horas.horaIntervalos)" (click)="hacerMatch(horas._id)" ><ion-text >Reservar</ion-text> </button>
                       </div>

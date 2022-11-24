@@ -13,7 +13,7 @@ export class PaseandoPage implements OnInit {
 
   minutes: any;
   seconds: any;
-
+  consumidor: any;
 
   constructor(
     private router : Router,
@@ -25,13 +25,13 @@ export class PaseandoPage implements OnInit {
 
   ngOnInit() {
     this.CountDown();
-
+    this.obtenerDatosConsumidor();
   }
 
 
   CountDown(){
 
-    var date = new Date('2020-01-01 00:00:10');
+    var date = new Date('2020-01-01 00:30:00');
 
     // Función para rellenar con ceros
     var padLeft = n => "00".substring(0, "00".length - n.length) + n;
@@ -44,8 +44,6 @@ export class PaseandoPage implements OnInit {
       // Asignqr el valor de segundos
       this.seconds = padLeft(date.getSeconds() + "");
 
-      console.log(this.minutes, this.seconds);
-
       // Restarle a la fecha actual 1000 milisegundos
       date = new Date(date.getTime() - 1000);
 
@@ -53,7 +51,7 @@ export class PaseandoPage implements OnInit {
       if(this.minutes == '00' && this.seconds == '00') {
         clearInterval(interval);
         this.router.navigate(['/fin'])
-        this.FinalizarPaseo(sessionStorage.getItem('idMatch'))
+        this.finalizarPaseo();
 
 
       }
@@ -61,26 +59,34 @@ export class PaseandoPage implements OnInit {
     }, 1000);
     }
 
-    idTrabajador(){
-      this.trabajadorService.ObtenerTrabajadorLogeado().subscribe(
-        res =>{
-          console.log(res)
-        }
-      )
-    }
+  idTrabajador(){
+    this.trabajadorService.ObtenerTrabajadorLogeado().subscribe(
+      res =>{
+        console.log(res)
+      }
+    )
+  }
 
-    idMatch(id){
-      this.matchService.verMatchTrabajador(id).subscribe(
-        res => {
-
-        }
-      )
-    }
-
-  FinalizarPaseo(id){
-    this.matchService.finalizarMatch(id).subscribe(
+  /* idMatch(id){
+    this.matchService.verMatchTrabajador(id).subscribe(
       res => {
-        sessionStorage.removeItem('idMatch')
+
+      }
+    )
+  } */
+
+  obtenerDatosConsumidor(){
+    this.consumidorService.datosConsumidor(sessionStorage.getItem('idConsumidor')).subscribe(
+      res=> this.consumidor = res,
+      err=> console.log(err)
+    );
+  }
+
+  finalizarPaseo(){
+    this.matchService.finalizarMatch(sessionStorage.getItem('idMatch')).subscribe(
+      res => {
+        sessionStorage.removeItem('idMatch');
+        sessionStorage.removeItem('idConsumidor');
         console.log(res)
       }
     )
