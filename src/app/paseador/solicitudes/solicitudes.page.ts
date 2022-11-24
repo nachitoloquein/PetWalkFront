@@ -113,8 +113,9 @@ export class SolicitudesPage implements OnInit {
     await alert.present();
   }
 
-  AceptarMatch(id){
-    sessionStorage.setItem('idMatch', id)
+  AceptarMatch(id, MatchId){
+    sessionStorage.setItem('idConsumidor', id)
+    sessionStorage.setItem('idMatch', MatchId)
     this.route.navigate(['/paseando'])
   }
 

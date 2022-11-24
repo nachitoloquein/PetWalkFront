@@ -80,6 +80,7 @@ export class PaseandoPage implements OnInit {
   FinalizarPaseo(id){
     this.matchService.finalizarMatch(id).subscribe(
       res => {
+        sessionStorage.removeItem('idMatch')
         console.log(res)
       }
     )
