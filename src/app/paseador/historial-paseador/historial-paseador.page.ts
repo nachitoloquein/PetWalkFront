@@ -27,7 +27,7 @@ export class HistorialPaseadorPage implements OnInit {
   listarHistorial(id){
     this.matchService.verHistorialTrabajador(id).subscribe(
       res=>{
-      this.matches = res
+      this.matches = Array.prototype.reverse.call(res)
     },
       err=>console.log(err)
     )

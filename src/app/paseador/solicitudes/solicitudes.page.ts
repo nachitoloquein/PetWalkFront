@@ -51,9 +51,9 @@ export class SolicitudesPage implements OnInit {
     this.matchService.verHistorialTrabajador(idTrabajador).subscribe(
       res => {
         this.matches = res;
-        this.cantidadMatches = Object.keys(res).length;
         console.log(this.matches)
         this.pendientes = this.matches.filter(m => m.estadoTrabajo == "Pendiente")
+        this.cantidadMatches = Object.keys(this.pendientes).length;
         this.ObtenerDatosConsumidor(res['idConsumidor'])
       },err =>{
         console.log(err)

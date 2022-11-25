@@ -32,7 +32,7 @@ export class HistorialPage implements OnInit {
   listarHistorial(id){
     this.matchService.verHistorialConsumidor(id).subscribe(
       res=>{console.log(res)
-      this.matches = res
+      this.matches = Array.prototype.reverse.call(res)
     },
       err=>console.log(err)
     )

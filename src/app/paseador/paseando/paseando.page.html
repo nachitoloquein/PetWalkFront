@@ -11,15 +11,15 @@
     </div>
   </section>
   <div class="info">
-    <h5>Dueño: </h5>
-    <h5>Direccion: nombre de la direccion</h5>
-    <h5>Contacto: numero teledono</h5>
+    <h5>Dueño: {{consumidor?.nombre}} {{consumidor?.apellido}}</h5>
+    <h5>Direccion: {{consumidor?.direccion}}</h5>
+    <h5>Contacto: {{consumidor?.telefono}}</h5>
     
 
   </div>
   
   <div class="buttons">
-    <ion-button color="success" >Terminar Paseo</ion-button>
+    <ion-button color="success" (click)="finalizarPaseo()" >Terminar Paseo</ion-button>
     <ion-button color="danger" >Cancelar Paseo</ion-button>
   </div>
   
