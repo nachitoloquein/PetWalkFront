@@ -15,7 +15,11 @@ const routes: Routes = [
   {
     path: 'transaccion-mala',
     loadChildren: () => import('./transaccion-mala/transaccion-mala.module').then( m => m.TransaccionMalaPageModule)
+  },  {
+    path: 'tutorial-consumidor',
+    loadChildren: () => import('./tutorial-consumidor/tutorial-consumidor.module').then( m => m.TutorialConsumidorPageModule)
   }
+
 
 
 ];

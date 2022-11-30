@@ -28,7 +28,7 @@ export class MostrarperfilPage implements OnInit {
   valoracion: {};
   billetera: any;
   horarios: any;
-
+  cantidadHoras: number;
   //test
   horaTrabajo : any;
 
@@ -137,7 +137,8 @@ export class MostrarperfilPage implements OnInit {
     this.horasService.ListarHorasDisponibleTrabajador(this.trabajador['_id']).subscribe(
       res => {
         console.log(res),
-        this.horarios = res
+        this.horarios = res;
+        this.cantidadHoras = Object.keys(this.horarios).length;
       }, err =>{
         console.log(err)
       }
@@ -240,8 +241,8 @@ export class MostrarperfilPage implements OnInit {
     );
   }
 
-  mensajesError(status){
-    switch (status){
+  mensajesError(err){
+    switch (err.status){
       case 402:
         this.Confirmacion('Error de pago', 'Saldo insuficiente en la cartera');
         break;

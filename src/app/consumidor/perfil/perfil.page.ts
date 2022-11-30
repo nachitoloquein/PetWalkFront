@@ -25,7 +25,7 @@ export class PerfilPage implements OnInit {
 
   LogOut(){
     localStorage.removeItem('token');
-    this.router.navigate(['/consumidor']);
+    this.router.navigateByUrl('/consumidor');
   }
 
   obtenerDatos(){
