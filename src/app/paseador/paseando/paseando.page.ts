@@ -50,7 +50,7 @@ export class PaseandoPage implements OnInit {
       // Si llega a 2:45, eliminar el intervalo
       if(this.minutes == '00' && this.seconds == '00') {
         clearInterval(interval);
-        this.router.navigate(['/fin'])
+        
         this.finalizarPaseo();
 
 
@@ -87,6 +87,7 @@ export class PaseandoPage implements OnInit {
       res => {
         sessionStorage.removeItem('idMatch');
         sessionStorage.removeItem('idConsumidor');
+        this.router.navigate(['/fin'])
         console.log(res)
       }
     )
