@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
+
+
 @Component({
   selector: 'app-buscar',
   templateUrl: './buscar.page.html',
@@ -9,13 +11,15 @@ export class BuscarPage implements OnInit {
 
   filterTerm : string;
   trabajadores = [];
-
+ 
   constructor(
-    public trabajadorService : TrabajadorService) {
+    private trabajadorService : TrabajadorService) {
     this.listarTrabajadores();
+   
    }
 
   ngOnInit() {
+  
   }
 
   listarTrabajadores(){
@@ -23,6 +27,7 @@ export class BuscarPage implements OnInit {
       res => {
         this.trabajadores = res.filter((m) => m.estado == 'Activo')
         console.log(this.trabajadores);
+        
       },
       err => {
         console.log(err)

@@ -13,7 +13,7 @@
   <div class="info">
     <h5>Dueño: {{consumidor?.nombre}} {{consumidor?.apellido}}</h5>
     <h5>Direccion: {{consumidor?.direccion}}</h5>
-    <h5>Contacto: {{consumidor?.telefono}}</h5>
+    <b>Contacto</b> <a class="float-right" [href]="'https://api.whatsapp.com/send?phone=56'+consumidor?.telefono">Enviar mensaje</a>
     
 
   </div>

@@ -34,8 +34,8 @@
                 </li>
                 <li class="list-group-item">
                   <b>Sexo</b> 
-                  <a class="float-right" *ngIf="trabajador?.genero == 'Femenino'"><ion-icon name="female-outline"></ion-icon></a>
-                  <a class="float-right" *ngIf="trabajador?.genero == 'Masculino'"><ion-icon name="male-outline"></ion-icon></a>
+                  <h6 class="float-right" *ngIf="trabajador?.genero == 'Femenino'">Fenemino <ion-icon name="female-outline"></ion-icon></h6>
+                  <h6 class="float-right" *ngIf="trabajador?.genero == 'Masculino'">Masculino <ion-icon name="male-outline"></ion-icon></h6>
                 </li>
               </ul>
               <button href="#" class="btn btn-primary btn-block" id="horarios"  (click)="setOpen(true)" ><b>Solicitar Servicio</b></button>

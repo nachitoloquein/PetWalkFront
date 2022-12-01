@@ -11,6 +11,7 @@ import { BilleteraService } from 'src/app/services/billetera.service';
 
 
 
+
 @Component({
   selector: 'app-mostrarperfil',
   templateUrl: './mostrarperfil.page.html',
@@ -26,7 +27,7 @@ export class MostrarperfilPage implements OnInit {
   fechaHoy = Date.now();
   Disponible = true;
   valoracion: {};
-  billetera: any;
+  billetera: any; 
   horarios: any;
 
   //test
@@ -34,6 +35,7 @@ export class MostrarperfilPage implements OnInit {
 
 
   constructor(
+    private router : Router,
     private horasService : HorasService,
     private matchService : MatchService,
     private route : ActivatedRoute,
@@ -99,7 +101,7 @@ export class MostrarperfilPage implements OnInit {
   hacerReporte(descripcion){
     this.reporteService.reportarTrabajador(this.idTrabajador, this.idConsumidor, descripcion).subscribe(
       res=>{console.log(res);
-        this.Confirmacion('Reporte enviado','Le llegará un mensaje de nuestros administradores para ver el estado de su reporte')},
+        this.Confirmacion('Reporte enviado','Le llegará un mensaje de nuestros administradores para ver el estado de su reporte', 'OK')},
       err=>console.log(err)
     )
   }
@@ -116,7 +118,7 @@ export class MostrarperfilPage implements OnInit {
     this.matchService.hacerMatch(idHoraTrabajo ,this.idConsumidor, this.idTrabajador , this.horaTrabajo, this.billetera).subscribe(
       res =>{
         console.log(res);
-        this.Confirmacion('Match Creado', 'Solo debe esperar la llegada del paseador');
+        this.Confirmacion('Match Creado', 'Solo debe esperar la llegada del paseador', 'OK');
         this.listarHorasTrabajador();
       },
       err => {
@@ -169,11 +171,11 @@ export class MostrarperfilPage implements OnInit {
     await alert.present()
   }
 
-  async Confirmacion(cabecera: string, cuerpo: string){
+  async Confirmacion(cabecera: string, cuerpo: string, buttons:string){
     const alert =  await this.alertController.create({
       header: cabecera,
       message: cuerpo,
-      buttons: ['OK']
+      buttons: [buttons],
     })
 
     await alert.present()
@@ -240,13 +242,12 @@ export class MostrarperfilPage implements OnInit {
     );
   }
 
-  mensajesError(status){
-    switch (status){
-      case 402:
-        this.Confirmacion('Error de pago', 'Saldo insuficiente en la cartera');
-        break;
-      default:
-        this.Confirmacion('Error de match', 'Ha ocurrido un problema al hacer match')
+  mensajesError(err){
+    if(err.status == 402){
+      this.Confirmacion('Saldo Insuficiente', 'Necesitas recargar PetsCoins para solicitar el paseo', 'Recargar', )
+      this.router.navigate['/tabnav/billetera']
+
     }
+    
   }
 }
