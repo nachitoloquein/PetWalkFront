@@ -42,4 +42,6 @@ export class CarteraPage implements OnInit {
       }
     )
   }
+
+  
 }
