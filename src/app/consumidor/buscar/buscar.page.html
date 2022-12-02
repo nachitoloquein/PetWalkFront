@@ -39,13 +39,9 @@
     
                 </div>
               </div>
-              <div class="card-footer  foot">
-                <div class="text-right ">
-                  <a (click)="setOpen(true)" (click)="listarHorasTrabajador(trabajador._id)" class="btn btn-sm btnPerfil btn-success">
-                    <i class="fa-sharp fa fa-check"></i> Solicitar
-                    
-                  </a>
-                  <a [routerLink]="'/mostrarperfil/' + trabajador._id" class="btn btn-sm btnPerfil btn-info">
+              <div class="card-footer">
+                <div class="text-right">
+                  <a [routerLink]="'/mostrarperfil/' + trabajador._id" class="btn btn-sm btn-primary">
                     <i class="fas fa-user"></i> Ver Perfil
                   </a>
 
@@ -80,6 +76,46 @@
                   
                 </div>
               </div>
+              <ion-modal trigger="horariosPerfil" [isOpen]="isModalOpen">
+                <ng-template>
+                  <ion-header>
+                    <ion-toolbar>
+                      <ion-buttons slot="start">
+                        <ion-button (click)="setOpen(false)" >Cancel</ion-button>
+                      </ion-buttons>
+                      <ion-title>Horarios Disponibles</ion-title>
+                      <ion-buttons slot="end">
+                      </ion-buttons>
+                    </ion-toolbar>
+                  </ion-header>
+                  <ion-content class="ion-padding">
+                    <div class="horarios">
+                        <h4>{{fechaHoy | date: 'EEEE, MMMM d, y'}}</h4>
+                        <h1>________________</h1>
+                        <div *ngIf="cantidadHoras == 0">
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col>
+                                <div class="ion-text-center">
+                                  <h3>Lo sentimos! 😥</h3>
+                                  Nuestro trabajador aún no tiene horas habilitadas para trabajar
+                                </div>
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </div>
+                        <div *ngIf="cantidadHoras != 0">
+                          <div class="horas" *ngFor="let horas of horarios">
+                            <div>
+                              <ion-text ><strong>{{horas.horaIntervalos}}</strong> 🐶 </ion-text> <br><ion-text>{{trabajador?.comuna}}</ion-text>
+                            </div>
+                            <button (click)="hacerMatch(horas._id)" ><ion-text >Reservar</ion-text> </button>
+                          </div>
+                        </div>
+                    </div>
+                  </ion-content>
+                </ng-template>
+              </ion-modal>
             </div>
           </div>
         </div>

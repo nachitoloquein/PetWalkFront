@@ -59,12 +59,25 @@
                   <div class="horarios">
                       <h4>{{fechaHoy | date: 'EEEE, MMMM d, y'}}</h4>
                       <h1>________________</h1>
-                      
-                      <div class="horas" *ngFor="let horas of horarios">
-                        <div>
-                          <ion-text ><strong>{{horas.horaIntervalos}}</strong> 🐶 </ion-text> <br><ion-text>{{trabajador?.comuna}}</ion-text>
+                      <div *ngIf="cantidadHoras == 0">
+                        <ion-grid>
+                          <ion-row>
+                            <ion-col>
+                              <div class="ion-text-center">
+                                <h3>Lo sentimos! 😥</h3>
+                                Nuestro trabajador aún no tiene horas habilitadas para trabajar
+                              </div>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </div>
+                      <div *ngIf="cantidadHoras != 0">
+                        <div class="horas" *ngFor="let horas of horarios">
+                          <div>
+                            <ion-text ><strong>{{horas.horaIntervalos}}</strong> 🐶 </ion-text> <br><ion-text>{{trabajador?.comuna}}</ion-text>
+                          </div>
+                          <button (click)="hacerMatch(horas._id)" ><ion-text >Reservar</ion-text> </button>
                         </div>
-                        <button (click)="hora(horas.horaIntervalos)" (click)="hacerMatch(horas._id)" ><ion-text >Reservar</ion-text> </button>
                       </div>
                   </div>
                 </ion-content>

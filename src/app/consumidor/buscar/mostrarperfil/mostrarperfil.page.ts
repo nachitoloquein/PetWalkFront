@@ -29,7 +29,7 @@ export class MostrarperfilPage implements OnInit {
   valoracion: {};
   billetera: any; 
   horarios: any;
-
+  cantidadHoras: number;
   //test
   horaTrabajo : any;
 
@@ -115,7 +115,7 @@ export class MostrarperfilPage implements OnInit {
   }
 
   hacerMatch(idHoraTrabajo){
-    this.matchService.hacerMatch(idHoraTrabajo ,this.idConsumidor, this.idTrabajador , this.horaTrabajo, this.billetera).subscribe(
+    this.matchService.hacerMatch(idHoraTrabajo ,this.idConsumidor, this.idTrabajador , this.billetera).subscribe(
       res =>{
         console.log(res);
         this.Confirmacion('Match Creado', 'Solo debe esperar la llegada del paseador', 'OK');
@@ -139,7 +139,8 @@ export class MostrarperfilPage implements OnInit {
     this.horasService.ListarHorasDisponibleTrabajador(this.trabajador['_id']).subscribe(
       res => {
         console.log(res),
-        this.horarios = res
+        this.horarios = res;
+        this.cantidadHoras = Object.keys(this.horarios).length;
       }, err =>{
         console.log(err)
       }
