@@ -113,7 +113,7 @@ export class MostrarperfilPage implements OnInit {
   }
 
   hacerMatch(idHoraTrabajo){
-    this.matchService.hacerMatch(idHoraTrabajo ,this.idConsumidor, this.idTrabajador , this.horaTrabajo, this.billetera).subscribe(
+    this.matchService.hacerMatch(idHoraTrabajo ,this.idConsumidor, this.idTrabajador , this.billetera).subscribe(
       res =>{
         console.log(res);
         this.Confirmacion('Match Creado', 'Solo debe esperar la llegada del paseador');

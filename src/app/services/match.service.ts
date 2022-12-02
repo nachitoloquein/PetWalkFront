@@ -26,8 +26,8 @@ export class MatchService {
     return this.http.get(`${this.URL_API}/historialTrabajador/${id}`)
   }
   
-  hacerMatch(idHoraTrabajo, idConsumidor: string, idTrabajador: string, horaTrabajo: string, monto:number){
-    return this.http.post(`${this.URL_API}/${idHoraTrabajo}`, {idConsumidor, idTrabajador, horaTrabajo, monto});
+  hacerMatch(idHoraTrabajo, idConsumidor: string, idTrabajador: string, monto:number){
+    return this.http.post(`${this.URL_API}/${idHoraTrabajo}`, {idConsumidor, idTrabajador, monto});
   }
 
   cancelarMatch(idMatch){
