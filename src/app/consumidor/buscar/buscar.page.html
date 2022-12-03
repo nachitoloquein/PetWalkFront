@@ -39,9 +39,12 @@
     
                 </div>
               </div>
-              <div class="card-footer">
+              <div class="card-footer foot">
                 <div class="text-right">
-                  <a [routerLink]="'/mostrarperfil/' + trabajador._id" class="btn btn-sm btn-primary">
+                  <a id="horariosPerfil" (click)="cargarHorarios(trabajador._id)" class="btn btnPerfil btn-sm bg-teal">
+                    <i class="fas fa-comments"></i>Solicitar
+                  </a>
+                  <a [routerLink]="'/mostrarperfil/' + trabajador._id" class="btn btn-sm btnPerfil btn-primary">
                     <i class="fas fa-user"></i> Ver Perfil
                   </a>
 
@@ -107,7 +110,7 @@
                         <div *ngIf="cantidadHoras != 0">
                           <div class="horas" *ngFor="let horas of horarios">
                             <div>
-                              <ion-text ><strong>{{horas.horaIntervalos}}</strong> 🐶 </ion-text> <br><ion-text>{{trabajador?.comuna}}</ion-text>
+                              <ion-text ><strong>{{horas.horaIntervalos}}</strong> 🐶 </ion-text> <br><ion-text>{{trabajador?.comuna}} | {{trabajador?.direccion}}</ion-text>
                             </div>
                             <button (click)="hacerMatch(horas._id)" ><ion-text >Reservar</ion-text> </button>
                           </div>
