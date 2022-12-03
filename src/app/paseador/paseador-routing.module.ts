@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: PaseadorPage
+  },  {
+    path: 'tutorial-paseador',
+    loadChildren: () => import('./tutorial-paseador/tutorial-paseador.module').then( m => m.TutorialPaseadorPageModule)
   },
+
   
 
   
