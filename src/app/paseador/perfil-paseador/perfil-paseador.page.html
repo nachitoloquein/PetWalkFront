@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Perfil</ion-title>
+    <img src="../../../assets/img/logopetwalk.png" width="42%" height="30%" alt="">
     <ion-buttons slot="end">
       <ion-button (click)="LogOut()">
         <ion-icon name="log-out-outline" color="danger"></ion-icon>
@@ -16,7 +16,7 @@
         <div class="col-md-3">
 
           <!-- Profile Image -->
-          <div class="card card-primary card-outline">
+          <div class="card card-purple card-outline">
             <div class="card-body box-profile">
               <div class="text-center">
                 <img class="profile-user-img img-fluid img-circle"
@@ -40,7 +40,7 @@
                   <span class="info-box-number text-center text-light mb-0">{{ganancias}}</span>
                 </div>
               </div>  
-              <button class="btn btn-primary btn-block" id="horarios"  (click)="setOpen(true)"><b>Gestionar horario</b></button>
+              <button class="btn btn-color btn-block" id="horarios"  (click)="setOpen(true)"><b>Gestionar horario</b></button>
             </div>
             <li class="list-group-item">
               <b>¿Cómo utilizar la aplicación?</b> <a class="float-right" href="tutorialPaseador">Ver tutorial</a>
@@ -71,11 +71,8 @@
                   <div class="defHoras">
                     
                     <ion-label>Inicio</ion-label>
-                    <input type="time" [(ngModel)]="horaInicio" name="horaInicio" id="">
+                    <input value="07:00" type="time" value="00:00" [(ngModel)]="horaInicio" name="horaInicio" >
                     
-                    <ion-label>Termino</ion-label>
-                    <input type="time" [(ngModel)]="horaTermino" name="horaTermino" id="">
-  
                     <button (click)="CrearHorarioDisponible()"> Guardar</button>
                   </div>
 
@@ -83,7 +80,7 @@
                   
                   <div class="horas" *ngFor="let horas of horarios">
                     <div>
-                      <ion-text ><strong>{{horas.horaIntervalos }}</strong> 🐶(hrs) </ion-text> <br><ion-text>{{trabajador.comuna}}</ion-text>
+                      <ion-text ><strong>{{horas.horaIntervalos }}</strong>(hrs) 🐶 </ion-text> <br><ion-text>{{trabajador.comuna}}</ion-text>
                     </div>
                     <button  (click)="BorrarHorarioDisponible(horas?._id)"><ion-text >Borrar</ion-text> </button>
                   
@@ -103,7 +100,7 @@
           <!-- /.card -->
 
           <!-- About Me Box -->
-          <div class="card card-primary">
+          <div class="card card-purple">
             <div class="card-header">
               <h3 class="card-title">Información</h3>
             </div>

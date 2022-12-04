@@ -21,6 +21,8 @@ export class PerfilPaseadorPage implements OnInit {
   contador : any
   ganancias : any
   paseos : any
+  minutes : any
+  seconds : any
 
   constructor(
     private matchService : MatchService,
@@ -51,7 +53,7 @@ export class PerfilPaseadorPage implements OnInit {
       res=>{
         this.trabajador = res,
         this.ListarHorarioDisponible(this.trabajador['_id'])
-        this.ContPaseos(this.trabajador['_id'])
+        this.ContPaseos(res['_id'])
         
       },
       err => console.log(err));
@@ -67,15 +69,35 @@ export class PerfilPaseadorPage implements OnInit {
     )
   }
 
-  CrearHorarioDisponible(){    
-   this.horarioService.CrearHorario(this.trabajador['_id'], this.horaInicio +'-'+ this.horaTermino).subscribe(
-    res => {
-      this.presentToast('top', 'Horario Creado Correctamente', "success")
-      this.ListarHorarioDisponible(this.trabajador['_id']);
-    }, err => {
-      console.log(err)
+  CrearHorarioDisponible(){
+    if(this.horaInicio == undefined){
+      this.presentToast('middle','Debe escoger un horario valido', 'danger')
+    }else{
+      if(this.horaInicio > "20:00"){ 
+        this.presentToast('middle', 'El rango de horario recomendado es de 7am - 9pm', 'warning')
+      }
+      else{
+        var minute = this.horaInicio.split(':')
+        var total = parseInt(minute[0]) + 1 
+        this.horaTermino = total + ":" +(minute[1])
+  
+        this.horarioService.CrearHorario(this.trabajador['_id'], this.horaInicio +' - '+ this.horaTermino).subscribe(
+          res => {
+      
+            console.log(total)
+            //this.horaInicio = new Date(this.horaInicio).getTime()
+            //var addMlSeconds = 60 * 60000;
+            //this.horaTermino = new Date(this.horaInicio + addMlSeconds).getTime();
+            this.presentToast('top', 'Horario Creado Correctamente', "success")
+            this.ListarHorarioDisponible(this.trabajador['_id']);
+          }, err => {
+            console.log(err)
+          }
+         )  
+      }
     }
-   )  
+    
+   
   }
 
   BorrarHorarioDisponible(id){
