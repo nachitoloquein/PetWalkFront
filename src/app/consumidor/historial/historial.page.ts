@@ -46,4 +46,11 @@ export class HistorialPage implements OnInit {
       err => console.log(err));
   }
 
+  handleRefresh(event) {
+    setTimeout(() => {
+      this.obtenerDatos();
+      event.target.complete();
+    }, 1000);
+  };
+
 }

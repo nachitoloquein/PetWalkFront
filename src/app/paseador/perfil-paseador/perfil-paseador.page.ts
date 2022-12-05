@@ -132,10 +132,5 @@ export class PerfilPaseadorPage implements OnInit {
     await toast.present();
   }
 
-  handleRefresh(event) {
-    setTimeout(() => {
-      this.obtenerDatos();
-      event.target.complete();
-    }, 2000);
-  };
+  
 }

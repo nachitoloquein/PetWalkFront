@@ -110,6 +110,13 @@ export class BilleteraPage implements OnInit {
     await alert.present();
   }
 
+  handleRefresh(event) {
+    setTimeout(() => {
+      this.ListarPlanes();
+      this.obtenerIDUsuarioConectado();
+      event.target.complete();
+    }, 1000);
+  };
 
 
 }
