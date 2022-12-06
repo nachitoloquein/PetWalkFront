@@ -23,7 +23,7 @@
                     <h2 class="lead"><b>{{trabajador.nombre | titlecase}} {{trabajador.apellido | titlecase}}</b></h2>
                   
                     <ul class="ml-3 mb-0 fa-ul text info">
-                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Dirección: {{trabajador.direccion | titlecase}} | {{trabajador.comuna}}</li>
+                      <li class="medium"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Dirección: {{trabajador.direccion | titlecase}} | {{trabajador.comuna}}</li>
                       <br>
                       <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Teléfono: + 56 {{trabajador.telefono}}</li>
                     </ul>
@@ -42,7 +42,7 @@
               <div class="card-footer foot">
                 <div class="text-right">
                   <a id="horariosPerfil" (click)="cargarHorarios(trabajador._id)" class="btn btnPerfil btn-sm bg-teal">
-                    <i class="fas fa-comments"></i>Solicitar
+                    <i class="fas fa-comments"></i> Solicitar
                   </a>
                   <a [routerLink]="'/mostrarperfil/' + trabajador._id" class="btn btn-sm btnPerfil btn-primary">
                     <i class="fas fa-user"></i> Ver Perfil
