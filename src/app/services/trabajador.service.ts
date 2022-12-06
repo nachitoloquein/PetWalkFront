@@ -63,7 +63,9 @@ export class TrabajadorService {
     return this.http.get(`${this.URL_API}/trabajadorConectado`, {headers: {'authorization':this.verificarToken()}})
   }
 
-  
+  recuperarContrasenaTrabajador(correo, contrasenaNueva){
+    return this.http.post(`${this.URL_API}/recuperarContrasenaTrabajador`, {correo, contrasenaNueva});
+  }
 
   
 }

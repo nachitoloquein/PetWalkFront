@@ -43,6 +43,10 @@ export class ConsumidorService {
     return this.http.get(`${this.URL_API}/perfil/${idConsumidor}`)
   }
 
+  recuperarContrasenaConsumidor(correo, contrasenaNueva){
+    return this.http.post(`${this.URL_API}/recuperarContrasenaConsumidor`, {correo, contrasenaNueva});
+  }
+
 
 
 }
