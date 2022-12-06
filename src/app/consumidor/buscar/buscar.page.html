@@ -1,48 +1,82 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title><img src="../../../assets/img/logopetwalk.png" width="42%" height="30%" alt=""></ion-title>
+<ion-header class="header">
+  <ion-toolbar class="header">
+    <ion-title ><img src="../../../assets/img/logopetwalk.png" width="42%" height="30%" alt=""></ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
-  <ion-searchbar animated="true" placeholder="Buscar Paseador" [(ngModel)]="filterTerm" name="filterTerm"></ion-searchbar>
-  <section class="content">
+  <ion-searchbar animated="true" placeholder="Buscar Paseador"  [(ngModel)]="filterTerm" name="filterTerm"></ion-searchbar>
+  <section class="content " >
     <!-- Default box -->
-    <div class="card card-solid">
-      <div class="card-body pb-0">
+    <div class="card card-solid ">
+      <div class="card-body  pb-0">
         <div class="row">
           <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column" *ngFor="let trabajador of trabajadores | filter: filterTerm ">
-            <div class="card bg-light d-flex flex-fill">
-              <div class="card-header text-muted border-bottom-0">
+            <div class="card bg bord d-flex flex-fill">
+              <div class="card-header text border-bottom-0">
                 {{trabajador.correo}}
               </div>
-              <div class="card-body pt-0">
+              <div class="card-body pt-0 ">
                 <div class="row">
                   <div class="col-7">
                     <h2 class="lead"><b>{{trabajador.nombre | titlecase}} {{trabajador.apellido | titlecase}}</b></h2>
-                    <p class="text-muted text-sm"><b>Fecha de nacimiento: </b> {{trabajador.fechaNacimiento | date:'yyy/MM/dd'}} </p>
-                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                  
+                    <ul class="ml-3 mb-0 fa-ul text info">
                       <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Dirección: {{trabajador.direccion | titlecase}} | {{trabajador.comuna}}</li>
+                      <br>
                       <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Teléfono: + 56 {{trabajador.telefono}}</li>
                     </ul>
                   </div>
                   <div class="col-5 text-center" *ngIf="trabajador.genero == 'Masculino'">
                     <img src="https://static.vecteezy.com/system/resources/previews/004/607/806/original/man-face-emotive-icon-smiling-bearded-male-character-in-yellow-flat-illustration-isolated-on-white-happy-human-psychological-portrait-positive-emotions-user-avatar-for-app-web-design-vector.jpg" alt="user-avatar" class="img-circle img-fluid">
+                  
                   </div>
                   <div class="col-5 text-center" *ngIf="trabajador.genero == 'Femenino'">
                     <img src="https://static.vecteezy.com/system/resources/previews/001/312/575/non_2x/beautiful-teenage-girl-with-different-facial-expression-vector.jpg" alt="user-avatar" class="img-circle img-fluid">
+                  
                   </div>
+    
                 </div>
               </div>
-              <div class="card-footer">
+              <div class="card-footer foot">
                 <div class="text-right">
-                  <a id="horariosPerfil" (click)="cargarHorarios(trabajador._id)" class="btn btn-sm bg-teal">
+                  <a id="horariosPerfil" (click)="cargarHorarios(trabajador._id)" class="btn btnPerfil btn-sm bg-teal">
                     <i class="fas fa-comments"></i>Solicitar
                   </a>
-                  <a [routerLink]="'/mostrarperfil/' + trabajador._id" class="btn btn-sm btn-primary">
+                  <a [routerLink]="'/mostrarperfil/' + trabajador._id" class="btn btn-sm btnPerfil btn-primary">
                     <i class="fas fa-user"></i> Ver Perfil
                   </a>
+
+                  <ion-modal trigger="horarios" [isOpen]="isModalOpen">
+                    <ng-template>
+                      <ion-header>
+                        <ion-toolbar>
+                          <ion-buttons slot="start">
+                            <ion-button (click)="setOpen(false)" >Cancel</ion-button>
+                          </ion-buttons>
+                          <ion-title>Horarios Disponibles</ion-title>
+                          <ion-buttons slot="end">
+                          </ion-buttons>
+                        </ion-toolbar>
+                      </ion-header>
+                      <ion-content class="ion-padding">
+                        <div class="horarios">
+                            <h4>{{fechaHoy | date: 'EEEE, MMMM d, y'}}</h4>
+                            <h1>________________</h1>
+                            
+                            <div class="horas" *ngFor="let horas of horarios">
+                              <div>
+                                <ion-text ><strong>{{horas.horaIntervalos}}</strong> 🐶 </ion-text> <br><ion-text>{{trabajador?.direccion}} | {{trabajador?.comuna}}</ion-text>
+                              </div>
+                              <button (click)="hora(horas.horaIntervalos)" (click)="hacerMatch(horas._id)" ><ion-text >Reservar</ion-text> </button>
+                            </div>
+                        </div>
+                      </ion-content>
+                    </ng-template>
+                  </ion-modal>
+
+                  
                 </div>
               </div>
               <ion-modal trigger="horariosPerfil" [isOpen]="isModalOpen">
@@ -76,7 +110,7 @@
                         <div *ngIf="cantidadHoras != 0">
                           <div class="horas" *ngFor="let horas of horarios">
                             <div>
-                              <ion-text ><strong>{{horas.horaIntervalos}}</strong> 🐶 </ion-text> <br><ion-text>{{trabajador?.comuna}}</ion-text>
+                              <ion-text ><strong>{{horas.horaIntervalos}}</strong> 🐶 </ion-text> <br><ion-text>{{trabajador?.comuna}} | {{trabajador?.direccion}}</ion-text>
                             </div>
                             <button (click)="hacerMatch(horas._id)" ><ion-text >Reservar</ion-text> </button>
                           </div>

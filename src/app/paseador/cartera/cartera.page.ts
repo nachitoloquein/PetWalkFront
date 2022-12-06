@@ -42,6 +42,10 @@ export class CarteraPage implements OnInit {
       }
     )
   }
-
-  
+  handleRefresh(event) {
+    setTimeout(() => {
+      this.CarteraTrabajador();
+      event.target.complete();
+    }, 1000);
+  };
 }

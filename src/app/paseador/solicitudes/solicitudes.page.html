@@ -1,22 +1,32 @@
+<ion-header class="header">
+  <ion-toolbar class="header">
+    <ion-title ><img src="../../../assets/img/logopetwalk.png" width="42%" height="30%" alt=""></ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  <div class="column card">     
-    <div class="col-lg-6">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+    
+    <div class="col-lg-6 solicitud">
       <div *ngIf = "cantidadMatches != 0">
           <div *ngFor="let match of pendientes">
                 <div class="card card-purple card-outline" >
                   <div class="card-header">
-                    <h5 class="m-0">Usuario: <strong>{{match.idConsumidor.nombre}} {{match.idConsumidor.apellido}}</strong></h5>
+                    <h5 class="m-0"><strong>{{match.idConsumidor.nombre}} {{match.idConsumidor.apellido}}</strong></h5>
                   </div>
                   <div class="card-body">
                     <h6 class="card-title">Direccion: <strong>{{match.idConsumidor.direccion}} | {{match.idConsumidor.comuna}}</strong></h6>
                 
                     <p class="card-text"> Hora: <strong>{{match.idHoraTrabajo.horaIntervalos}}</strong></p>
-                    <div class="buttons">
-                      <a  (click)="AceptarMatch(match.idConsumidor._id,match._id)"   class="btn btn-success">Iniciar Paseo</a>
                     
-                      <a (click)="preguntar(match._id)" class="btn btn-danger">Cancelar Trabajo</a>
-                    </div>
                     
+                  </div>
+                  <div class="buttons">
+                    <a  (click)="AceptarMatch(match.idConsumidor._id,match._id)"   class="btn btn-success">Iniciar Paseo</a>
+                  
+                    <a (click)="preguntar(match._id)" class="btn btn-danger">Cancelar Trabajo</a>
                   </div>
                 </div>
           </div>
@@ -27,12 +37,13 @@
               <ion-col class="ion-align-self-center">
                 <div class="ion-text-center">
                   <h3>No hay trabajo aún!</h3>
+                  <h6>Deslice hacia abajo para refrescar</h6>
                 </div>
               </ion-col>
             </ion-row>
           </ion-grid>
         </div>
     </div>
-</div>
+
 
 </ion-content>

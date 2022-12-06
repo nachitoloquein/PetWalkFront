@@ -1,10 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Historial Paseador</ion-title>
+<ion-header class="header">
+  <ion-toolbar class="header">
+    <ion-title ><img src="../../../assets/img/logopetwalk.png" width="42%" height="30%" alt=""></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
   <!-- Main content -->
     <section class="content">
       <div class="container-fluid">

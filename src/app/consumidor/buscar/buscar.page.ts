@@ -5,6 +5,8 @@ import { ConsumidorService } from 'src/app/services/consumidor.service';
 import { HorasService } from 'src/app/services/horas.service';
 import { MatchService } from 'src/app/services/match.service';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
+
+
 @Component({
   selector: 'app-buscar',
   templateUrl: './buscar.page.html',
@@ -34,6 +36,7 @@ export class BuscarPage implements OnInit {
    }
 
   ngOnInit() {
+  
   }
 
   listarTrabajadores(){
@@ -41,6 +44,7 @@ export class BuscarPage implements OnInit {
       res => {
         this.trabajadores = res.filter((m) => m.estado == 'Activo')
         console.log(this.trabajadores);
+        
       },
       err => {
         console.log(err)

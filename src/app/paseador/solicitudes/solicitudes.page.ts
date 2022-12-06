@@ -32,12 +32,12 @@ export class SolicitudesPage implements OnInit {
   
 
   ngOnInit() {
-    
   }
 
   ObtenerDatosMatch(){
     this.trabajadorService.ObtenerTrabajadorLogeado().subscribe(
       res => {
+        this.ObtenerId('');
         this.id = res['_id']
         this.ObtenerId(this.id);
       },err =>{
@@ -114,9 +114,17 @@ export class SolicitudesPage implements OnInit {
   }
 
   AceptarMatch(id, MatchId){
+    this.ObtenerDatosMatch();
     sessionStorage.setItem('idConsumidor', id)
     sessionStorage.setItem('idMatch', MatchId)
     this.route.navigate(['/paseando'])
   }
+
+  handleRefresh(event) {
+    setTimeout(() => {
+      this.ObtenerDatosMatch();
+      event.target.complete();
+    }, 1000);
+  };
 
 }

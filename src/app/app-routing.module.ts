@@ -66,6 +66,11 @@ const routes: Routes = [
     canActivate: [AuthConsumidorGuard]
   },
   {
+    path : 'tutorialPaseador',
+    loadChildren: () => import('./paseador/tutorial-paseador/tutorial-paseador.module').then(m => m.TutorialPaseadorPageModule),
+    canActivate : [AuthTrabajadorGuard]
+  },
+  {
     path : 'transaccionBuena', 
     loadChildren : () => import('./consumidor/transaccion-buena/transaccion-buena.module').then(m => m.TransaccionBuenaPageModule),
     canActivate: [AuthConsumidorGuard]
@@ -115,6 +120,15 @@ const routes: Routes = [
     loadChildren: () => import('./paseador/paseando/paseando.module').then( m => m.PaseandoPageModule),
     canActivate : [AuthTrabajadorGuard]
   },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+  },
+
 ];
 
 @NgModule({

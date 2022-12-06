@@ -21,16 +21,16 @@ export class TabnavPage implements OnInit {
    }
 
   ngOnInit() {
+    this.Trabajador();
   }
 
   Trabajador(){
     this.trabajadorService.ObtenerTrabajadorLogeado().subscribe(
       res => {
       this.ContadorMatch(res['_id'])}
-      
     )
+    
   }
-
   ContadorMatch(id){
     this.matchService.verMatchTrabajador(id).subscribe(
       res => {
@@ -39,5 +39,6 @@ export class TabnavPage implements OnInit {
       }
     )
   }
+  
 
 }

@@ -7,6 +7,9 @@
 
 
 <ion-content scroll-y="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <div class="coins">
     <ion-icon name="alert-circle-outline" (click)="MensajeInfo()"><ion-button ></ion-button></ion-icon>

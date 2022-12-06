@@ -43,4 +43,6 @@ export class ConsumidorService {
     return this.http.get(`${this.URL_API}/perfil/${idConsumidor}`)
   }
 
+
+
 }
